@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CQ STUDIO — Ultra-Premium Digital Haute Couture & Agency</title>
+    <title>CQ STUDIO — Ultra-Premium Digital Ecosystem</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #030806;
-            --surface: rgba(8, 20, 15, 0.75);
-            --border-gold: rgba(212, 175, 55, 0.2);
-            --gold-grad: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #AA7C11 100%);
+            --bg-obsidian: #020604;
+            --emerald-glass: rgba(5, 20, 14, 0.75);
+            --gold-accent: #D4AF37;
+            --gold-grad: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #9C6F1D 100%);
             --font-heading: 'Cinzel', serif;
             --font-sans: 'Plus Jakarta Sans', sans-serif;
         }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
             font-family: var(--font-sans);
-            background-color: var(--bg);
+            background-color: var(--bg-obsidian);
             color: #F6EFDC;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(14, 52, 38, 0.4) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(167, 122, 34, 0.07) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, #030806 0%, #010302 100%);
+                radial-gradient(circle at 10% 10%, rgba(10, 45, 32, 0.5) 0%, transparent 45%),
+                radial-gradient(circle at 90% 90%, rgba(167, 122, 34, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, #020604 0%, #010302 100%);
             background-attachment: fixed;
         }
         .luxury-title { font-family: var(--font-heading); }
@@ -35,330 +35,263 @@
             -webkit-text-fill-color: transparent;
         }
         .gold-border {
-            border: 1px solid var(--border-gold);
+            border: 1px solid rgba(212, 175, 55, 0.22);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .gold-border:hover {
             border-color: rgba(255, 215, 0, 0.6);
             box-shadow: 0 20px 40px -10px rgba(212, 175, 55, 0.15);
         }
-        .glass-panel {
-            background: var(--surface);
+        .glass-card {
+            background: var(--emerald-glass);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--border-gold);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 215, 0, 0.45);
+            box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.2);
         }
         .gold-btn {
             background: var(--gold-grad);
-            color: #030806;
+            color: #020604;
             font-weight: 700;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.35);
+            box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.4);
         }
         .gold-btn:hover {
             filter: brightness(1.1);
             transform: translateY(-2px);
-            box-shadow: 0 15px 45px -10px rgba(255, 215, 0, 0.55);
+            box-shadow: 0 15px 45px -10px rgba(255, 215, 0, 0.6);
         }
         
-        /* Cinematic 3D Device Mockup */
-        .device-stage { perspective: 1200px; }
-        .device-frame {
-            width: 280px;
-            height: 570px;
-            background: #060E0B;
-            border-radius: 42px;
-            border: 3px solid rgba(212, 175, 55, 0.45);
-            box-shadow: 0 35px 100px rgba(0,0,0,0.85), 0 0 50px rgba(212,175,55,0.18);
-            transform: rotateY(-10deg) rotateX(6deg);
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        /* 3D Floating Core Sphere */
+        .core-stage { perspective: 1000px; display: grid; place-items: center; height: 320px; position: relative; }
+        .core-sphere {
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #FFF3C4 0%, #D4AF37 40%, #051A12 85%, #020604 100%);
+            box-shadow: inset 0 0 30px rgba(255,215,0,0.5), 0 0 60px rgba(10,50,35,0.8), 0 25px 50px rgba(0,0,0,0.9);
             position: relative;
-            margin: 0 auto;
-            overflow: hidden;
+            animation: floatCore 7s ease-in-out infinite alternate;
+            display: grid;
+            place-items: center;
         }
-        .device-frame:hover { transform: rotateY(0deg) rotateX(0deg) scale(1.02); }
-        .device-screen {
-            background: #030806;
-            width: 100%;
-            height: 100%;
-            border-radius: 38px;
-            overflow-y: auto;
-            padding: 22px 14px;
+        @keyframes floatCore {
+            from { transform: translateY(-15px) rotateX(10deg) rotateY(-10deg); }
+            to { transform: translateY(15px) rotateX(-10deg) rotateY(10deg); }
         }
-        .device-screen::-webkit-scrollbar { width: 3px; }
-        .device-screen::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.3); border-radius: 10px; }
+        .core-sphere::after {
+            content: "CQ";
+            font-family: var(--font-heading);
+            font-size: 42px;
+            font-weight: 800;
+            color: #020604;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.6);
+        }
+
+        /* Bottom Navigation for Mobile / Web App */
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 420px;
+            background: rgba(3, 10, 7, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 24px;
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 50;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+        .bottom-nav a {
+            color: #94A59C;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .bottom-nav a:hover, .bottom-nav a.active { color: #FFD700; }
 
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #030806; }
-        ::-webkit-scrollbar-thumb { background: #0E261D; border-radius: 3px; border: 1px solid rgba(212,175,55,0.2); }
-        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+        ::-webkit-scrollbar-track { background: #020604; }
+        ::-webkit-scrollbar-thumb { background: #0A261C; border-radius: 3px; border: 1px solid rgba(212,175,55,0.2); }
 
         .admin-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 100; display: none; place-items: center; padding: 16px; backdrop-filter: blur(12px); }
     </style>
 </head>
-<body class="selection:bg-[#D4AF37] selection:text-black">
+<body class="selection:bg-[#D4AF37] selection:text-black pb-28">
 
-    <!-- ULTRA-MINIMAL LUXURY NAVBAR -->
-    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-[#030806]/80 backdrop-blur-2xl border-b border-[#D4AF37]/10">
-        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-            <a href="#home" class="flex items-center gap-3.5 group">
-                <div class="w-11 h-11 rounded-2xl gold-border bg-[#05140F] flex items-center justify-center text-xl shadow-inner group-hover:scale-105 transition-transform">
-                    👑
-                </div>
+    <!-- TOP HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-[#020604]/80 backdrop-blur-2xl border-b border-[#D4AF37]/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#home" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl gold-border bg-[#05140F] flex items-center justify-center text-lg">👑</div>
                 <div>
-                    <span class="text-xl font-extrabold tracking-[0.2em] luxury-title gold-gradient">CQ STUDIO</span>
-                    <span class="block text-[9px] tracking-[0.35em] text-[#94A59C] uppercase font-semibold">Haute Couture Agency</span>
+                    <span class="text-lg font-extrabold tracking-[0.2em] luxury-title gold-gradient">CQ STUDIO</span>
+                    <span class="block text-[8px] tracking-[0.3em] text-[#94A59C] uppercase font-semibold">● ONLINE</span>
                 </div>
             </a>
-
-            <nav class="hidden md:flex items-center gap-9">
-                <a href="#home" class="text-xs uppercase tracking-[0.2em] text-gray-300 hover:text-[#FFD700] transition-colors font-medium">Bosh sahifa</a>
-                <a href="#services" class="text-xs uppercase tracking-[0.2em] text-gray-300 hover:text-[#FFD700] transition-colors font-medium">Xizmatlar</a>
-                <a href="#portfolio" class="text-xs uppercase tracking-[0.2em] text-gray-300 hover:text-[#FFD700] transition-colors font-medium">Portfolio</a>
-                <a href="#about" class="text-xs uppercase tracking-[0.2em] text-gray-300 hover:text-[#FFD700] transition-colors font-medium">Biz haqimizda</a>
-                <a href="#calculator" class="text-xs uppercase tracking-[0.2em] text-gray-300 hover:text-[#FFD700] transition-colors font-medium">Kalkulyator</a>
-                <a href="#order" class="text-xs uppercase tracking-[0.2em] text-gray-300 hover:text-[#FFD700] transition-colors font-medium">Aloqa</a>
-            </nav>
-
             <div class="flex items-center gap-3">
-                <button onclick="openAdminModal()" class="hidden sm:inline-flex px-4 py-2.5 rounded-xl gold-border bg-[#05140F] text-[#E9C25C] text-xs uppercase tracking-widest hover:bg-[#D4AF37] hover:text-black transition-all font-bold">
-                    👑 Admin
-                </button>
-                <a href="#order" class="gold-btn px-7 py-3 rounded-2xl text-xs uppercase tracking-[0.2em]">
-                    Botni Sinab Ko'rish
-                </a>
-                <button id="mobileMenuBtn" class="md:hidden text-2xl text-[#D4AF37] p-2 focus:outline-none">☰</button>
+                <button onclick="openAdminModal()" class="px-3.5 py-2 rounded-xl gold-border bg-[#05140F] text-[#E9C25C] text-xs uppercase tracking-widest font-bold">👑 Admin</button>
+                <a href="#order" class="gold-btn px-5 py-2.5 rounded-xl text-xs uppercase tracking-widest hidden sm:block">Buyurtma</a>
             </div>
-        </div>
-
-        <!-- Mobile Menu Drawer -->
-        <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 right-0 bg-[#030806]/98 backdrop-blur-2xl border-b border-[#D4AF37]/20 p-8 space-y-5 shadow-2xl">
-            <a href="#home" class="block text-xs uppercase tracking-[0.2em] text-gray-300 hover:text-[#FFD700]" onclick="toggleMobileMenu()">Bosh sahifa</a>
-            <a href="#services" class="block text-xs uppercase tracking-[0.2em] text-gray-300 hover:text-[#FFD700]" onclick="toggleMobileMenu()">Xizmatlar</a>
-            <a href="#portfolio" class="block text-xs uppercase tracking-[0.2em] text-gray-300 hover:text-[#FFD700]" onclick="toggleMobileMenu()">Portfolio</a>
-            <a href="#about" class="block text-xs uppercase tracking-[0.2em] text-gray-300 hover:text-[#FFD700]" onclick="toggleMobileMenu()">Biz haqimizda</a>
-            <a href="#calculator" class="block text-xs uppercase tracking-[0.2em] text-gray-300 hover:text-[#FFD700]" onclick="toggleMobileMenu()">Kalkulyator</a>
-            <a href="#order" class="block text-xs uppercase tracking-[0.2em] text-gray-300 hover:text-[#FFD700]" onclick="toggleMobileMenu()">Aloqa</a>
-            <button onclick="openAdminModal(); toggleMobileMenu();" class="w-full gold-border bg-[#05140F] py-3 rounded-2xl text-xs uppercase tracking-[0.2em] text-[#E9C25C] font-bold">Admin Panel</button>
         </div>
     </header>
 
-    <!-- HERO SECTION WITH CINEMATIC 3D DEVICE -->
-    <section id="home" class="relative pt-40 pb-28 md:pt-56 md:pb-40 px-6 overflow-hidden">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
-            
-            <!-- Left Content -->
-            <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
-                <div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full gold-border bg-[#05140F] text-[#FFD700] text-[10px] uppercase tracking-[0.35em] font-bold shadow-lg">
-                    <span>✦</span> CQ STUDIO <span>✦</span>
-                </div>
-                
-                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight luxury-title leading-[1.1]">
-                    Biznesingiz uchun <br>keyingi darajadagi <br><span class="gold-gradient">raqamli yechim.</span>
-                </h1>
-                
-                <p class="max-w-xl mx-auto lg:mx-0 text-sm md:text-base text-[#94A59C] leading-relaxed font-light">
-                    Avtomatlashtirish, xizmatlar va kreativ yechimlar — barchasi bitta premium platformada.
-                </p>
-                
-                <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                    <a href="#order" class="gold-btn w-full sm:w-auto px-9 py-4 rounded-2xl text-xs uppercase tracking-[0.2em] text-center">
-                        BOTNI SINAB KO‘RISH
-                    </a>
-                    <a href="#services" class="w-full sm:w-auto px-9 py-4 rounded-2xl text-xs uppercase tracking-[0.2em] gold-border bg-[#05140F] hover:bg-[#0A2018] transition-colors text-white text-center">
-                        XIZMATLARNI KO‘RISH
-                    </a>
-                </div>
-            </div>
+    <!-- HERO SECTION -->
+    <section id="home" class="relative pt-32 pb-20 px-6 text-center max-w-4xl mx-auto z-10">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full gold-border bg-[#05140F] text-[#FFD700] text-[10px] uppercase tracking-[0.3em] font-bold mb-6">
+            <span>✦</span> Ultra-Premium Ecosystem <span>✦</span>
+        </div>
 
-            <!-- Right Side: Cinematic 3D Smartphone Device Mockup -->
-            <div class="lg:col-span-5 flex justify-center device-stage">
-                <div class="device-frame">
-                    <div class="device-screen">
-                        <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
-                            <span class="text-[11px] font-bold tracking-widest gold-gradient luxury-title">CQ STUDIO BOT</span>
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        </div>
-                        <div class="space-y-2.5">
-                            <div class="glass-panel p-3 rounded-2xl border border-[#D4AF37]/30">
-                                <span class="text-[9px] text-[#E9C25C] uppercase tracking-wider block font-bold">Asosiy Menyu 👑</span>
-                                <p class="text-[10px] text-gray-300 mt-0.5">Eksklyuziv xizmatlarni tanlang.</p>
-                            </div>
-                            <!-- Bot Quick Menu Items -->
-                            <div class="grid grid-cols-2 gap-2">
-                                <a href="#services" class="p-2.5 rounded-xl bg-[#0A1F17] gold-border text-center block">
-                                    <span class="text-base block mb-0.5">⚡</span>
-                                    <span class="text-[10px] font-bold text-gray-200">Xizmatlar</span>
-                                </a>
-                                <a href="#order" class="p-2.5 rounded-xl bg-[#0A1F17] gold-border text-center block">
-                                    <span class="text-base block mb-0.5">🛒</span>
-                                    <span class="text-[10px] font-bold text-gray-200">Buyurtma</span>
-                                </a>
-                                <a href="#calculator" class="p-2.5 rounded-xl bg-[#0A1F17] gold-border text-center block">
-                                    <span class="text-base block mb-0.5">💎</span>
-                                    <span class="text-[10px] font-bold text-gray-200">Narxlar</span>
-                                </a>
-                                <a href="#portfolio" class="p-2.5 rounded-xl bg-[#0A1F17] gold-border text-center block">
-                                    <span class="text-base block mb-0.5">✨</span>
-                                    <span class="text-[10px] font-bold text-gray-200">Portfolio</span>
-                                </a>
-                                <a href="#services" class="p-2.5 rounded-xl bg-[#0A1F17] gold-border text-center block">
-                                    <span class="text-base block mb-0.5">📢</span>
-                                    <span class="text-[10px] font-bold text-gray-200">Reklama</span>
-                                </a>
-                                <a href="#services" class="p-2.5 rounded-xl bg-[#0A1F17] gold-border text-center block">
-                                    <span class="text-base block mb-0.5">🎬</span>
-                                    <span class="text-[10px] font-bold text-gray-200">Video</span>
-                                </a>
-                            </div>
-                            <div class="p-2.5 rounded-xl bg-gradient-to-r from-[#103A2B] to-[#0A1F17] border border-[#D4AF37]/40 text-center">
-                                <span class="text-[10px] font-bold text-[#FFD700] uppercase tracking-wider">24/7 Qo'llab-quvvatlash</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight luxury-title leading-[1.15] mb-6">
+            Biznesingiz uchun <br>keyingi darajadagi <br><span class="gold-gradient">raqamli yechim.</span>
+        </h1>
 
+        <p class="max-w-xl mx-auto text-xs sm:text-sm text-[#94A59C] leading-relaxed font-light mb-10">
+            Bot, Mini App, Web, AI, Design va Video xizmatlari — barchasi bitta premium platformada.
+        </p>
+
+        <!-- Central 3D Interactive Visual Core -->
+        <div class="core-stage my-4">
+            <div class="core-sphere"></div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+            <a href="#services" class="gold-btn w-full sm:w-auto px-8 py-4 rounded-2xl text-xs uppercase tracking-[0.2em]">
+                IMKONIYATLARNI KO‘RISH →
+            </a>
+            <a href="#order" class="w-full sm:w-auto px-8 py-4 rounded-2xl text-xs uppercase tracking-[0.2em] gold-border bg-[#05140F] hover:bg-[#0A2018] text-white">
+                BUYURTMA BERISH
+            </a>
         </div>
 
         <!-- STATISTICS BAR -->
-        <div class="max-w-7xl mx-auto mt-20 pt-12 border-t border-[#D4AF37]/15">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                <div class="glass-panel p-6 rounded-3xl">
-                    <h3 class="text-3xl md:text-4xl font-extrabold gold-gradient luxury-title">12K+</h3>
-                    <p class="text-[11px] text-[#94A59C] uppercase tracking-[0.2em] mt-2 font-semibold">Mijozlar</p>
-                </div>
-                <div class="glass-panel p-6 rounded-3xl">
-                    <h3 class="text-3xl md:text-4xl font-extrabold gold-gradient luxury-title">100+</h3>
-                    <p class="text-[11px] text-[#94A59C] uppercase tracking-[0.2em] mt-2 font-semibold">Xizmatlar</p>
-                </div>
-                <div class="glass-panel p-6 rounded-3xl">
-                    <h3 class="text-3xl md:text-4xl font-extrabold gold-gradient luxury-title">24/7</h3>
-                    <p class="text-[11px] text-[#94A59C] uppercase tracking-[0.2em] mt-2 font-semibold">Qo'llab-quvvatlash</p>
-                </div>
-                <div class="glass-panel p-6 rounded-3xl">
-                    <h3 class="text-3xl md:text-4xl font-extrabold gold-gradient luxury-title">100%</h3>
-                    <p class="text-[11px] text-[#94A59C] uppercase tracking-[0.2em] mt-2 font-semibold">E'tibor</p>
-                </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-[#D4AF37]/15">
+            <div class="glass-card p-5 rounded-2xl">
+                <h3 class="text-2xl md:text-3xl font-extrabold gold-gradient luxury-title">12K+</h3>
+                <p class="text-[10px] text-[#94A59C] uppercase tracking-[0.2em] mt-1 font-semibold">Mijozlar</p>
+            </div>
+            <div class="glass-card p-5 rounded-2xl">
+                <h3 class="text-2xl md:text-3xl font-extrabold gold-gradient luxury-title">100+</h3>
+                <p class="text-[10px] text-[#94A59C] uppercase tracking-[0.2em] mt-1 font-semibold">Xizmatlar</p>
+            </div>
+            <div class="glass-card p-5 rounded-2xl">
+                <h3 class="text-2xl md:text-3xl font-extrabold gold-gradient luxury-title">24/7</h3>
+                <p class="text-[10px] text-[#94A59C] uppercase tracking-[0.2em] mt-1 font-semibold">Qo'llab-quvvatlash</p>
+            </div>
+            <div class="glass-card p-5 rounded-2xl">
+                <h3 class="text-2xl md:text-3xl font-extrabold gold-gradient luxury-title">100%</h3>
+                <p class="text-[10px] text-[#94A59C] uppercase tracking-[0.2em] mt-1 font-semibold">E'tibor</p>
             </div>
         </div>
     </section>
 
-    <!-- SERVICES SECTION (ASYMMETRIC PREMIUM GRID) -->
-    <section id="services" class="py-32 px-6 max-w-7xl mx-auto relative z-10">
-        <div class="text-center space-y-4 mb-16">
-            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-extrabold">Professional Yechimlar</span>
-            <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">Eksklyuziv Xizmatlar</h2>
-            <p class="text-xs md:text-sm text-[#94A59C] max-w-xl mx-auto">Biznesingizni mutlaqo yangi bosqichga olib chiquvchi professional yo'nalishlarimiz.</p>
+    <!-- MAIN MODULAR MENU -->
+    <section id="menu" class="py-16 px-6 max-w-6xl mx-auto relative z-10">
+        <div class="text-center space-y-2 mb-10">
+            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.3em] font-bold">Navigatsiya</span>
+            <h2 class="text-2xl md:text-4xl font-extrabold luxury-title gold-gradient">Asosiy Menu</h2>
         </div>
-
-        <!-- Filter Buttons -->
-        <div class="flex flex-wrap justify-center gap-3 mb-14">
-            <button onclick="filterServices('all')" class="filter-btn px-7 py-3 rounded-2xl text-xs uppercase tracking-widest font-bold gold-btn transition-all" data-category="all">Barchasi</button>
-            <button onclick="filterServices('asosiy')" class="filter-btn px-7 py-3 rounded-2xl text-xs uppercase tracking-widest font-medium gold-border bg-[#05140F] text-gray-300 hover:text-[#FFD700] transition-all" data-category="asosiy">Asosiy</button>
-            <button onclick="filterServices('media')" class="filter-btn px-7 py-3 rounded-2xl text-xs uppercase tracking-widest font-medium gold-border bg-[#05140F] text-gray-300 hover:text-[#FFD700] transition-all" data-category="media">Media</button>
-            <button onclick="filterServices('marketing')" class="filter-btn px-7 py-3 rounded-2xl text-xs uppercase tracking-widest font-medium gold-border bg-[#05140F] text-gray-300 hover:text-[#FFD700] transition-all" data-category="marketing">Marketing</button>
-        </div>
-
-        <!-- Dynamic Services Grid -->
-        <div id="servicesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Loaded dynamically from backend API data -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="#services" class="glass-card p-6 rounded-3xl text-center space-y-3 block">
+                <span class="text-3xl block">⚡</span>
+                <h4 class="font-bold text-sm text-white luxury-title">XIZMATLAR</h4>
+            </a>
+            <a href="#portfolio" class="glass-card p-6 rounded-3xl text-center space-y-3 block">
+                <span class="text-3xl block">✨</span>
+                <h4 class="font-bold text-sm text-white luxury-title">PORTFOLIO</h4>
+            </a>
+            <a href="#calculator" class="glass-card p-6 rounded-3xl text-center space-y-3 block">
+                <span class="text-3xl block">💎</span>
+                <h4 class="font-bold text-sm text-white luxury-title">NARXLAR</h4>
+            </a>
+            <a href="#order" class="glass-card p-6 rounded-3xl text-center space-y-3 block">
+                <span class="text-3xl block">🛒</span>
+                <h4 class="font-bold text-sm text-white luxury-title">BUYURTMA</h4>
+            </a>
         </div>
     </section>
 
-    <!-- PORTFOLIO SECTION (CINEMATIC SHOWCASE) -->
-    <section id="portfolio" class="py-32 px-6 max-w-7xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
-        <div class="text-center space-y-4 mb-16">
-            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-extrabold">Tanlangan Ishlar</span>
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-24 px-6 max-w-7xl mx-auto relative z-10">
+        <div class="text-center space-y-3 mb-14">
+            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">Eksklyuziv</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">Xizmatlar & Yechimlar</h2>
+            <p class="text-xs md:text-sm text-[#94A59C] max-w-xl mx-auto">Biznesingizni avtomatlashtirish uchun professional yo'nalishlar.</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+            <button onclick="filterServices('all')" class="filter-btn px-6 py-2.5 rounded-xl text-xs uppercase tracking-widest font-bold gold-btn" data-category="all">Barchasi</button>
+            <button onclick="filterServices('asosiy')" class="filter-btn px-6 py-2.5 rounded-xl text-xs uppercase tracking-widest font-medium gold-border bg-[#05140F] text-gray-300 hover:text-[#FFD700]" data-category="asosiy">Asosiy</button>
+            <button onclick="filterServices('media')" class="filter-btn px-6 py-2.5 rounded-xl text-xs uppercase tracking-widest font-medium gold-border bg-[#05140F] text-gray-300 hover:text-[#FFD700]" data-category="media">Media</button>
+            <button onclick="filterServices('marketing')" class="filter-btn px-6 py-2.5 rounded-xl text-xs uppercase tracking-widest font-medium gold-border bg-[#05140F] text-gray-300 hover:text-[#FFD700]" data-category="marketing">Marketing</button>
+        </div>
+
+        <div id="servicesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="py-24 px-6 max-w-7xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
+        <div class="text-center space-y-3 mb-14">
+            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">Case Studies</span>
             <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">Cinematic Showcase</h2>
-            <p class="text-xs md:text-sm text-[#94A59C] max-w-xl mx-auto">Mijozlarimiz uchun yaratilgan yuqori darajadagi raqamli mahsulotlar.</p>
+            <p class="text-xs md:text-sm text-[#94A59C] max-w-xl mx-auto">Mijozlarimiz uchun amalga oshirilgan yirik loyihalar.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="glass-panel p-8 rounded-[32px] group relative overflow-hidden flex flex-col justify-between space-y-6">
-                <div class="h-56 bg-[#030806] rounded-2xl gold-border flex items-center justify-center relative overflow-hidden">
-                    <span class="text-6xl group-hover:scale-110 transition-transform duration-500">🌐</span>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#030806] via-transparent to-transparent opacity-60"></div>
-                </div>
+            <div class="glass-card p-8 rounded-[32px] space-y-6">
+                <div class="h-48 bg-[#020604] rounded-2xl gold-border flex items-center justify-center text-5xl">🌐</div>
                 <div class="space-y-2">
-                    <span class="text-[9px] font-bold text-[#FFD700] uppercase tracking-[0.2em]">Web Platform</span>
-                    <h4 class="text-lg font-bold text-white luxury-title">Apex Luxury Platform</h4>
-                    <p class="text-xs text-[#94A59C]">Corporate Web Solution</p>
+                    <span class="text-[9px] font-bold text-[#FFD700] uppercase tracking-widest">PROJECT 01</span>
+                    <h4 class="text-lg font-bold text-white luxury-title">Telegram Mini App</h4>
+                    <p class="text-xs text-[#94A59C]">Ecosystem & High-end UI/UX</p>
                 </div>
-                <button onclick="selectServiceForOrder('web')" class="gold-btn w-full py-3 rounded-xl text-xs uppercase tracking-widest">LOYIHANI KO'RISH →</button>
+                <button onclick="selectServiceForOrder('bot')" class="gold-btn w-full py-3 rounded-xl text-xs uppercase tracking-widest">LOYIHANI BOSHLASH →</button>
             </div>
-            <div class="glass-panel p-8 rounded-[32px] group relative overflow-hidden flex flex-col justify-between space-y-6">
-                <div class="h-56 bg-[#030806] rounded-2xl gold-border flex items-center justify-center relative overflow-hidden">
-                    <span class="text-6xl group-hover:scale-110 transition-transform duration-500">🤖</span>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#030806] via-transparent to-transparent opacity-60"></div>
-                </div>
+            <div class="glass-card p-8 rounded-[32px] space-y-6">
+                <div class="h-48 bg-[#020604] rounded-2xl gold-border flex items-center justify-center text-5xl">⚡</div>
                 <div class="space-y-2">
-                    <span class="text-[9px] font-bold text-[#FFD700] uppercase tracking-[0.2em]">Telegram Bot</span>
-                    <h4 class="text-lg font-bold text-white luxury-title">CQ Studio Bot Ecosystem</h4>
-                    <p class="text-xs text-[#94A59C]">Automated Mini App</p>
+                    <span class="text-[9px] font-bold text-[#FFD700] uppercase tracking-widest">PROJECT 02</span>
+                    <h4 class="text-lg font-bold text-white luxury-title">Premium Website</h4>
+                    <p class="text-xs text-[#94A59C]">Corporate Platform & Dashboard</p>
                 </div>
-                <button onclick="selectServiceForOrder('bot')" class="gold-btn w-full py-3 rounded-xl text-xs uppercase tracking-widest">LOYIHANI KO'RISH →</button>
+                <button onclick="selectServiceForOrder('web')" class="gold-btn w-full py-3 rounded-xl text-xs uppercase tracking-widest">LOYIHANI BOSHLASH →</button>
             </div>
-            <div class="glass-panel p-8 rounded-[32px] group relative overflow-hidden flex flex-col justify-between space-y-6">
-                <div class="h-56 bg-[#030806] rounded-2xl gold-border flex items-center justify-center relative overflow-hidden">
-                    <span class="text-6xl group-hover:scale-110 transition-transform duration-500">🎨</span>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#030806] via-transparent to-transparent opacity-60"></div>
-                </div>
+            <div class="glass-card p-8 rounded-[32px] space-y-6">
+                <div class="h-48 bg-[#020604] rounded-2xl gold-border flex items-center justify-center text-5xl">🎨</div>
                 <div class="space-y-2">
-                    <span class="text-[9px] font-bold text-[#FFD700] uppercase tracking-[0.2em]">Branding</span>
-                    <h4 class="text-lg font-bold text-white luxury-title">Atlas Group Identity</h4>
-                    <p class="text-xs text-[#94A59C]">Complete Rebranding</p>
+                    <span class="text-[9px] font-bold text-[#FFD700] uppercase tracking-widest">PROJECT 03</span>
+                    <h4 class="text-lg font-bold text-white luxury-title">Brand Identity</h4>
+                    <p class="text-xs text-[#94A59C]">Complete High-End Design System</p>
                 </div>
-                <button onclick="selectServiceForOrder('logo')" class="gold-btn w-full py-3 rounded-xl text-xs uppercase tracking-widest">LOYIHANI KO'RISH →</button>
+                <button onclick="selectServiceForOrder('logo')" class="gold-btn w-full py-3 rounded-xl text-xs uppercase tracking-widest">LOYIHANI BOSHLASH →</button>
             </div>
         </div>
     </section>
 
-    <!-- NEGA CQ STUDIO? -->
-    <section id="about" class="py-32 px-6 max-w-7xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
-        <div class="text-center space-y-4 mb-16">
-            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-extrabold">Afzalliklarimiz</span>
-            <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">Nega CQ Studio?</h2>
-            <p class="text-xs md:text-sm text-[#94A59C] max-w-xl mx-auto">Sifat va natijani birinchi o'ringa qo'yuvchi professional jamoa.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="glass-panel p-8 rounded-[28px] space-y-4 group hover:border-[#FFD700]/50 transition-all">
-                <div class="w-14 h-14 rounded-2xl gold-border bg-[#05140F] flex items-center justify-center text-2xl shadow-lg">⚡</div>
-                <h4 class="font-bold text-lg text-white luxury-title">Tezkor</h4>
-                <p class="text-xs text-[#94A59C] leading-relaxed">Buyurtmalarni yuqori sifatni saqlagan holda eng qisqa muddatda bajarish.</p>
-            </div>
-            <div class="glass-panel p-8 rounded-[28px] space-y-4 group hover:border-[#FFD700]/50 transition-all">
-                <div class="w-14 h-14 rounded-2xl gold-border bg-[#05140F] flex items-center justify-center text-2xl shadow-lg">🛡️</div>
-                <h4 class="font-bold text-lg text-white luxury-title">Xavfsiz</h4>
-                <p class="text-xs text-[#94A59C] leading-relaxed">Loyiha xavfsizligi va barqaror ishlashiga 100% kafolat beramiz.</p>
-            </div>
-            <div class="glass-panel p-8 rounded-[28px] space-y-4 group hover:border-[#FFD700]/50 transition-all">
-                <div class="w-14 h-14 rounded-2xl gold-border bg-[#05140F] flex items-center justify-center text-2xl shadow-lg">👑</div>
-                <h4 class="font-bold text-lg text-white luxury-title">Premium sifat</h4>
-                <p class="text-xs text-[#94A59C] leading-relaxed">Har bir loyiha uchun individual, unikal va zamonaviy dizayn yechimlari.</p>
-            </div>
-            <div class="glass-panel p-8 rounded-[28px] space-y-4 group hover:border-[#FFD700]/50 transition-all">
-                <div class="w-14 h-14 rounded-2xl gold-border bg-[#05140F] flex items-center justify-center text-2xl shadow-lg">◉</div>
-                <h4 class="font-bold text-lg text-white luxury-title">24/7 xizmat</h4>
-                <p class="text-xs text-[#94A59C] leading-relaxed">Loyiha boshidan to oxirigacha doimiy aloqa va qo'llab-quvvatlash.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- NARX KALKULYATORI SECTION -->
-    <section id="calculator" class="py-32 px-6 max-w-4xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
-        <div class="glass-panel p-8 md:p-14 rounded-[36px] space-y-10">
-            <div class="text-center space-y-3">
-                <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-extrabold">Interaktiv Hisob-kitob</span>
+    <!-- NARX KALKULYATORI -->
+    <section id="calculator" class="py-24 px-6 max-w-4xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
+        <div class="glass-card p-8 md:p-12 rounded-[32px] space-y-8">
+            <div class="text-center space-y-2">
+                <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">Narxlar</span>
                 <h2 class="text-2xl md:text-4xl font-extrabold luxury-title gold-gradient">Loyiha Narxini Hisoblash</h2>
-                <p class="text-xs text-[#94A59C]">Xizmat turi va paket darajasini tanlab, taxminiy byudjetni darhol aniqlang.</p>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label class="block text-[10px] font-extrabold text-[#FFD700] uppercase tracking-widest mb-3">Xizmat turini tanlang</label>
-                    <select id="calcService" onchange="calculatePrice()" class="w-full bg-[#030806] border border-[#D4AF37]/30 rounded-2xl p-4 text-sm focus:outline-none focus:border-[#FFD700] text-white">
+                    <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Xizmat turi</label>
+                    <select id="calcService" onchange="calculatePrice()" class="w-full bg-[#020604] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none">
                         <option value="200">Veb-sayt yaratish</option>
                         <option value="100">Telegram bot va Mini App</option>
                         <option value="15">Premium reklama</option>
@@ -367,72 +300,67 @@
                     </select>
                 </div>
                 <div>
-                    <label class="block text-[10px] font-extrabold text-[#FFD700] uppercase tracking-widest mb-3">Paket darajasi</label>
-                    <select id="calcPackage" onchange="calculatePrice()" class="w-full bg-[#030806] border border-[#D4AF37]/30 rounded-2xl p-4 text-sm focus:outline-none focus:border-[#FFD700] text-white">
+                    <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Paket darajasi</label>
+                    <select id="calcPackage" onchange="calculatePrice()" class="w-full bg-[#020604] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none">
                         <option value="1">Standart</option>
                         <option value="1.25">Pro / Plus</option>
                         <option value="1.75">Premium</option>
                     </select>
                 </div>
             </div>
-
-            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
-                    <span class="text-[10px] text-[#94A59C] uppercase tracking-[0.2em] block mb-1">Taxminiy Byudjet</span>
-                    <span id="calcResult" class="text-3xl md:text-5xl font-extrabold gold-gradient luxury-title">$200</span>
+                    <span class="text-[10px] text-[#94A59C] uppercase tracking-widest block">Taxminiy Byudjet</span>
+                    <span id="calcResult" class="text-3xl md:text-4xl font-extrabold gold-gradient luxury-title">$200</span>
                 </div>
-                <button onclick="applyCalcToOrder()" class="gold-btn w-full sm:w-auto px-9 py-4 rounded-2xl text-xs uppercase tracking-[0.2em]">
+                <button onclick="applyCalcToOrder()" class="gold-btn w-full sm:w-auto px-8 py-4 rounded-xl text-xs uppercase tracking-widest">
                     Shu narxda buyurtma berish →
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- ORDER FORM & HISTORY SECTION -->
-    <section id="order" class="py-32 px-6 max-w-4xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
-        <div class="glass-panel p-8 md:p-14 rounded-[36px] space-y-10">
-            <div class="text-center space-y-3">
-                <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-extrabold">Rasmiylashtirish</span>
-                <h2 class="text-2xl md:text-4xl font-extrabold luxury-title gold-gradient">Buyurtma Berish</h2>
-                <p class="text-xs text-[#94A59C]">Ma'lumotlaringizni qoldiring, menejerlarimiz zudlik bilan aloqaga chiqishadi.</p>
+    <!-- BUYURTMA BERISH -->
+    <section id="order" class="py-24 px-6 max-w-4xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
+        <div class="glass-card p-8 md:p-12 rounded-[32px] space-y-8">
+            <div class="text-center space-y-2">
+                <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">Buyurtma berish</span>
+                <h2 class="text-2xl md:text-4xl font-extrabold luxury-title gold-gradient">Loyihani Boshlash</h2>
+                <p class="text-xs text-[#94A59C]">Qisqa ma'lumot qoldiring, mutaxassislarimiz bog'lanishadi.</p>
             </div>
 
             <form id="orderForm" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-[10px] font-extrabold text-[#FFD700] uppercase tracking-widest mb-3">Ismingiz</label>
-                        <input type="text" id="name" required class="w-full bg-[#030806] border border-[#D4AF37]/30 rounded-2xl p-4 text-sm focus:outline-none focus:border-[#FFD700] text-white" placeholder="Ismingizni kiriting">
+                        <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Ismingiz</label>
+                        <input type="text" id="name" required class="w-full bg-[#020604] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none" placeholder="Ismingiz">
                     </div>
                     <div>
-                        <label class="block text-[10px] font-extrabold text-[#FFD700] uppercase tracking-widest mb-3">Telefon raqam</label>
-                        <input type="tel" id="phone" required class="w-full bg-[#030806] border border-[#D4AF37]/30 rounded-2xl p-4 text-sm focus:outline-none focus:border-[#FFD700] text-white" placeholder="+998 90 123 45 67">
+                        <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Telefon raqam</label>
+                        <input type="tel" id="phone" required class="w-full bg-[#020604] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none" placeholder="+998 90 123 45 67">
                     </div>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-[10px] font-extrabold text-[#FFD700] uppercase tracking-widest mb-3">Xizmat turi</label>
-                        <select id="serviceSelect" class="w-full bg-[#030806] border border-[#D4AF37]/30 rounded-2xl p-4 text-sm focus:outline-none focus:border-[#FFD700] text-white"></select>
+                        <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Xizmat turi</label>
+                        <select id="serviceSelect" class="w-full bg-[#020604] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none"></select>
                     </div>
                     <div>
-                        <label class="block text-[10px] font-extrabold text-[#FFD700] uppercase tracking-widest mb-3">Paket darajasi</label>
-                        <select id="packageSelect" class="w-full bg-[#030806] border border-[#D4AF37]/30 rounded-2xl p-4 text-sm focus:outline-none focus:border-[#FFD700] text-white"></select>
+                        <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Paket darajasi</label>
+                        <select id="packageSelect" class="w-full bg-[#020604] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none"></select>
                     </div>
                 </div>
-
                 <div>
-                    <label class="block text-[10px] font-extrabold text-[#FFD700] uppercase tracking-widest mb-3">Loyiha tafsilotlari (Brif)</label>
-                    <textarea id="brief" rows="4" class="w-full bg-[#030806] border border-[#D4AF37]/30 rounded-2xl p-4 text-sm focus:outline-none focus:border-[#FFD700] text-white resize-none" placeholder="Istaklaringiz va talablaringizni yozing..."></textarea>
+                    <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Loyiha haqida</label>
+                    <textarea id="brief" rows="3" class="w-full bg-[#020604] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white resize-none focus:outline-none" placeholder="Talablaringiz..."></textarea>
                 </div>
-
-                <button type="submit" class="gold-btn w-full py-4 rounded-2xl text-xs uppercase tracking-[0.25xl] shadow-2xl">
-                    BUYURTMANI TASDIQLASH ✦
+                <button type="submit" class="gold-btn w-full py-4 rounded-xl text-xs uppercase tracking-widest shadow-xl">
+                    LOYIHANI TASDIQLASH ✦
                 </button>
             </form>
 
-            <!-- My Orders History Section -->
-            <div class="pt-8 border-t border-white/15 space-y-6">
-                <h3 class="font-bold text-base text-white luxury-title">Mening Buyurtmalarim tarixi</h3>
+            <div class="pt-8 border-t border-white/10 space-y-4">
+                <h3 class="font-bold text-sm text-white luxury-title">Mening Buyurtmalarim tarixi</h3>
                 <div id="myOrdersList" class="space-y-3">
                     <p class="text-xs text-[#94A59C] italic">Hozircha buyurtmalar tarixi mavjud emas.</p>
                 </div>
@@ -440,45 +368,49 @@
         </div>
     </section>
 
-    <!-- ADMIN PANEL MODAL -->
+    <!-- ADMIN MODAL -->
     <div class="admin-modal" id="adminModal">
-        <div class="glass-panel p-8 rounded-[32px] w-full max-w-lg max-h-[85vh] overflow-y-auto space-y-6 border border-[#D4AF37]/50">
-            <div class="flex justify-between items-center border-b border-white/15 pb-4">
-                <h3 class="font-bold text-xl gold-gradient luxury-title">👑 Admin Paneli</h3>
-                <button onclick="closeAdminModal()" class="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center font-bold hover:bg-red-500/20 transition-all">✕</button>
+        <div class="glass-card p-6 rounded-3xl w-full max-w-md max-h-[80vh] overflow-y-auto space-y-4 border border-[#D4AF37]/40">
+            <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                <h3 class="font-bold text-lg gold-gradient luxury-title">👑 Admin Paneli</h3>
+                <button onclick="closeAdminModal()" class="text-gray-400 hover:text-white font-bold">✕</button>
             </div>
-            <p class="text-xs text-[#94A59C]">Mijozlar tomonidan yuborilgan barcha real buyurtmalar:</p>
             <div id="adminOrdersList" class="space-y-3">
-                <p class="text-xs text-[#94A59C] text-center py-6">Yuklanmoqda...</p>
+                <p class="text-xs text-[#94A59C] text-center py-4">Yuklanmoqda...</p>
             </div>
         </div>
     </div>
 
+    <!-- BOTTOM NAVIGATION BAR (MOBILE APP STYLE) -->
+    <nav class="bottom-nav">
+        <a href="#home" class="active">
+            <span class="block text-base mb-0.5">🏠</span> Asosiy
+        </a>
+        <a href="#services">
+            <span class="block text-base mb-0.5">⚡</span> Xizmatlar
+        </a>
+        <a href="#portfolio">
+            <span class="block text-base mb-0.5">✨</span> Portfolio
+        </a>
+        <a href="#order">
+            <span class="block text-base mb-0.5">🛒</span> Buyurtma
+        </a>
+    </nav>
+
     <!-- FOOTER -->
-    <footer class="py-16 px-6 border-t border-[#D4AF37]/15 text-center text-xs text-[#94A59C] space-y-4 relative z-10 bg-[#010302]">
-        <p class="text-base font-extrabold tracking-[0.2em] luxury-title gold-gradient">CQ STUDIO</p>
-        <p class="text-xs tracking-wider text-gray-400">"Smart ideas. Big results."</p>
-        <div class="flex justify-center gap-6 pt-2 text-xs uppercase tracking-widest text-[#FFD700]">
-            <a href="https://t.me/" target="_blank" class="hover:underline">Telegram</a>
-            <a href="https://instagram.com/" target="_blank" class="hover:underline">Instagram</a>
-            <a href="#order" class="hover:underline">Contact</a>
-        </div>
-        <p class="text-[10px] text-[#555] uppercase tracking-widest pt-2">© 2026 CQ Studio. All rights reserved.</p>
+    <footer class="py-12 px-6 text-center text-xs text-[#94A59C] space-y-2 relative z-10 bg-[#010302] border-t border-[#D4AF37]/10">
+        <p class="font-bold tracking-widest luxury-title gold-gradient">CQ STUDIO</p>
+        <p>"Smart ideas. Big results."</p>
+        <p class="text-[10px] text-[#555]">© 2026 All rights reserved.</p>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- LOGIC SCRIPT -->
     <script>
         const tg = window.Telegram && window.Telegram.WebApp;
-        try { if(tg) { tg.expand(); tg.setHeaderColor("#030806"); tg.setBackgroundColor("#030806"); } } catch(e) {}
+        try { if(tg) { tg.expand(); tg.setHeaderColor("#020604"); tg.setBackgroundColor("#020604"); } } catch(e) {}
 
         let servicesData = [];
         let myOrders = JSON.parse(localStorage.getItem('cq_ultra_orders_v7') || '[]');
-
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
-        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
 
         function openAdminModal() {
             document.getElementById('adminModal').style.display = 'grid';
@@ -494,32 +426,24 @@
                 const res = await fetch('/api/admin/orders');
                 const data = await res.json();
                 if(!data || !data.length) {
-                    container.innerHTML = '<p class="text-xs text-[#94A59C] text-center py-6">Hozircha bazada buyurtmalar yo\'q</p>';
+                    container.innerHTML = '<p class="text-xs text-[#94A59C] text-center py-4">Hozircha bazada buyurtmalar yo\'q</p>';
                     return;
                 }
                 container.innerHTML = data.map((o, idx) => `
-                    <div class="glass-panel p-4 rounded-2xl space-y-1">
-                        <div class="flex justify-between items-center text-[10px] text-[#FFD700]">
-                            <span>#0${idx+1} • ${o.date || 'Yangi'}</span>
-                            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">Faol</span>
-                        </div>
-                        <strong class="text-white text-sm block">${o.name || 'Mijoz'} (${o.phone || ''})</strong>
-                        <p class="text-xs text-gray-300">Xizmat: ${o.serviceName || o.serviceId} — Paket: ${o.packageName || o.packageId}</p>
-                        ${o.brief ? `<p class="text-[11px] text-[#94A59C] italic mt-1">Brif: "${o.brief}"</p>` : ''}
+                    <div class="glass-card p-3 rounded-xl space-y-1">
+                        <strong class="text-white text-xs block">${o.name || 'Mijoz'} (${o.phone || ''})</strong>
+                        <p class="text-[11px] text-gray-300">Xizmat: ${o.serviceName || o.serviceId}</p>
                     </div>
                 `).join('');
             } catch(e) {
                 if(!myOrders.length) {
-                    container.innerHTML = '<p class="text-xs text-[#94A59C] text-center py-6">Buyurtmalar topilmadi</p>';
+                    container.innerHTML = '<p class="text-xs text-[#94A59C] text-center py-4">Buyurtmalar topilmadi</p>';
                     return;
                 }
                 container.innerHTML = myOrders.map((o, idx) => `
-                    <div class="glass-panel p-4 rounded-2xl space-y-1">
-                        <div class="flex justify-between items-center text-[10px] text-[#FFD700]">
-                            <span>#0${idx+1} • ${o.date}</span>
-                        </div>
-                        <strong class="text-white text-sm block">${o.serviceName}</strong>
-                        <p class="text-xs text-gray-300">Paket: ${o.packageName}</p>
+                    <div class="glass-card p-3 rounded-xl space-y-1">
+                        <strong class="text-white text-xs block">${o.serviceName}</strong>
+                        <p class="text-[11px] text-gray-300">Paket: ${o.packageName}</p>
                     </div>
                 `).join('');
             }
@@ -529,7 +453,6 @@
             try {
                 const res = await fetch('/api/client/services');
                 servicesData = await res.json();
-                
                 const select = document.getElementById('serviceSelect');
                 if(select) {
                     select.innerHTML = servicesData.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
@@ -552,35 +475,25 @@
             const container = document.getElementById('servicesGrid');
             if(!container) return;
             const icons = { 'serv_1': '🌐', 'serv_2': '🤖', 'serv_3': '📢', 'serv_4': '🎬', 'serv_5': '🎨', 'bot': '🤖', 'web': '🌐', 'ads': '📢', 'vid': '🎬', 'logo': '🎨' };
-
-            const filtered = category === 'all' 
-                ? servicesData 
-                : servicesData.filter(s => getCategoryType(s.id) === category);
+            const filtered = category === 'all' ? servicesData : servicesData.filter(s => getCategoryType(s.id) === category);
 
             container.innerHTML = filtered.map(s => `
-                <div class="glass-panel p-8 rounded-[32px] space-y-6 group relative overflow-hidden flex flex-col justify-between">
+                <div class="glass-card p-7 rounded-[28px] space-y-5 flex flex-col justify-between">
                     <div>
-                        <div class="flex justify-between items-start mb-5">
-                            <div class="w-14 h-14 rounded-2xl gold-border bg-[#05140F] flex items-center justify-center text-2xl shadow-xl group-hover:scale-110 transition-transform">
-                                ${icons[s.id] || '💎'}
-                            </div>
-                            <span class="px-3 py-1 rounded-full bg-[#FFD700]/10 text-[#FFD700] text-[9px] font-extrabold border border-[#FFD700]/30 uppercase tracking-widest">VIP</span>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 rounded-xl gold-border bg-[#05140F] flex items-center justify-center text-xl">${icons[s.id] || '💎'}</div>
+                            <span class="px-2.5 py-0.5 rounded-full bg-[#FFD700]/10 text-[#FFD700] text-[8px] font-extrabold border border-[#FFD700]/30 uppercase">VIP</span>
                         </div>
-                        <h3 class="font-extrabold text-lg text-white luxury-title group-hover:text-[#FFD700] transition-colors">${s.name}</h3>
-                        <p class="text-xs text-[#94A59C] leading-relaxed mt-2.5">${s.description || ''}</p>
+                        <h3 class="font-extrabold text-base text-white luxury-title">${s.name}</h3>
+                        <p class="text-xs text-[#94A59C] mt-2 leading-relaxed">${s.description || ''}</p>
                     </div>
-
-                    <div class="space-y-4 pt-5 border-t border-white/10">
-                        <div class="space-y-2">
-                            ${s.packages ? s.packages.map(p => `
-                                <div class="flex justify-between items-center text-xs">
-                                    <span class="text-gray-300 font-medium">${p.name}</span>                                     <span class="text-[#FFD700] font-bold">$${p.price}</span>
-                                </div>
-                            `).join('') : ''}
-                        </div>
-                        <button onclick="selectServiceForOrder('${s.id}')" class="gold-btn w-full py-3.5 rounded-2xl text-xs uppercase tracking-widest flex items-center justify-center gap-2">
-                            <span>Tanlash</span> <span>→</span>
-                        </button>
+                    <div class="space-y-3 pt-4 border-t border-white/10">
+                        ${s.packages ? s.packages.map(p => `
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-300">${p.name}</span>                                 <span class="text-[#FFD700] font-bold">$${p.price}</span>
+                            </div>
+                        `).join('') : ''}
+                        <button onclick="selectServiceForOrder('${s.id}')" class="gold-btn w-full py-3 rounded-xl text-xs uppercase tracking-widest mt-2">Tanlash →</button>
                     </div>
                 </div>
             `).join('');
@@ -611,24 +524,17 @@
 
         function selectServiceForOrder(serviceId) {
             const sEl = document.getElementById('serviceSelect');
-            if(sEl) {
-                sEl.value = serviceId;
-                updatePackages();
-            }
+            if(sEl) { sEl.value = serviceId; updatePackages(); }
             window.location.href = '#order';
         }
 
         function calculatePrice() {
             const base = parseFloat(document.getElementById('calcService')?.value || 200);
-            const multiplier = parseFloat(document.getElementById('calcPackage')?.value || 1);
-            const total = Math.round(base * multiplier);
-            const resEl = document.getElementById('calcResult');
-            if(resEl) resEl.innerText = `$${total}`;
+            const mult = parseFloat(document.getElementById('calcPackage')?.value || 1);
+            document.getElementById('calcResult').innerText = `$${Math.round(base * mult)}`;
         }
 
-        function applyCalcToOrder() {
-            window.location.href = '#order';
-        }
+        function applyCalcToOrder() { window.location.href = '#order'; }
 
         function renderOrders() {
             const container = document.getElementById('myOrdersList');
@@ -638,26 +544,14 @@
                 return;
             }
             container.innerHTML = myOrders.map((o, idx) => `
-                <div class="glass-panel p-4 rounded-2xl flex justify-between items-center">
+                <div class="glass-card p-3 rounded-xl flex justify-between items-center text-xs">
                     <div>
-                        <span class="text-[9px] text-[#FFD700] font-mono tracking-widest">#0${idx + 1} • ${o.date}</span>
-                        <h4 class="font-bold text-sm text-white luxury-title">${o.serviceName}</h4>
-                        <p class="text-xs text-[#94A59C] mt-0.5">Paket: <span class="text-[#FFD700]">${o.packageName}</span></p>
+                        <strong class="text-white block">${o.serviceName}</strong>
+                        <span class="text-[#94A59C]">Paket: ${o.packageName}</span>
                     </div>
-                    <div class="flex items-center gap-3">
-                        <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[9px] font-bold rounded-full uppercase">Jarayonda</span>
-                        <button onclick="deleteOrder(${idx})" class="w-8 h-8 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 flex items-center justify-center text-xs hover:bg-red-500 hover:text-white transition-all">🗑️</button>
-                    </div>
+                    <span class="text-emerald-400 font-bold text-[10px]">Jarayonda</span>
                 </div>
             `).join('');
-        }
-
-        function deleteOrder(index) {
-            if(confirm("Ushbu buyurtmani tarixdan o'chirmoqchimisiz?")) {
-                myOrders.splice(index, 1);
-                localStorage.setItem('cq_ultra_orders_v7', JSON.stringify(myOrders));
-                renderOrders();
-            }
         }
 
         document.getElementById('orderForm')?.addEventListener('submit', async (e) => {
@@ -676,37 +570,22 @@
             };
 
             try {
-                const res = await fetch('/api/client/orders', {
+                await fetch('/api/client/orders', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
                 });
-                const result = await res.json();
-                if(result.success || true) {
-                    myOrders.unshift({
-                        serviceName: serviceObj ? serviceObj.name : "VIP Loyiha",
-                        packageName: packageObj ? packageObj.name : "Elite",
-                        date: new Date().toLocaleDateString('uz-UZ')
-                    });
-                    localStorage.setItem('cq_ultra_orders_v7', JSON.stringify(myOrders));
+            } catch(err) {}
 
-                    alert("Buyurtmangiz muvaffaqiyatli qabul qilindi va adminga yuborildi!");
-                    document.getElementById('orderForm').reset();
-                    renderOrders();
-                } else {
-                    alert("Xatolik yuz berdi: " + (result.error || "Noma'lum xato"));
-                }
-            } catch(err) {
-                myOrders.unshift({
-                    serviceName: serviceObj ? serviceObj.name : "VIP Loyiha",
-                    packageName: packageObj ? packageObj.name : "Elite",
-                    date: new Date().toLocaleDateString('uz-UZ')
-                });
-                localStorage.setItem('cq_ultra_orders_v7', JSON.stringify(myOrders));
-                alert("Buyurtmangiz muvaffaqiyatli qabul qilindi!");
-                document.getElementById('orderForm').reset();
-                renderOrders();
-            }
+            myOrders.unshift({
+                serviceName: serviceObj ? serviceObj.name : "VIP Loyiha",
+                packageName: packageObj ? packageObj.name : "Elite",
+                date: new Date().toLocaleDateString('uz-UZ')
+            });
+            localStorage.setItem('cq_ultra_orders_v7', JSON.stringify(myOrders));
+            alert("Buyurtmangiz muvaffaqiyatli qabul qilindi!");
+            document.getElementById('orderForm').reset();
+            renderOrders();
         });
 
         initServices();
