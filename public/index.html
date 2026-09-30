@@ -123,7 +123,7 @@ nav button.on span{max-width:90px;opacity:1}
 <div id="ld"><div><b class="ch">CQ</b><small>MAISON DE DESIGN</small></div></div>
 <div class="app">
 <canvas id="cv"></canvas><div class="vig"></div>
-<header><div class="brand ch">CQ STUDIO<small>MAISON DE DESIGN</small></div><div class="av">O</div></header>
+<header><div class="brand ch">CQ STUDIO<small>MAISON DE DESIGN</small></div><div class="av" onclick="promptAdminPassword()" style="cursor:pointer;" title="Admin">O</div></header>
 <main id="mn">
 <section class="tab on hero" id="t0">
  <div class="cw" id="cw"><div class="c3" id="c3">
@@ -153,38 +153,102 @@ nav button.on span{max-width:90px;opacity:1}
  <label class="l">Loyiha tafsilotlari (brif)</label><textarea class="in" id="br" placeholder="Talablaringiz..."></textarea>
  <div style="height:22px"></div><button class="btn" id="go">Buyurtmani tasdiqlash ✦</button></div>
  <div class="glass"><h2 class="t">Mening buyurtmalarim</h2><div id="hist"></div></div>
+ <div class="glass" style="margin-top:20px; text-align:center;"><button class="sm" onclick="openAdminModal()">👑 Admin Panel</button></div>
 </section>
 </main>
 <nav id="nav"><button class="on"><b>◈</b><span>Asosiy</span></button><button><b>✧</b><span>Xizmat</span></button><button><b>◎</b><span>Narx</span></button><button><b>❖</b><span>Buyurtma</span></button></nav>
 </div>
 <div id="st"><div><span>QABUL<br>QILINDI<small>CQ MAISON</small></span></div></div>
+
+<!-- ADMIN MODAL -->
+<div class="modal-overlay" id="adminModal" style="position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:100;display:none;place-items:center;padding:20px;backdrop-filter:blur(10px)">
+  <div class="modal-content" style="background:#090c0a;border:1px solid rgba(243,223,184,.4);border-radius:22px;width:100%;max-width:420px;padding:28px;position:relative">
+    <button class="modal-close" onclick="closeAdminModal()" style="position:absolute;top:18px;right:18px;background:none;border:0;color:var(--mut);font-size:18px;cursor:pointer">✕</button>
+    <h3 style="font-family:Italiana,Georgia,serif;color:var(--ch);margin-bottom:15px;font-size:24px">👑 Admin Paneli</h3>
+    <p style="font-size:12px;color:var(--mut);margin-bottom:15px">Mijozlar buyurtmalari:</p>
+    <div id="adminOrdersList" style="max-height:50vh;overflow-y:auto">
+      <p style="font-size:12px;color:var(--mut);text-align:center;padding:20px">Yuklanmoqda...</p>
+    </div>
+  </div>
+</div>
+
 <script>
 var S=[["Logo dizayn","Noyob belgi va brend uslubi",500000,["3 ta konsept taklifi","Vektor va raster formatlar","Qo'llanish namunalari"]],["Brending","To'liq identika va brend kitobi",1500000,["Logo + ranglar + shriftlar","Brend kitobi (PDF)","Vizitka va blanka"]],["Veb-sayt","Landing va korporativ sayt dizayni",2500000,["Mobil va desktop maket","Interaktiv prototip","Animatsiya yo'riqnomasi"]],["Telegram bot UI","Mini App va bot interfeysi",2000000,["To'liq ekranlar to'plami","3D va animatsiyali effektlar","Ishga tayyor kod"]],["SMM dizayn","Post, story va banner to'plami",800000,["30 tagacha shablon","Yagona vizual uslub","Tahrirlanadigan fayllar"]],["Video montaj","Reels va reklama roliklari",700000,["Kinematografik rang berish","Sarlavha va effektlar","Musiqa tanlash"]]];
 var $=function(i){return document.getElementById(i)};
 var P=["Start","Pro","Royal"],orders=[],tabN=0,spike=0,age=9,cur=0,fl=0;
 try{orders=JSON.parse(localStorage.getItem('cq_orders')||'[]')}catch(e){}
 var z=function(i){return '0'+(i+1)};
+
+// Maxfiy Parol funksiyasi
+const ADMIN_SECRET_CODE = "7777";
+function promptAdminPassword(){
+  var p = prompt("Admin panel parolini kiriting:");
+  if(p === ADMIN_SECRET_CODE){
+    openAdminModal();
+  } else if(p !== null){
+    alert("Noto'g'ri parol!");
+  }
+}
+function openAdminModal(){
+  $('adminModal').style.display='grid';
+  fetchAdminOrders();
+}
+function closeAdminModal(){
+  $('adminModal').style.display='none';
+}
+async function fetchAdminOrders(){
+  const container = $('adminOrdersList');
+  try {
+    const res = await fetch('/api/admin/orders');
+    const data = await res.json();
+    if(!data || !data.length){
+      container.innerHTML = '<p style="font-size:12px;color:var(--mut);text-align:center;padding:20px">Hozircha bazada buyurtmalar yo\'q</p>';
+      return;
+    }
+    container.innerHTML = data.map(function(o){
+      return '<div class="ord"><div><b style="font-weight:500">'+(o.name||'Mijoz')+' ('+(o.phone||'')+')</b><br><span style="color:var(--mut)">'+(o.serviceName||o.serviceId)+'</span></div><i>Faol</i></div>';
+    }).join('');
+  } catch(e) {
+    if(!orders.length){
+      container.innerHTML = '<p style="font-size:12px;color:var(--mut);text-align:center;padding:20px">Buyurtmalar topilmadi</p>';
+      return;
+    }
+    container.innerHTML = orders.map(function(o){
+      return '<div class="ord"><div><b style="font-weight:500">'+o.s+'</b><br><span style="color:var(--mut)">'+o.d+'</span></div><i>Jarayonda</i></div>';
+    }).join('');
+  }
+}
+
 function opts(){var h=S.map(function(s,i){return '<option value="'+i+'">'+s[0]+'</option>'}).join('');$('cs').innerHTML=h;$('os').innerHTML=h}
-function list(f){$('list').innerHTML=S.map(function(s,i){return s[0].toLowerCase().indexOf(f||'')>-1?'<div class="ac" id="a'+i+'"><div class="hd" onclick="tg('+i+')"><div class="n">'+z(i)+'</div><div><h3>'+s[0]+'</h3><p>'+s[1]+'</p></div><div class="pl">+</div></div><div class="bd"><div><ul>'+s[3].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><div class="bt"><span class="ch">dan '+s[2]/1000+' ming</span><button class="sm" onclick="pick('+i+')">Tanlash</button></div></div></div></div>':''}.join('')||'<p class="empty">Hech narsa topilmadi</p>'}
+function list(f){var el=$('list');if(!el)return;el.innerHTML=S.map(function(s,i){return s[0].toLowerCase().indexOf(f||'')>-1?'<div class="ac" id="a'+i+'"><div class="hd" onclick="tg('+i+')"><div class="n">'+z(i)+'</div><div><h3>'+s[0]+'</h3><p>'+s[1]+'</p></div><div class="pl">+</div></div><div class="bd"><div><ul>'+s[3].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><div class="bt"><span class="ch">dan '+s[2]/1000+' ming</span><button class="sm" onclick="pick('+i+')">Tanlash</button></div></div></div></div>':''}.join('')||'<p class="empty">Hech narsa topilmadi</p>'}
 function tg(i){var e=$('a'+i),o=e.classList.contains('o');document.querySelectorAll('.ac.o').forEach(function(a){a.classList.remove('o')});if(!o)e.classList.add('o');spike=.5}
 function go(n){tabN=n;spike=1;document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('on',i==n)});document.querySelectorAll('#nav button').forEach(function(b,i){b.classList.toggle('on',i==n)});$('mn').scrollTop=0;if(n==2)setTimeout(calc,60)}
 function pick(i){$('cs').value=i;go(2)}
 /* odometer */
-function odo(v){var s=Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' '),o=$('odo');
+function odo(v){var s=Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' '),o=$('odo');if(!o)return;
 if(o.dataset.l!=s.length){o.dataset.l=s.length;o.innerHTML=s.split('').map(function(c){return c==' '?'<span class="sp"></span>':'<span class="dg"><i><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></i></span>'}).join('')+'<span class="u">SO\'M</span>'}
-var ds=o.querySelectorAll('.dg i'),k=0;s.split('').forEach(function(c){if(c!=' '){var d=c,el=ds[k++];setTimeout(function(){el.style.transform='translateY(-'+d+'em)'},20)}})}
-function calc(){var b=S[$('cs').value][2],m=+document.querySelector('#pk .on').dataset.m,d=+$('dy').value,f=0;document.querySelectorAll('.chip2.on').forEach(function(c){f+=+c.dataset.f});$('dv').textContent=d+' kun';odo(b*m*(1+(14-d)*.04)+f)}
-function hist(){$('hist').innerHTML=orders.length?orders.map(function(o){return '<div class="ord"><div><b style="font-weight:500">'+o.s+'</b><br><span style="color:var(--mut)">'+o.d+'</span></div><i>Qabul qilindi</i></div>'}).join(''):'<p class="empty">Hozircha buyurtmalar tarixi mavjud emas.</p>'}
+var ds=o.querySelectorAll('.dg i'),k=0;s.split('').forEach(function(c){if(c!=' '){var d=c,el=ds[k++];setTimeout(function(){if(el)el.style.transform='translateY(-'+d+'em)'},20)}})}
+function calc(){var b=S[$('cs').value][2],btnPk=document.querySelector('#pk .on'),m=btnPk?+btnPk.dataset.m:1,d=+$('dy').value,f=0;document.querySelectorAll('.chip2.on').forEach(function(c){f+=+c.dataset.f});$('dv').textContent=d+' kun';odo(b*m*(1+(14-d)*.04)+f)}
+function hist(){var h=$('hist');if(!h)return;h.innerHTML=orders.length?orders.map(function(o){return '<div class="ord"><div><b style="font-weight:500">'+o.s+'</b><br><span style="color:var(--mut)">'+o.d+'</span></div><i>Qabul qilindi</i></div>'}).join(''):'<p class="empty">Hozircha buyurtmalar tarixi mavjud emas.</p>'}
 document.querySelectorAll('#nav button').forEach(function(b,i){b.onclick=function(){go(i)}});
-document.querySelectorAll('#pk button').forEach(function(b){b.onclick=function(){document.querySelector('#pk .on').classList.remove('on');b.classList.add('on');spike=.6;calc()}});
-document.querySelectorAll('.chip2').forEach(function(c){c.onclick=function(){c.classList.toggle('on');spike=.4;calc()}});$('cs').onchange=calc;$('dy').oninput=calc;
-$('q').oninput=function(){list(this.value.toLowerCase())};
-$('toOrder').onclick=function(){$('os').value=$('cs').value;var p=P[[1,1.8,3].indexOf(+document.querySelector('#pk .on').dataset.m)];$('br').value='Paket: '+p+' · Muddat: '+$('dy').value+' kun';go(3)};
-$('go').onclick=function(){if($('ph').value.trim().length<9){$('ph').focus();$('ph').style.borderColor='#ff8a8a';return}$('ph').style.borderColor='';orders.unshift({s:S[$('os').value][0],d:new Date().toLocaleDateString('uz-UZ')});try{localStorage.setItem('cq_orders',JSON.stringify(orders))}catch(e){}hist();spike=3;age=0;var s=$('st');s.classList.remove('on');void s.offsetWidth;s.classList.add('on');$('br').value=''};
+document.querySelectorAll('#pk button').forEach(function(b){b.onclick=function(){var onBtn=document.querySelector('#pk .on');if(onBtn)onBtn.classList.remove('on');b.classList.add('on');spike=.6;calc()}});
+document.querySelectorAll('.chip2').forEach(function(c){c.onclick=function(){c.classList.toggle('on');spike=.4;calc()}});
+if($('cs'))$('cs').onchange=calc;
+if($('dy'))$('dy').oninput=calc;
+if($('q'))$('q').oninput=function(){list(this.value.toLowerCase())};
+if($('toOrder'))$('toOrder').onclick=function(){$('os').value=$('cs').value;var btnPk=document.querySelector('#pk .on'),p=P[[1,1.8,3].indexOf(btnPk?+btnPk.dataset.m:1)];$('br').value='Paket: '+p+' · Muddat: '+$('dy').value+' kun';go(3)};
+if($('go'))$('go').onclick=function(){if($('ph').value.trim().length<9){$('ph').focus();$('ph').style.borderColor='#ff8a8a';return}$('ph').style.borderColor='';
+  var sName=S[$('os').value][0];
+  orders.unshift({s:sName,d:new Date().toLocaleDateString('uz-UZ')});
+  try{localStorage.setItem('cq_orders',JSON.stringify(orders))}catch(e){}
+  fetch('/api/client/orders',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:$('nm').value,phone:$('ph').value,serviceName:sName,brief:$('br').value})}).catch(function(){});
+  hist();spike=3;age=0;var s=$('st');if(s){s.classList.remove('on');void s.offsetWidth;s.classList.add('on');}
+  $('br').value='';
+};
 function counters(){document.querySelectorAll('[data-n]').forEach(function(e){var n=+e.dataset.n,s=performance.now();(function t(x){var p=Math.min(1,(x-s)/2000);e.textContent=Math.round(n*(1-Math.pow(1-p,4)))+(n>=100?'+':'');if(p<1)requestAnimationFrame(t)})(s)})}
 /* card */
 var mx=0,my=0;
-$('c3').onclick=function(){fl+=180;this.classList.add('fx')};
+if($('c3'))$('c3').onclick=function(){fl+=180;this.classList.add('fx')};
 function card(){var c=$('c3');if(!c)return;c.style.transform='rotateX('+(-my*14)+'deg) rotateY('+(mx*18+fl)+'deg)';c.querySelectorAll('.face').forEach(function(f){f.style.setProperty('--gx',50+mx*50+'%');f.style.setProperty('--gy',40+my*50+'%')})}
 addEventListener('pointermove',function(e){mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;card()});
 addEventListener('deviceorientation',function(e){if(e.gamma!=null){mx=Math.max(-1,Math.min(1,e.gamma/30));my=Math.max(-1,Math.min(1,(e.beta-45)/30));card()}});
@@ -193,7 +257,7 @@ var H='uniform float uT,uA;uniform vec3 uR;float h(vec2 p){float a=sin(p.x*.9+uT
 var VS=H+'varying vec3 vN,vP;void main(){vec3 p=position;float e=.06;p.z=h(p.xy);vec3 n=normalize(vec3(h(p.xy-vec2(e,0.))-h(p.xy+vec2(e,0.)),h(p.xy-vec2(0.,e))-h(p.xy+vec2(0.,e)),2.*e));vN=normalMatrix*n;vec4 mv=modelViewMatrix*vec4(p,1.);vP=mv.xyz;gl_Position=projectionMatrix*mv;}';
 var FS='uniform vec3 uC,uL;varying vec3 vN,vP;void main(){vec3 N=normalize(vN),V=normalize(-vP),L=normalize(uL);float df=max(dot(N,L),0.);vec3 Hh=normalize(L+V);float sp=pow(max(dot(N,Hh),0.),38.);float sp2=pow(max(dot(N,normalize(vec3(-.6,.2,1.)+V)),0.),14.);float fr=pow(1.-max(dot(N,V),0.),3.);vec3 hi=vec3(1.,.88,.65);vec3 c=uC*(.18+1.15*df)+hi*sp*.85+hi*sp2*.12+uC*3.*fr*.5;c*=exp(-length(vP)*.045);gl_FragColor=vec4(c,1.);}';
 function scene(){try{
-var cv=$('cv'),W=cv.clientWidth,Hh=cv.clientHeight,r=new THREE.WebGLRenderer({canvas:cv,antialias:true});r.setPixelRatio(Math.min(devicePixelRatio,2));r.setSize(W,Hh,false);
+var cv=$('cv');if(!cv)return;var W=cv.clientWidth||window.innerWidth,Hh=cv.clientHeight||window.innerHeight,r=new THREE.WebGLRenderer({canvas:cv,antialias:true});r.setPixelRatio(Math.min(devicePixelRatio,2));r.setSize(W,Hh,false);
 var sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(50,W/Hh,.1,100);cam.position.set(0,1.2,6);cam.lookAt(0,0,0);
 var U={uT:{value:0},uA:{value:.9},uR:{value:new THREE.Vector3(0,0,9)},uC:{value:new THREE.Vector3(.02,.25,.18)},uL:{value:new THREE.Vector3(.3,.6,1)}};
 var m=new THREE.Mesh(new THREE.PlaneGeometry(36,36,190,190),new THREE.ShaderMaterial({uniforms:U,vertexShader:VS,fragmentShader:FS}));m.rotation.x=-1.15;m.position.y=-2.2;sc.add(m);
@@ -201,15 +265,15 @@ var N=260,g=new THREE.BufferGeometry(),a=new Float32Array(N*3);for(var i=0;i<N;i
 g.setAttribute('position',new THREE.BufferAttribute(a,3));var pts=new THREE.Points(g,new THREE.PointsMaterial({color:0xf3dfb8,size:.05,transparent:true,opacity:.7,depthWrite:false}));sc.add(pts);
 var C=[[.02,.26,.18],[.03,.1,.36],[.36,.04,.12],[.03,.17,.22]],t=0;
 addEventListener('pointerdown',function(e){U.uR.value.x=(e.clientX/innerWidth-.5)*16;U.uR.value.y=-(e.clientY/innerHeight-.5)*12+2;age=0;spike=Math.max(spike,.6)});
-(function loop(){requestAnimationFrame(loop);t+=.016;age+=.016;spike*=.95;var k=C[tabN],c=U.uC.value;
+(function loop(){requestAnimationFrame(loop);t+=.016;age+=.016;spike*=.95;var k=C[tabN]||C[0],c=U.uC.value;
 c.x+=(k[0]-c.x)*.04;c.y+=(k[1]-c.y)*.04;c.z+=(k[2]-c.z)*.04;
 U.uT.value=t;U.uA.value=.85+spike*.5;U.uR.value.z=age;U.uL.value.set(mx*1.4+.2,.7-my*.8,1);
 var p=g.attributes.position.array;for(var i=0;i<N;i++){p[i*3+1]+=.004+(i%5)*.0008;if(p[i*3+1]>6)p[i*3+1]=-2}g.attributes.position.needsUpdate=true;
-r.render(sc,cam)})()}catch(e){}}
+r.render(sc,cam)})()}catch(e){console.error(e);}}
 try{if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand()}}catch(e){}
 opts();list();hist();calc();card();
 if(window.THREE)scene();
-setTimeout(function(){$('ld').classList.add('off');counters()},2000);
+setTimeout(function(){var ld=$('ld');if(ld)ld.classList.add('off');counters();},1500);
 </script>
 </body>
 </html>
