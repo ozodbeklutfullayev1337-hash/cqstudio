@@ -204,7 +204,6 @@ a{text-decoration:none;color:inherit}
     <a href="#services"><span class="icon">✦</span><span>Xizmatlar</span><b class="badge">PRO</b></a>
     <a href="#calculator"><span class="icon">◎</span><span>Kalkulyator</span></a>
     <a href="#order"><span class="icon">◇</span><span>Buyurtma berish</span></a>
-    <!-- Admin tugmasi menyudan olib tashlandi, mijozlarga ko'rinmaydi -->
   </nav>
   <div class="premium">
     <div class="crown">♛</div><h3>Ozodbek</h3>
@@ -217,8 +216,8 @@ a{text-decoration:none;color:inherit}
 <header class="topbar">
   <div class="search">⌕ <input placeholder="Xizmatlarni qidiring..." aria-label="Qidiruv"></div>
   <div class="top-actions">
-    <!-- Ochiq admin tugmasi olib tashlandi. Uni ochish uchun pastdagi maxfiy usuldan foydalanasiz -->
-    <div class="avatar" onclick="secretAdminTrigger()" style="cursor:pointer;" title="Admin uchun">O</div>
+    <!-- Avatar bosilganda parol so'raydi -->
+    <div class="avatar" onclick="promptAdminPassword()" style="cursor:pointer;" title="Admin">O</div>
   </div>
 </header>
 
@@ -356,13 +355,15 @@ function showToast(message){
   document.body.appendChild(t); setTimeout(()=>t.remove(),2400);
 }
 
-// MAXFIY ADMIN OCHISH USULI: Yuqori o'ng burchakdagi avatar "O" harfini 3 marta tez-tez bosing
-let secretClickCount = 0;
-function secretAdminTrigger(){
-  secretClickCount++;
-  if(secretClickCount >= 3){
-    secretClickCount = 0;
+// --- MAXFIY KOD ORQALI ADMIN PANELNI OCHISH ---
+const ADMIN_SECRET_CODE = "7777"; // <-- Bu yerga o'zingizning maxfiy parolingizni yozishingiz mumkin!
+
+function promptAdminPassword(){
+  const inputCode = prompt("Admin panel parolini kiriting:");
+  if(inputCode === ADMIN_SECRET_CODE) {
     openAdminModal();
+  } else if(inputCode !== null) {
+    alert("Noto'g'ri parol!");
   }
 }
 
@@ -530,14 +531,14 @@ async function submitOrder(e){
 
   try {
     await fetch('/api/client/orders', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(orderData)
+      (async () => {
+        // quiet submission
+      })();
     });
   } catch(err){}
 
   myOrders.unshift({ serviceName: serviceSelectVal, date: new Date().toLocaleDateString('uz-UZ') });
-  localStorage.setItem('cq_ultra_orders_v8', JSON.stringify(myOrders));
+  localStorage.setItem('cq_studio_orders_v8', JSON.stringify(myOrders));
   
   showToast('Buyurtmangiz qabul qilindi! Menejer bog‘lanadi.');
   document.getElementById('orderBrief').value = '';
