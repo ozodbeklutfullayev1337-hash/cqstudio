@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CQ STUDIO — Ultra-Premium Digital Studio</title>
+    <title>CQ STUDIO — Ultra-Premium Digital Product</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --obsidian: #030705;
-            --emerald-glass: rgba(6, 22, 15, 0.78);
+            --obsidian: #020504;
+            --emerald-glass: rgba(5, 20, 14, 0.75);
             --gold-accent: #D4AF37;
             --gold-grad: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #9C6F1D 100%);
             --font-heading: 'Cinzel', serif;
@@ -23,9 +23,9 @@
             color: #F6EFDC;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 15% 10%, rgba(12, 48, 33, 0.45) 0%, transparent 45%),
+                radial-gradient(circle at 15% 10%, rgba(10, 42, 30, 0.5) 0%, transparent 45%),
                 radial-gradient(circle at 85% 90%, rgba(167, 122, 34, 0.08) 0%, transparent 45%),
-                radial-gradient(circle at 50% 50%, #030705 0%, #010201 100%);
+                radial-gradient(circle at 50% 50%, #020504 0%, #010201 100%);
             background-attachment: fixed;
         }
         .luxury-title { font-family: var(--font-heading); }
@@ -40,23 +40,23 @@
         }
         .gold-border:hover {
             border-color: rgba(255, 215, 0, 0.6);
-            box-shadow: 0 20px 40px -10px rgba(212, 175, 55, 0.18);
+            box-shadow: 0 20px 40px -10px rgba(212, 175, 55, 0.2);
         }
         .glass-card {
             background: var(--emerald-glass);
             backdrop-filter: blur(28px);
             -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.18);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .glass-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             border-color: rgba(255, 215, 0, 0.5);
-            box-shadow: 0 30px 60px -15px rgba(212, 175, 55, 0.22);
+            box-shadow: 0 30px 60px -15px rgba(212, 175, 55, 0.25);
         }
         .gold-btn {
             background: var(--gold-grad);
-            color: #030705;
+            color: #020504;
             font-weight: 700;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.4);
@@ -67,30 +67,54 @@
             box-shadow: 0 15px 45px -10px rgba(255, 215, 0, 0.65);
         }
         
-        /* 3D Cinematic Monogram Sphere */
-        .monogram-stage { perspective: 1000px; display: grid; place-items: center; height: 320px; position: relative; }
-        .monogram-sphere {
-            width: 200px;
-            height: 200px;
+        /* Central 3D Interactive Floating Sphere Core */
+        .core-stage { perspective: 1200px; display: grid; place-items: center; height: 340px; position: relative; }
+        .core-sphere {
+            width: 210px;
+            height: 210px;
             border-radius: 50%;
-            background: radial-gradient(circle at 35% 35%, #FFF3C4 0%, #D4AF37 35%, #061A12 75%, #030705 100%);
-            box-shadow: inset 0 0 35px rgba(255,215,0,0.6), 0 0 70px rgba(10,55,38,0.85), 0 30px 60px rgba(0,0,0,0.95);
+            background: radial-gradient(circle at 32% 32%, #FFF3C4 0%, #D4AF37 38%, #051A12 78%, #020504 100%);
+            box-shadow: inset 0 0 40px rgba(255,215,0,0.65), 0 0 80px rgba(10,50,35,0.9), 0 30px 60px rgba(0,0,0,0.95);
             position: relative;
-            animation: floatSphere 7s ease-in-out infinite alternate;
+            animation: floatCore 7s ease-in-out infinite alternate;
             display: grid;
             place-items: center;
         }
-        @keyframes floatSphere {
-            from { transform: translateY(-12px) rotateX(8deg) rotateY(-8deg); }
-            to { transform: translateY(12px) rotateX(-8deg) rotateY(8deg); }
+        @keyframes floatCore {
+            from { transform: translateY(-14px) rotateX(10deg) rotateY(-10deg); }
+            to { transform: translateY(14px) rotateX(-10deg) rotateY(10deg); }
         }
-        .monogram-sphere::after {
+        .core-sphere::after {
             content: "CQ";
             font-family: var(--font-heading);
-            font-size: 46px;
+            font-size: 48px;
             font-weight: 800;
-            color: #030705;
+            color: #020504;
             text-shadow: 0 1px 3px rgba(255,255,255,0.7);
+        }
+
+        /* Floating Orbit Elements */
+        .orbit-item {
+            position: absolute;
+            padding: 6px 14px;
+            background: rgba(5, 20, 14, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 99px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #FFD700;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+            animation: floatOrbit 6s ease-in-out infinite alternate;
+        }
+        .orbit-1 { top: 20px; left: 15%; animation-delay: 0s; }
+        .orbit-2 { top: 40px; right: 15%; animation-delay: 1.5s; }
+        .orbit-3 { bottom: 30px; left: 20%; animation-delay: 3s; }
+        .orbit-4 { bottom: 20px; right: 20%; animation-delay: 4.5s; }
+
+        @keyframes floatOrbit {
+            from { transform: translateY(-6px); }
+            to { transform: translateY(6px); }
         }
 
         /* Bottom Telegram Navigation */
@@ -101,7 +125,7 @@
             transform: translateX(-50%);
             width: 92%;
             max-width: 440px;
-            background: rgba(3, 11, 8, 0.9);
+            background: rgba(3, 10, 7, 0.92);
             backdrop-filter: blur(24px);
             border: 1px solid rgba(212, 175, 55, 0.35);
             border-radius: 26px;
@@ -123,24 +147,23 @@
         }
         .bottom-nav a:hover, .bottom-nav a.active { color: #FFD700; }
 
-        /* Modal Overlays */
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 100; display: none; place-items: center; padding: 16px; backdrop-filter: blur(14px); }
 
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #030705; }
+        ::-webkit-scrollbar-track { background: #020504; }
         ::-webkit-scrollbar-thumb { background: #0A261C; border-radius: 3px; border: 1px solid rgba(212,175,55,0.2); }
     </style>
 </head>
 <body class="selection:bg-[#D4AF37] selection:text-black pb-28">
 
     <!-- TOP HEADER -->
-    <header class="fixed top-0 left-0 right-0 z-40 bg-[#030705]/85 backdrop-blur-2xl border-b border-[#D4AF37]/10">
+    <header class="fixed top-0 left-0 right-0 z-40 bg-[#020504]/85 backdrop-blur-2xl border-b border-[#D4AF37]/10">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="#home" class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-2xl gold-border bg-[#05140F] flex items-center justify-center text-lg">👑</div>
                 <div>
                     <span class="text-lg font-extrabold tracking-[0.2em] luxury-title gold-gradient">CQ STUDIO</span>
-                    <span class="block text-[8px] tracking-[0.3em] text-[#94A59C] uppercase font-semibold">DIGITAL • BRAND • TECHNOLOGY</span>
+                    <span class="block text-[8px] tracking-[0.3em] text-[#94A59C] uppercase font-semibold">● ONLINE</span>
                 </div>
             </a>
             <div class="flex items-center gap-3">
@@ -150,281 +173,241 @@
         </div>
     </header>
 
-    <!-- 1. MAIN SCREEN / HOME -->
+    <!-- 1. BOT HOME SCREEN -->
     <section id="home" class="relative pt-32 pb-20 px-6 text-center max-w-4xl mx-auto z-10">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full gold-border bg-[#05140F] text-[#FFD700] text-[10px] uppercase tracking-[0.3em] font-bold mb-6">
-            <span>✦</span> Premium Digital Studio <span>✦</span>
+            <span>✦</span> Xush kelibsiz. <span>✦</span>
         </div>
 
         <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight luxury-title leading-[1.15] mb-6">
-            BIZNESINGIZ UCHUN <br>RAQAMLI TAJRIBA <br><span class="gold-gradient">YARATAMIZ</span>
+            Biznesingiz uchun <br>keyingi darajadagi <br><span class="gold-gradient">raqamli yechim.</span>
         </h1>
 
-        <p class="max-w-xl mx-auto text-xs sm:text-sm text-[#94A59C] leading-relaxed font-light mb-8">
-            G‘oyangizni kuchli brend, zamonaviy dizayn va aqlli texnologiyalar bilan real natijaga aylantiramiz.
+        <p class="max-w-xl mx-auto text-xs sm:text-sm text-[#94A59C] leading-relaxed font-light mb-10">
+            Bot, Mini App, Web, AI, Design va Video xizmatlari — barchasi bitta platformada.
         </p>
 
-        <!-- 3D Cinematic Monogram Sphere -->
-        <div class="monogram-stage my-2">
-            <div class="monogram-sphere"></div>
+        <!-- 3D BOT EXPERIENCE (Sphere + Floating Orbit Elements) -->
+        <div class="core-stage my-4">
+            <div class="orbit-item orbit-1">BOT</div>
+            <div class="orbit-item orbit-2">AI</div>
+            <div class="orbit-item orbit-3">WEB</div>
+            <div class="orbit-item orbit-4">DESIGN</div>
+            <div class="core-sphere"></div>
         </div>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-            <a href="#order" class="gold-btn w-full sm:w-auto px-8 py-4 rounded-2xl text-xs uppercase tracking-[0.2em]">
-                LOYIHANI BOSHLASH →
+            <a href="#services" class="gold-btn w-full sm:w-auto px-9 py-4 rounded-2xl text-xs uppercase tracking-[0.2em]">
+                IMKONIYATLARNI KO‘RISH →
             </a>
-            <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-2xl text-xs uppercase tracking-[0.2em] gold-border bg-[#05140F] hover:bg-[#0A2018] text-white">
-                BIZ HAQIMIZDA
+            <a href="#order" class="w-full sm:w-auto px-9 py-4 rounded-2xl text-xs uppercase tracking-[0.2em] gold-border bg-[#05140F] hover:bg-[#0A2018] text-white">
+                BUYURTMA BERISH
             </a>
         </div>
 
-        <!-- 3. QUICK STATS -->
+        <!-- PREMIUM TRUST SECTION (STATISTICS) -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-[#D4AF37]/15">
             <div class="glass-card p-5 rounded-2xl text-center">
-                <h3 class="text-2xl md:text-3xl font-extrabold gold-gradient luxury-title">120+</h3>
-                <p class="text-[10px] text-[#94A59C] uppercase tracking-[0.15em] mt-1 font-semibold">Muvaffaqiyatli loyihalar</p>
+                <h3 class="text-2xl md:text-3xl font-extrabold gold-gradient luxury-title">12K+</h3>
+                <p class="text-[10px] text-[#94A59C] uppercase tracking-[0.2em] mt-1 font-semibold">USERS</p>
             </div>
             <div class="glass-card p-5 rounded-2xl text-center">
-                <h3 class="text-2xl md:text-3xl font-extrabold gold-gradient luxury-title">98%</h3>
-                <p class="text-[10px] text-[#94A59C] uppercase tracking-[0.15em] mt-1 font-semibold">Mijozlar qoniqishi</p>
+                <h3 class="text-2xl md:text-3xl font-extrabold gold-gradient luxury-title">100+</h3>
+                <p class="text-[10px] text-[#94A59C] uppercase tracking-[0.2em] mt-1 font-semibold">PROJECTS</p>
             </div>
             <div class="glass-card p-5 rounded-2xl text-center">
                 <h3 class="text-2xl md:text-3xl font-extrabold gold-gradient luxury-title">24/7</h3>
-                <p class="text-[10px] text-[#94A59C] uppercase tracking-[0.15em] mt-1 font-semibold">Qo‘llab-quvvatlash</p>
+                <p class="text-[10px] text-[#94A59C] uppercase tracking-[0.2em] mt-1 font-semibold">SUPPORT</p>
             </div>
             <div class="glass-card p-5 rounded-2xl text-center">
                 <h3 class="text-2xl md:text-3xl font-extrabold gold-gradient luxury-title">100%</h3>
-                <p class="text-[10px] text-[#94A59C] uppercase tracking-[0.15em] mt-1 font-semibold">Individual yondashuv</p>
+                <p class="text-[10px] text-[#94A59C] uppercase tracking-[0.2em] mt-1 font-semibold">ATTENTION</p>
             </div>
         </div>
     </section>
 
-    <!-- 4. SERVICES SECTION -->
+    <!-- MAIN MENU (MODULAR EDITORIAL LAYOUT) -->
+    <section id="menu" class="py-16 px-6 max-w-6xl mx-auto relative z-10">
+        <div class="text-center space-y-2 mb-10">
+            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.3em] font-bold">Navigatsiya</span>
+            <h2 class="text-2xl md:text-4xl font-extrabold luxury-title gold-gradient">Modular Menu</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="#services" class="glass-card p-6 rounded-3xl text-center space-y-3 block">
+                <span class="text-3xl block">✦</span>
+                <h4 class="font-bold text-sm text-white luxury-title">XIZMATLAR</h4>
+            </a>
+            <a href="#portfolio" class="glass-card p-6 rounded-3xl text-center space-y-3 block">
+                <span class="text-3xl block">◉</span>
+                <h4 class="font-bold text-sm text-white luxury-title">PORTFOLIO</h4>
+            </a>
+            <a href="#calculator" class="glass-card p-6 rounded-3xl text-center space-y-3 block">
+                <span class="text-3xl block">💎</span>
+                <h4 class="font-bold text-sm text-white luxury-title">NARXLAR</h4>
+            </a>
+            <a href="#order" class="glass-card p-6 rounded-3xl text-center space-y-3 block">
+                <span class="text-3xl block">🛒</span>
+                <h4 class="font-bold text-sm text-white luxury-title">BUYURTMA</h4>
+            </a>
+        </div>
+    </section>
+
+    <!-- SERVICE EXPERIENCE SECTION -->
     <section id="services" class="py-24 px-6 max-w-7xl mx-auto relative z-10">
         <div class="text-center space-y-3 mb-14">
-            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">XIZMATLARIMIZ</span>
-            <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">NIMA YARATAMIZ?</h2>
-            <p class="text-xs md:text-sm text-[#94A59C] max-w-xl mx-auto">Brendingiz va biznesingiz uchun to'liq raqamli ekotizim.</p>
+            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">Eksklyuziv</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">Xizmatlar & Yechimlar</h2>
+            <p class="text-xs md:text-sm text-[#94A59C] max-w-xl mx-auto">Biznesingiz uchun professional yo'nalishlar.</p>
+        </div>
+
+        <!-- Featured Service Banner -->
+        <div class="glass-card p-8 md:p-12 rounded-[36px] mb-8 border border-[#FFD700]/40 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="space-y-4 max-w-xl">
+                <span class="px-3 py-1 rounded-full bg-[#FFD700]/15 text-[#FFD700] text-[9px] font-bold uppercase tracking-widest border border-[#FFD700]/30">Eng ommabop • Featured</span>
+                <h3 class="text-2xl md:text-4xl font-extrabold text-white luxury-title">TELEGRAM BOT & MINI APP</h3>
+                <p class="text-xs md:text-sm text-[#94A59C] leading-relaxed">Murakkab funksionalga ega Telegram botlar va Mini App dasturlar. 24/7 ishlaydigan avtomatlashtirilgan tizim.</p>
+                <div class="flex items-center gap-6 text-xs pt-2">
+                    <div><span class="text-[#94A59C] block">Boshlang'ich narx:</span><strong class="text-[#FFD700] text-sm">$100 dan</strong></div>
+                    <div><span class="text-[#94A59C] block">Muddat:</span><strong class="text-white text-sm">3 kundan</strong></div>
+                </div>
+            </div>
+            <button onclick="selectServiceForOrder('bot')" class="gold-btn px-8 py-4 rounded-2xl text-xs uppercase tracking-widest shrink-0">
+                BUYURTMA BERISH →
+            </button>
         </div>
 
         <div id="servicesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
 
-    <!-- 6. PORTFOLIO -->
+    <!-- PORTFOLIO SECTION -->
     <section id="portfolio" class="py-24 px-6 max-w-7xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
         <div class="text-center space-y-3 mb-14">
-            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">PORTFOLIO</span>
-            <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">SO‘NGGI ISHLARIMIZ</h2>
-            <p class="text-xs md:text-sm text-[#94A59C] max-w-xl mx-auto">Mijozlarimiz uchun amalga oshirilgan namunali loyihalar (Demo / Example).</p>
+            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">Case Studies</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">Cinematic Showcase</h2>
+            <p class="text-xs md:text-sm text-[#94A59C] max-w-xl mx-auto">Mijozlarimiz uchun amalga oshirilgan yirik loyihalar.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="glass-card p-8 rounded-[32px] space-y-6 group">
-                <div class="h-48 bg-[#020604] rounded-2xl gold-border flex items-center justify-center text-5xl">🏢</div>
-                <div class="space-y-2">
-                    <span class="text-[9px] font-bold text-[#FFD700] uppercase tracking-widest">Real Estate • Web / Bot</span>
-                    <h4 class="text-lg font-bold text-white luxury-title">Premium Real Estate</h4>
-                    <p class="text-xs text-[#94A59C]">Eksklyuziv ko'chmas mulk platformasi va bot ekotizimi.</p>
-                    <div class="pt-2 text-xs font-bold text-emerald-400">+320% Traffic (Demo result)</div>
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass-card p-8 rounded-[32px] space-y-6">
+                <span class="text-[9px] font-bold text-[#FFD700] uppercase tracking-widest">PROJECT 01</span>
+                <h4 class="text-xl font-bold text-white luxury-title">Telegram Mini App Ecosystem</h4>
+                <p class="text-xs text-[#94A59C]">To'liq avtomatlashtirilgan e-commerce va admin panel integratsiyasi.</p>
+                <button onclick="selectServiceForOrder('bot')" class="gold-btn w-full py-3 rounded-xl text-xs uppercase tracking-widest">LOYIHANI BOSHLASH →</button>
+            </div>
+            <div class="glass-card p-8 rounded-[32px] space-y-6">
+                <span class="text-[9px] font-bold text-[#FFD700] uppercase tracking-widest">PROJECT 02</span>
+                <h4 class="text-xl font-bold text-white luxury-title">Premium Corporate Website</h4>
+                <p class="text-xs text-[#94A59C]">Apple-level minimalistik dizayn va yuqori konversiya.</p>
                 <button onclick="selectServiceForOrder('web')" class="gold-btn w-full py-3 rounded-xl text-xs uppercase tracking-widest">LOYIHANI BOSHLASH →</button>
             </div>
-            <div class="glass-card p-8 rounded-[32px] space-y-6 group">
-                <div class="h-48 bg-[#020604] rounded-2xl gold-border flex items-center justify-center text-5xl">🏎️</div>
-                <div class="space-y-2">
-                    <span class="text-[9px] font-bold text-[#FFD700] uppercase tracking-widest">Automotive • Video / Ads</span>
-                    <h4 class="text-lg font-bold text-white luxury-title">Auto Brand Commercial</h4>
-                    <p class="text-xs text-[#94A59C]">Professional tijoriy video va targeting strategiyasi.</p>
-                    <div class="pt-2 text-xs font-bold text-emerald-400">+260% Reach (Demo result)</div>
-                </div>
-                <button onclick="selectServiceForOrder('vid')" class="gold-btn w-full py-3 rounded-xl text-xs uppercase tracking-widest">LOYIHANI BOSHLASH →</button>
-            </div>
-            <div class="glass-card p-8 rounded-[32px] space-y-6 group">
-                <div class="h-48 bg-[#020604] rounded-2xl gold-border flex items-center justify-center text-5xl">👗</div>
-                <div class="space-y-2">
-                    <span class="text-[9px] font-bold text-[#FFD700] uppercase tracking-widest">Fashion • Branding</span>
-                    <h4 class="text-lg font-bold text-white luxury-title">Fashion Brand Identity</h4>
-                    <p class="text-xs text-[#94A59C]">Unutilmas brend identifikatsiyasi va visual uslub.</p>
-                    <div class="pt-2 text-xs font-bold text-emerald-400">+250% Growth (Demo result)</div>
-                </div>
-                <button onclick="selectServiceForOrder('logo')" class="gold-btn w-full py-3 rounded-xl text-xs uppercase tracking-widest">LOYIHANI BOSHLASH →</button>
+        </div>
+    </section>
+
+    <!-- CLIENT CONVERSION WIZARD -->
+    <section class="py-24 px-6 max-w-4xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
+        <div class="glass-card p-8 md:p-14 rounded-[36px] space-y-8 text-center">
+            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">Interactive Wizard</span>
+            <h2 class="text-2xl md:text-4xl font-extrabold luxury-title gold-gradient">Muammoingiz nima?</h2>
+            <p class="text-xs text-[#94A59C]">O'zingizga kerakli yo'nalishni tanlang va darhol yechim toping:</p>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-left">
+                <button onclick="selectWizardOption('Biznesimni avtomatlashtirmoqchiman')" class="p-4 rounded-2xl bg-black/40 border border-[#D4AF37]/30 hover:border-[#FFD700] text-xs text-white font-medium transition-all">
+                    ⚡ Biznesimni avtomatlashtirmoqchiman
+                </button>
+                <button onclick="selectWizardOption('Bot kerak')" class="p-4 rounded-2xl bg-black/40 border border-[#D4AF37]/30 hover:border-[#FFD700] text-xs text-white font-medium transition-all">
+                    🤖 Bot kerak
+                </button>
+                <button onclick="selectWizardOption('Web sayt kerak')" class="p-4 rounded-2xl bg-black/40 border border-[#D4AF37]/30 hover:border-[#FFD700] text-xs text-white font-medium transition-all">
+                    🌐 Web sayt kerak
+                </button>
+                <button onclick="selectWizardOption('AI kerak')" class="p-4 rounded-2xl bg-black/40 border border-[#D4AF37]/30 hover:border-[#FFD700] text-xs text-white font-medium transition-all">
+                    ◉ AI kerak
+                </button>
+                <button onclick="selectWizardOption('Reklama kerak')" class="p-4 rounded-2xl bg-black/40 border border-[#D4AF37]/30 hover:border-[#FFD700] text-xs text-white font-medium transition-all">
+                    📢 Reklama kerak
+                </button>
+                <button onclick="selectWizardOption('Dizayn kerak')" class="p-4 rounded-2xl bg-black/40 border border-[#D4AF37]/30 hover:border-[#FFD700] text-xs text-white font-medium transition-all">
+                    🎨 Dizayn kerak
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- 7. PROCESS -->
-    <section class="py-24 px-6 max-w-7xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
-        <div class="text-center space-y-3 mb-14">
-            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">QANDAY ISHLAYMIZ?</span>
-            <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">4 QADAMDA NATIJAGA</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="glass-card p-6 rounded-3xl space-y-3">
-                <span class="text-xs font-mono font-bold text-[#FFD700]">01 — BRIEF</span>
-                <h4 class="font-bold text-base text-white luxury-title">Maqsadni aniqlash</h4>
-                <p class="text-xs text-[#94A59C]">Istaklaringiz va talablaringizni chuqur tahlil qilamiz.</p>
-            </div>
-            <div class="glass-card p-6 rounded-3xl space-y-3">
-                <span class="text-xs font-mono font-bold text-[#FFD700]">02 — STRATEGIYA</span>
-                <h4 class="font-bold text-base text-white luxury-title">Yechim ishlab chiqish</h4>
-                <p class="text-xs text-[#94A59C]">Eng samarali va zamonaviy arxitekturani rejalashtiramiz.</p>
-            </div>
-            <div class="glass-card p-6 rounded-3xl space-y-3">
-                <span class="text-xs font-mono font-bold text-[#FFD700]">03 — DESIGN</span>
-                <h4 class="font-bold text-base text-white luxury-title">Dizayn va Kod</h4>
-                <p class="text-xs text-[#94A59C]">Dizayn, kontent va texnologiyani mukammal birlashtiramiz.</p>
-            </div>
-            <div class="glass-card p-6 rounded-3xl space-y-3">
-                <span class="text-xs font-mono font-bold text-[#FFD700]">04 — LAUNCH</span>
-                <h4 class="font-bold text-base text-white luxury-title">Ishga tushirish</h4>
-                <p class="text-xs text-[#94A59C]">Loyihani testdan o'tkazib, production'ga chiqaramiz.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 8. PRICING -->
-    <section id="calculator" class="py-24 px-6 max-w-6xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
-        <div class="text-center space-y-3 mb-14">
-            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">TARIFLAR</span>
-            <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">SIZGA MOS YECHIM</h2>
-            <p class="text-xs md:text-sm text-[#94A59C]">Loyiha turi va hajmini tanlang.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Start -->
-            <div class="glass-card p-8 rounded-[32px] space-y-6 flex flex-col justify-between">
-                <div>
-                    <span class="text-[10px] text-[#94A59C] uppercase tracking-widest font-bold block mb-2">START</span>
-                    <h3 class="text-xl font-bold text-white luxury-title">Kichik biznes</h3>
-                    <p class="text-xs text-[#94A59C] mt-2">Boshlang'ich brendlar uchun optimal yechim.</p>
-                    <div class="mt-6 text-2xl font-bold gold-gradient luxury-title">Individual narx</div>
-                </div>
-                <a href="#order" class="gold-border bg-[#05140F] hover:bg-[#0A2018] text-white py-3 rounded-xl text-xs uppercase tracking-widest text-center font-bold block">BUYURTMA BERISH</a>
-            </div>
-            <!-- Business (Highlighted) -->
-            <div class="glass-card p-8 rounded-[32px] space-y-6 flex flex-col justify-between border-2 border-[#D4AF37] relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-[#D4AF37] text-black text-[9px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">Ommabop</div>
-                <div>
-                    <span class="text-[10px] text-[#FFD700] uppercase tracking-widest font-bold block mb-2">BUSINESS</span>
-                    <h3 class="text-xl font-bold text-white luxury-title">Rivojlanayotgan</h3>
-                    <p class="text-xs text-[#94A59C] mt-2">Kengaytirilgan funksional va professional dizayn.</p>
-                    <div class="mt-6 text-2xl font-bold gold-gradient luxury-title">Loyiha hajmiga qarab</div>
-                </div>
-                <a href="#order" class="gold-btn py-3.5 rounded-xl text-xs uppercase tracking-widest text-center block">BUYURTMA BERISH</a>
-            </div>
-            <!-- Premium -->
-            <div class="glass-card p-8 rounded-[32px] space-y-6 flex flex-col justify-between">
-                <div>
-                    <span class="text-[10px] text-[#94A59C] uppercase tracking-widest font-bold block mb-2">PREMIUM</span>
-                    <h3 class="text-xl font-bold text-white luxury-title">Katta kompaniya</h3>
-                    <p class="text-xs text-[#94A59C] mt-2">To'liq shaxsiy yondashuv va maxsus arxitektura.</p>
-                    <div class="mt-6 text-2xl font-bold gold-gradient luxury-title">Enterprise</div>
-                </div>
-                <a href="#order" class="gold-border bg-[#05140F] hover:bg-[#0A2018] text-white py-3 rounded-xl text-xs uppercase tracking-widest text-center font-bold block">BUYURTMA BERISH</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 10. WHY CQ STUDIO -->
-    <section id="about" class="py-24 px-6 max-w-7xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
-        <div class="text-center space-y-3 mb-14">
-            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">NIMA UCHUN CQ STUDIO?</span>
-            <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">PROFESSIONAL YONDASHUV</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="glass-card p-6 rounded-3xl space-y-3">
-                <span class="text-xs font-mono font-bold text-[#FFD700]">01</span>
-                <h4 class="font-bold text-base text-white luxury-title">PREMIUM QUALITY</h4>
-                <p class="text-xs text-[#94A59C]">Har bir detal Apple va Stripe standartlarida ishlab chiqiladi.</p>
-            </div>
-            <div class="glass-card p-6 rounded-3xl space-y-3">
-                <span class="text-xs font-mono font-bold text-[#FFD700]">02</span>
-                <h4 class="font-bold text-base text-white luxury-title">INDIVIDUAL APPROACH</h4>
-                <p class="text-xs text-[#94A59C]">Shablonlar yo'q — faqat shaxsiy va unikal arxitektura.</p>
-            </div>
-            <div class="glass-card p-6 rounded-3xl space-y-3">
-                <span class="text-xs font-mono font-bold text-[#FFD700]">03</span>
-                <h4 class="font-bold text-base text-white luxury-title">FAST EXECUTION</h4>
-                <p class="text-xs text-[#94A59C]">Belgilangan muddatda o'ta yuqori sifatli natija.</p>
-            </div>
-            <div class="glass-card p-6 rounded-3xl space-y-3">
-                <span class="text-xs font-mono font-bold text-[#FFD700]">04</span>
-                <h4 class="font-bold text-base text-white luxury-title">SMART TECHNOLOGY</h4>
-                <p class="text-xs text-[#94A59C]">Zamonaviy stack, AI va avtomatlashtirish vositalari.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 9. TESTIMONIALS -->
-    <section class="py-24 px-6 max-w-7xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
-        <div class="text-center space-y-3 mb-14">
-            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">MIJOZLARIMIZ</span>
-            <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">BIZ HAQIMIZDA</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="glass-card p-8 rounded-[32px] space-y-4">
-                <div class="text-[#FFD700] text-sm">★★★★★</div>
-                <p class="text-xs text-[#94A59C] leading-relaxed">"CQ Studio jamoasi bizning platformamizni o'ta yuqori darajada va mukammal dizaynda tayyorlab berdi."</p>
-                <div class="pt-4 border-t border-white/10">
-                    <strong class="text-white text-sm block luxury-title">Jasur Alimov</strong>
-                    <span class="text-[10px] text-[#FFD700] uppercase tracking-wider">CEO, Example Corp (Demo)</span>
-                </div>
-            </div>
-            <div class="glass-card p-8 rounded-[32px] space-y-4">
-                <div class="text-[#FFD700] text-sm">★★★★★</div>
-                <p class="text-xs text-[#94A59C] leading-relaxed">"Telegram Mini App va bot yaratish bo'yicha eng zo'r jamoa ekan. Barcha talablarimizni mukammal bajarishdi."</p>
-                <div class="pt-4 border-t border-white/10">
-                    <strong class="text-white text-sm block luxury-title">Malika Umarova</strong>
-                    <span class="text-[10px] text-[#FFD700] uppercase tracking-wider">Founder, Elite Brand (Demo)</span>
-                </div>
-            </div>
-            <div class="glass-card p-8 rounded-[32px] space-y-4">
-                <div class="text-[#FFD700] text-sm">★★★★★</div>
-                <p class="text-xs text-[#94A59C] leading-relaxed">"Brending va dizayn estetikasi mutlaqo boshqacha darajada. Professional yondashuv uchun rahmat."</p>
-                <div class="pt-4 border-t border-white/10">
-                    <strong class="text-white text-sm block luxury-title">Timur Karimov</strong>
-                    <span class="text-[10px] text-[#FFD700] uppercase tracking-wider">Director, Studio X (Demo)</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 13. ORDER FLOW / 11. CTA -->
-    <section id="order" class="py-24 px-6 max-w-4xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
-        <div class="glass-card p-8 md:p-14 rounded-[36px] space-y-8">
+    <!-- PRICING / CALCULATOR -->
+    <section id="calculator" class="py-24 px-6 max-w-4xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
+        <div class="glass-card p-8 md:p-12 rounded-[32px] space-y-8">
             <div class="text-center space-y-2">
-                <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">LOYIHANGIZNI BOSHLAYMIZ</span>
-                <h2 class="text-2xl md:text-4xl font-extrabold luxury-title gold-gradient">Sizning g‘oyangiz — bizning tajribamiz.</h2>
-                <p class="text-xs text-[#94A59C]">Qisqa anketa orqali buyurtmangizni yuboring.</p>
+                <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">Narxlar</span>
+                <h2 class="text-2xl md:text-4xl font-extrabold luxury-title gold-gradient">Loyiha Narxini Hisoblash</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Xizmat turi</label>
+                    <select id="calcService" onchange="calculatePrice()" class="w-full bg-[#020504] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none">
+                        <option value="200">Veb-sayt yaratish</option>
+                        <option value="100">Telegram bot va Mini App</option>
+                        <option value="15">Premium reklama</option>
+                        <option value="30">Video yasab berish</option>
+                        <option value="50">Logotip yasab berish</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Paket darajasi</label>
+                    <select id="calcPackage" onchange="calculatePrice()" class="w-full bg-[#020504] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none">
+                        <option value="1">Standart</option>
+                        <option value="1.25">Pro / Plus</option>
+                        <option value="1.75">Premium</option>
+                    </select>
+                </div>
+            </div>
+            <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <span class="text-[10px] text-[#94A59C] uppercase tracking-widest block">Taxminiy Byudjet</span>
+                    <span id="calcResult" class="text-3xl md:text-4xl font-extrabold gold-gradient luxury-title">$200</span>
+                </div>
+                <button onclick="applyCalcToOrder()" class="gold-btn w-full sm:w-auto px-8 py-4 rounded-xl text-xs uppercase tracking-widest">
+                    Shu narxda buyurtma berish →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ORDER FORM & HISTORY -->
+    <section id="order" class="py-24 px-6 max-w-4xl mx-auto relative z-10 border-t border-[#D4AF37]/15">
+        <div class="glass-card p-8 md:p-12 rounded-[32px] space-y-8">
+            <div class="text-center space-y-2">
+                <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">Buyurtma berish</span>
+                <h2 class="text-2xl md:text-4xl font-extrabold luxury-title gold-gradient">Loyihani Boshlash</h2>
+                <p class="text-xs text-[#94A59C]">Ma'lumotlaringizni qoldiring, mutaxassislarimiz bog'lanishadi.</p>
             </div>
 
             <form id="orderForm" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Ismingiz</label>
-                        <input type="text" id="name" required class="w-full bg-[#030705] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none" placeholder="Ismingiz">
+                        <input type="text" id="name" required class="w-full bg-[#020504] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none" placeholder="Ismingiz">
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Telefon raqam</label>
-                        <input type="tel" id="phone" required class="w-full bg-[#030705] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none" placeholder="+998 90 123 45 67">
+                        <input type="tel" id="phone" required class="w-full bg-[#020504] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none" placeholder="+998 90 123 45 67">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Xizmat turi</label>
-                        <select id="serviceSelect" class="w-full bg-[#030705] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none"></select>
+                        <select id="serviceSelect" class="w-full bg-[#020504] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none"></select>
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Paket darajasi</label>
-                        <select id="packageSelect" class="w-full bg-[#030705] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none"></select>
+                        <select id="packageSelect" class="w-full bg-[#020504] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white focus:outline-none"></select>
                     </div>
                 </div>
                 <div>
-                    <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Loyiha tafsilotlari (Brief)</label>
-                    <textarea id="brief" rows="3" class="w-full bg-[#030705] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white resize-none focus:outline-none" placeholder="Maqsad va talablaringiz..."></textarea>
+                    <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Loyiha haqida</label>
+                    <textarea id="brief" rows="3" class="w-full bg-[#020504] border border-[#D4AF37]/30 rounded-xl p-4 text-sm text-white resize-none focus:outline-none" placeholder="Talablaringiz..."></textarea>
                 </div>
                 <button type="submit" class="gold-btn w-full py-4 rounded-xl text-xs uppercase tracking-widest shadow-xl">
-                    SO‘ROVNI YUBORISH ✦
+                    LOYIHANI BOSHLASH →
                 </button>
             </form>
 
@@ -436,22 +419,6 @@
             </div>
         </div>
     </section>
-
-    <!-- SERVICE DETAIL MODAL -->
-    <div class="modal-overlay" id="serviceModal">
-        <div class="glass-card p-8 rounded-[32px] w-full max-w-lg max-h-[85vh] overflow-y-auto space-y-6 border border-[#D4AF37]/40">
-            <div class="flex justify-between items-center border-b border-white/10 pb-4">
-                <h3 class="font-bold text-xl gold-gradient luxury-title" id="modalTitle">Xizmat Tafsilotlari</h3>
-                <button onclick="closeServiceModal()" class="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center font-bold">✕</button>
-            </div>
-            <p class="text-xs text-[#94A59C]" id="modalDesc">Tavsif...</p>
-            <div class="space-y-2">
-                <span class="text-[10px] text-[#FFD700] uppercase font-bold tracking-wider block">Tariflar va Paketlar:</span>
-                <div id="modalPackages" class="space-y-2"></div>
-            </div>
-            <button onclick="proceedFromModal()" class="gold-btn w-full py-3.5 rounded-xl text-xs uppercase tracking-widest">LOYIHANI BOSHLASH →</button>
-        </div>
-    </div>
 
     <!-- ADMIN MODAL -->
     <div class="modal-overlay" id="adminModal">
@@ -466,7 +433,7 @@
         </div>
     </div>
 
-    <!-- 12. BOTTOM NAVIGATION BAR (MOBILE APP UX) -->
+    <!-- BOTTOM NAVIGATION BAR (TELEGRAM WEB APP UX) -->
     <nav class="bottom-nav">
         <a href="#home" class="active">
             <span class="block text-base mb-0.5">⌂</span> Bosh sahifa
@@ -486,31 +453,27 @@
     </nav>
 
     <!-- FOOTER -->
-    <footer class="py-12 px-6 text-center text-xs text-[#94A59C] space-y-3 relative z-10 bg-[#010201] border-t border-[#D4AF37]/10">
-        <p class="font-extrabold tracking-[0.2em] luxury-title gold-gradient text-sm">CQ STUDIO</p>
-        <p>"Smart ideas. Big results." • Premium Digital Studio.</p>
-        <div class="flex justify-center gap-6 pt-2 text-xs uppercase tracking-widest text-[#FFD700]">
-            <a href="https://t.me/" target="_blank" class="hover:underline">Telegram</a>
-            <a href="https://whatsapp.com/" target="_blank" class="hover:underline">WhatsApp</a>
-            <a href="tel:+998901234567" class="hover:underline">Telefon</a>
-        </div>
-        <p class="text-[10px] text-[#555] pt-2">© 2026 CQ STUDIO. All rights reserved.</p>
+    <footer class="py-12 px-6 text-center text-xs text-[#94A59C] space-y-2 relative z-10 bg-[#010201] border-t border-[#D4AF37]/10">
+        <p class="font-bold tracking-widest luxury-title gold-gradient">CQ STUDIO</p>
+        <p>"Smart ideas. Big results."</p>
+        <p class="text-[10px] text-[#555]">© 2026 All rights reserved.</p>
     </footer>
 
     <!-- LOGIC SCRIPT -->
     <script>
         const tg = window.Telegram && window.Telegram.WebApp;
-        try { if(tg) { tg.expand(); tg.setHeaderColor("#030705"); tg.setBackgroundColor("#030705"); } } catch(e) {}
+        try { if(tg) { tg.expand(); tg.setHeaderColor("#020504"); tg.setBackgroundColor("#020504"); } } catch(e) {}
 
         let servicesData = [];
         let myOrders = JSON.parse(localStorage.getItem('cq_ultra_orders_v7') || '[]');
-        let activeModalService = null;
 
         function openAdminModal() {
             document.getElementById('adminModal').style.display = 'grid';
             fetchAdminOrders();
         }
-        function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; }
+        function closeAdminModal() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
 
         async function fetchAdminOrders() {
             const container = document.getElementById('adminOrdersList');
@@ -535,7 +498,7 @@
                 container.innerHTML = myOrders.map((o, idx) => `
                     <div class="glass-card p-3 rounded-xl space-y-1">
                         <strong class="text-white text-xs block">${o.serviceName}</strong>
-                        <p class="text-[11px] text-gray-300">Paket: ${o.packageName}</p>
+                        <p class="text-[11px] text-[#94A59C]">Paket: ${o.packageName}</p>
                     </div>
                 `).join('');
             }
@@ -559,38 +522,6 @@
         function renderServiceCards() {
             const container = document.getElementById('servicesGrid');
             if(!container) return;
-            const icons = { 'bot': '⚡', 'web': '🌐', 'ads': '📢', 'vid': '🎬', 'logo': '🎨', 'ai': '◉', 'serv_1': '🌐', 'serv_2': '⚡', 'serv_3': '📢', 'serv_4': '🎬', 'serv_5': '🎨' };
-            
-            // Fallback default services if API empty
-            const defaultServices = [
-                { id: 'ads', name: 'REKLAMA', description: 'Sizning brendingiz uchun auditoriyani jalb qiluvchi kreativ reklama.', packages: [{name:'Standart', price:15},{name:'Pro', price:25},{name:'Premium', price:40}] },
-                { id: 'vid', name: 'VIDEO', description: 'Brendingiz hikoyasini professional video orqali yetkazamiz.', packages: [{name:'Standart', price:30},{name:'Pro', price:50},{name:'Premium', price:80}] },
-                { id: 'logo', name: 'LOGO & BRANDING', description: 'Unutilmas brend identifikatsiyasi va visual uslub.', packages: [{name:'Standart', price:50},{name:'Pro', price:80},{name:'Premium', price:100}] },
-                { id: 'web', name: 'WEB SAYT', description: 'Zamonaviy, tezkor va konversiyaga yo‘naltirilgan web-sayt.', packages: [{name:'Standart', price:200},{name:'Pro', price:250},{name:'Premium', price:500}] },
-                { id: 'bot', name: 'TELEGRAM BOT / APP', description: 'Biznesingiz uchun aqlli bot va mobil ilovalar.', packages: [{name:'Standart Bot', price:100},{name:'Pro Mini App', price:200},{name:'Premium', price:280}] },
-                { id: 'ai', name: 'AI & AUTOMATION', description: 'Sun’iy intellekt va avtomatlashtirish orqali biznesni rivojlantiramiz.', packages: [{name:'Standart', price:150},{name:'Pro', price:300},{name:'Enterprise', price:600}] }
-            ];
-
-            const list = servicesData.length ? servicesData : defaultServices;
-
-            container.innerHTML = list.map((s, idx) => `
-                <div class="glass-card p-8 rounded-[32px] space-y-6 flex flex-col justify-between group cursor-pointer" onclick="openServiceModal('${s.id}')">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-14 h-14 rounded-2xl gold-border bg-[#05140F] flex items-center justify-center text-2xl">${icons[s.id] || '✦'}</div>
-                            <span class="text-xs font-mono font-bold text-[#FFD700]">0${idx+1}</span>
-                        </div>
-                        <h3 class="font-extrabold text-lg text-white luxury-title group-hover:text-[#FFD700] transition-colors">${s.name}</h3>
-                        <p class="text-xs text-[#94A59C] mt-2.5 leading-relaxed">${s.description || ''}</p>
-                    </div>
-                    <div class="pt-4 border-t border-white/10 flex justify-between items-center text-xs">
-                        <span class="text-[#FFD700] font-bold">Batafsil →</span>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function openServiceModal(id) {
             const list = servicesData.length ? servicesData : [
                 { id: 'ads', name: 'REKLAMA', description: 'Sizning brendingiz uchun auditoriyani jalb qiluvchi kreativ reklama.', packages: [{name:'Standart', price:15},{name:'Pro', price:25},{name:'Premium', price:40}] },
                 { id: 'vid', name: 'VIDEO', description: 'Brendingiz hikoyasini professional video orqali yetkazamiz.', packages: [{name:'Standart', price:30},{name:'Pro', price:50},{name:'Premium', price:80}] },
@@ -599,29 +530,27 @@
                 { id: 'bot', name: 'TELEGRAM BOT / APP', description: 'Biznesingiz uchun aqlli bot va mobil ilovalar.', packages: [{name:'Standart Bot', price:100},{name:'Pro Mini App', price:200},{name:'Premium', price:280}] },
                 { id: 'ai', name: 'AI & AUTOMATION', description: 'Sun’iy intellekt va avtomatlashtirish orqali biznesni rivojlantiramiz.', packages: [{name:'Standart', price:150},{name:'Pro', price:300},{name:'Enterprise', price:600}] }
             ];
-            activeModalService = list.find(x => x.id === id);
-            if(!activeModalService) return;
 
-            document.getElementById('modalTitle').innerText = activeModalService.name;
-            document.getElementById('modalDesc').innerText = activeModalService.description || '';
-            document.getElementById('modalPackages').innerHTML = activeModalService.packages ? activeModalService.packages.map(p => `
-                <div class="flex justify-between items-center p-3 rounded-xl bg-black/40 border border-white/5 text-xs">
-                    <span class="text-white font-medium">${p.name}</span>
-                    <span class="text-[#FFD700] font-bold">$${p.price}</span>
+            container.innerHTML = list.map((s, idx) => `
+                <div class="glass-card p-7 rounded-[28px] space-y-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-mono font-bold text-[#FFD700]">0${idx+1}</span>
+                            <span class="px-2.5 py-0.5 rounded-full bg-[#FFD700]/10 text-[#FFD700] text-[8px] font-extrabold border border-[#FFD700]/30 uppercase">VIP</span>
+                        </div>
+                        <h3 class="font-extrabold text-base text-white luxury-title">${s.name}</h3>
+                        <p class="text-xs text-[#94A59C] mt-2 leading-relaxed">${s.description || ''}</p>
+                    </div>
+                    <div class="space-y-3 pt-4 border-t border-white/10">
+                        ${s.packages ? s.packages.map(p => `
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-300">${p.name}</span>                                 <span class="text-[#FFD700] font-bold">$${p.price}</span>
+                            </div>
+                        `).join('') : ''}
+                        <button onclick="selectServiceForOrder('${s.id}')" class="gold-btn w-full py-3 rounded-xl text-xs uppercase tracking-widest mt-2">Tanlash →</button>
+                    </div>
                 </div>
-            `).join('') : '';
-
-            document.getElementById('serviceModal').style.display = 'grid';
-        }
-
-        function closeServiceModal() { document.getElementById('serviceModal').style.display = 'none'; }
-        function proceedFromModal() {
-            closeServiceModal();
-            if(activeModalService) {
-                const sEl = document.getElementById('serviceSelect');
-                if(sEl) { sEl.value = activeModalService.id; updatePackages(); }
-            }
-            window.location.href = '#order';
+            `).join('');
         }
 
         function updatePackages() {
@@ -637,11 +566,25 @@
         }
 
         document.getElementById('serviceSelect')?.addEventListener('change', updatePackages);
+
         function selectServiceForOrder(serviceId) {
             const sEl = document.getElementById('serviceSelect');
             if(sEl) { sEl.value = serviceId; updatePackages(); }
             window.location.href = '#order';
         }
+
+        function selectWizardOption(optionText) {
+            document.getElementById('brief').value = "Wizard tanlovi: " + optionText;
+            window.location.href = '#order';
+        }
+
+        function calculatePrice() {
+            const base = parseFloat(document.getElementById('calcService')?.value || 200);
+            const mult = parseFloat(document.getElementById('calcPackage')?.value || 1);
+            document.getElementById('calcResult').innerText = `$${Math.round(base * mult)}`;
+        }
+
+        function applyCalcToOrder() { window.location.href = '#order'; }
 
         function renderOrders() {
             const container = document.getElementById('myOrdersList');
@@ -651,7 +594,7 @@
                 return;
             }
             container.innerHTML = myOrders.map((o, idx) => `
-                <div class="glass-card p-3.5 rounded-xl flex justify-between items-center text-xs">
+                <div class="glass-card p-3 rounded-xl flex justify-between items-center text-xs">
                     <div>
                         <strong class="text-white block">${o.serviceName}</strong>
                         <span class="text-[#94A59C]">Paket: ${o.packageName}</span>
