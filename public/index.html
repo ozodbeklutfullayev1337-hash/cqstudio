@@ -52,7 +52,6 @@ h2{font-family:var(--s);font-weight:600;font-size:32px;letter-spacing:-.02em;mar
 .gl:active{transform:scale(.98)}
 .gl:after{content:"";position:absolute;inset:0;background:radial-gradient(240px circle at var(--mx,85%) var(--my,0%),rgba(255,233,160,.14),transparent 60%);pointer-events:none}
 .gl.has{border-color:var(--g2);box-shadow:0 0 0 1px rgba(233,194,92,.3),0 18px 50px -18px rgba(233,194,92,.55)}
-.gl:focus-visible,.tier:focus-visible,.cur button:focus-visible,.cta:focus-visible,.add:focus-visible,.x:focus-visible,.go:focus-visible{outline:2px solid var(--g3);outline-offset:3px}
 .gl h3{font-family:var(--s);font-weight:600;font-size:27px;line-height:1.08;letter-spacing:-.015em;margin:0 0 8px}
 .gl p{margin:0;color:var(--mute);font-size:14px;line-height:1.5;max-width:28ch}
 .gl .row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:24px}
@@ -66,6 +65,20 @@ h2{font-family:var(--s);font-weight:600;font-size:32px;letter-spacing:-.02em;mar
 .gl.big .pr{background:none;color:#1b1205;-webkit-text-fill-color:#1b1205}.gl.big .pr small{-webkit-text-fill-color:#5a410b;color:#5a410b}
 .gl.big .pl{background:#0a1d16;color:var(--g3)}
 .gl.big .tg{background:#0a1d16;border:0;color:var(--g3)}
+
+/* Orders Section Styling */
+.orders-section{margin-top:34px;background:linear-gradient(160deg,rgba(10,35,27,.9),rgba(4,18,13,.95));border:1px solid rgba(233,194,92,.3);border-radius:26px;padding:22px}
+.orders-section h3{font-family:var(--s);font-size:22px;color:var(--g2);margin:0 0 6px}
+.orders-section p{color:var(--mute);font-size:13px;margin:0 0 16px}
+.order-card{background:rgba(0,0,0,.4);border:1px solid rgba(233,194,92,.2);border-radius:18px;padding:14px 16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.order-info span{display:block;font-size:11px;color:var(--g3);margin-bottom:2px}
+.order-info strong{font-size:15px;color:var(--ivory);font-family:var(--s)}
+.order-info small{display:block;font-size:12px;color:var(--mute);margin-top:2px}
+.order-action{display:flex;align-items:center;gap:10px}
+.status-badge{font-size:10px;font-weight:700;background:rgba(46,204,113,.15);color:#2ecc71;border:1px solid rgba(46,204,113,.3);padding:4px 10px;border-radius:99px}
+.del-order{all:unset;cursor:pointer;color:#e74c3c;font-size:15px;padding:6px;border-radius:10px;background:rgba(231,76,60,.1);transition:.2s}
+.del-order:hover{background:rgba(231,76,60,.3)}
+
 .trust{display:grid;gap:10px;margin-top:30px}
 .trust div{padding:18px 20px;border-radius:20px;border:1px solid rgba(233,194,92,.18);font-size:14px;line-height:1.45;color:var(--mute)}
 .trust b{display:block;font-family:var(--s);font-weight:600;font-size:20px;color:var(--ivory);margin-bottom:2px}
@@ -90,23 +103,14 @@ h2{font-family:var(--s);font-weight:600;font-size:32px;letter-spacing:-.02em;mar
 .cta.on{transform:none}.cta em{font-style:normal;font-family:var(--s);font-weight:700;font-size:24px}
 .toast{position:fixed;left:50%;top:16px;transform:translate(-50%,-90px);background:var(--gold);color:#1b1205;padding:13px 20px;border-radius:16px;font-weight:700;font-size:14px;z-index:50;transition:transform .5s cubic-bezier(.2,.9,.2,1);max-width:90vw;text-align:center}
 .toast.show{transform:translate(-50%,0)}
-/* Orders History Styles */
-.orders-box{margin-top:30px;background:var(--bg2);border:1px solid rgba(233,194,92,.25);border-radius:22px;padding:20px}
-.orders-box h3{font-size:20px;margin-bottom:12px}
-.order-item{background:rgba(0,0,0,.3);border:1px solid rgba(233,194,92,.15);border-radius:14px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
-.order-item span{font-size:13px;color:var(--mute)}
-.order-item strong{color:var(--ivory);font-size:14px}
-.del-btn{all:unset;cursor:pointer;color:#e74c3c;font-size:14px;padding:4px 8px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.coin{transform:rotateY(-12deg)}}
 </style>
 </head>
 <body>
 <canvas id="dust" aria-hidden="true"></canvas>
 <div class="app">
-  <div class="logo-area" style="display:flex;justify-content:space-between;align-items:center;padding:16px 2px">
-    <div class="logo">CQ STUDIO</div>
-    <div class="cur" role="group" aria-label="Valyuta"><button data-c="usd" aria-pressed="true">$</button><button data-c="uzs" aria-pressed="false">so'm</button></div>
-  </div>
+  <div class="top"><div class="logo">CQ STUDIO</div>
+    <div class="cur" role="group" aria-label="Valyuta"><button data-c="usd" aria-pressed="true">$</button><button data-c="uzs" aria-pressed="false">so'm</button></div></div>
 
   <div class="stage" aria-hidden="true"><div class="coin" id="coin"><div class="face"><b>CQ</b></div></div></div>
   <section class="hero">
@@ -121,20 +125,22 @@ h2{font-family:var(--s);font-weight:600;font-size:32px;letter-spacing:-.02em;mar
   <p class="sub">Xizmatni bosing va tarifni tanlang.</p>
   <div id="list"></div>
 
-  <!-- Mening buyurtmalarim tarixi -->
-  <div class="orders-box">
-    <h3>Mening Buyurtmalarim tarixi</h3>
-    <div id="myOrdersList">
-      <p style="font-size:13px;color:var(--mute);">Hozircha buyurtmalar tarixi mavjud emas.</p>
+  <!-- BUYURTMALARIM KATEGORIYASI -->
+  <section class="orders-section">
+    <h3>Buyurtmalarim</h3>
+    <p>Siz tanlagan va yuborgan xizmatlar tarixi.</p>
+    <div id="myOrdersContainer">
+      <div style="font-size:13px;color:var(--mute);text-align:center;padding:10px 0;">Hozircha buyurtmalar mavjud emas</div>
     </div>
-  </div>
+  </section>
 
-  <div class="trust" style="margin-top:30px">
+  <div class="trust">
     <div><b>Kelishuv</b>Menejer 24 soat ichida yozadi va talablarni aniqlaydi.</div>
     <div><b>Shaffof jarayon</b>Ishning har bosqichini sizga ko'rsatib boramiz.</div>
     <div><b>Tuzatishlar</b>Natija sizga yoqmaguncha tuzatamiz.</div>
   </div>
 </div>
+
 <div class="bar"><button class="cta" id="cta"><span id="cL">Buyurtma berish</span><em id="cR"></em></button></div>
 <div class="sbg" id="bg"></div>
 <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sT">
@@ -143,9 +149,10 @@ h2{font-family:var(--s);font-weight:600;font-size:32px;letter-spacing:-.02em;mar
   <button class="add" id="add">Tarifni tanlang</button>
 </div>
 <div class="toast" id="toast" role="status"></div>
+
 <script>
 var RATE=12600,cur="usd",sel={},pick=null,act=null,tg=(window.Telegram&&window.Telegram.WebApp)||null;
-var myOrders = JSON.parse(localStorage.getItem('cq_ultra_orders_v7') || '[]');
+var myOrders = JSON.parse(localStorage.getItem('cq_studio_orders') || '[]');
 
 var S=[
  {id:"bot",n:"Telegram bot va Mini App",tag:"Eng ommabop",big:1,d:"Murakkab funksionalga ega Telegram botlar va Mini App dasturlar.",t:[["Standart Bot",100,"Oddiy buyruqlar va menyu"],["Pro Mini App Bot",200,"Mini App bilan",1],["Premium",280,"To'lov, admin panel, statistika"]]},
@@ -184,7 +191,7 @@ function sheet(id){act=S.filter(function(x){return x.id===id})[0];pick=sel[id]!=
 function drawTiers(){
  var h="";act.t.forEach(function(x,i){h+='<button class="tier" role="radio" aria-checked="'+(pick===i)+'" data-i="'+i+'"><span><strong>'+x[0]+(x[3]?'<span class="pop">Ommabop</span>':'')+'</strong><small>'+x[2]+'</small></span><em>'+fmt(x[1])+'</em></button>'});
  $("tiers").innerHTML=h;var a=$("add");a.disabled=pick===null;
- a.textContent=pick===null?"Tarifni tanlang":(sel[act.id]===pick?"Saqlangan":"Qo'shish")+" · "+fmt(pick!==null?act.t[pick][1]:0)}
+ a.textContent=pick===null?"Tarifni tanlang":(sel[act.id]===pick?"Saqlangan":"Qo'shish")+" · "+fmt(act.t[pick][1])}
 
 function close(){document.body.classList.remove("open")}
 
@@ -200,56 +207,43 @@ document.addEventListener("pointermove",function(e){var g=e.target.closest&&e.ta
 $("go").addEventListener("click",function(){$("svc").scrollIntoView({behavior:"smooth"});hap()});
 $("add").addEventListener("click",function(){if(pick===null)return;sel[act.id]=pick;hap("heavy");close();render();toast(act.n+" qo'shildi")});
 
+// Buyurtmalar tarixini chiqarish
 function renderOrders(){
- var container = $("myOrdersList");
+ var c = $("myOrdersContainer");
  if(!myOrders.length){
-  container.innerHTML = `<p style="font-size:13px;color:var(--mute);">Hozircha buyurtmalar tarixi mavjud emas.</p>`;
+  c.innerHTML = '<div style="font-size:13px;color:var(--mute);text-align:center;padding:10px 0;">Hozircha buyurtmalar mavjud emas</div>';
   return;
  }
- container.innerHTML = myOrders.map((o, idx) => `
-  <div class="order-item">
-   <div>
-    <span style="font-size:10px;color:var(--g2);">#0${idx + 1} • ${o.date}</span>
-    <strong style="display:block">${o.serviceName}</strong>
-    <span>Paket: ${o.packageName}</span>
-   </div>
-   <button onclick="deleteOrder(${idx})" class="del-btn">🗑️</button>
-  </div>
- `).join('');
+ c.innerHTML = myOrders.map(function(o, idx){
+  return '<div class="order-card">'+
+   '<div class="order-info">'+
+    '<span>#'+(idx+1)+' • '+o.date+'</span>'+
+    '<strong>'+o.serviceName+'</strong>'+
+    '<small>Paket: '+o.tierName+' ('+fmt(o.price)+')</small>'+
+   '</div>'+
+   '<div class="order-action">'+
+    '<span class="status-badge">Jarayonda</span>'+
+    '<button class="del-order" onclick="removeOrder('+idx+')">✕</button>'+
+   '</div>'+
+  '</div>';
+ }).join('');
 }
 
-function deleteOrder(index){
- if(confirm("Buyurtmani tarixdan o'chirmoqchimisiz?")){
-  myOrders.splice(index, 1);
-  localStorage.setItem('cq_ultra_orders_v7', JSON.stringify(myOrders));
-  renderOrders();
- }
+function removeOrder(i){
+ myOrders.splice(i, 1);
+ localStorage.setItem('cq_studio_orders', JSON.stringify(myOrders));
+ renderOrders();
+ toast("Buyurtma o'chirildi");
 }
 
-async function order(){
+function order(){
  if(!count())return;
- var items=S.filter(function(x){return sel[x.id]!=null}).map(function(x){return {service:x.id,tier:x.t[sel[x.id]][0],price:x.t[sel[x.id]][1]}});
+ var items=S.filter(function(x){return sel[x.id]!=null}).map(function(x){return {serviceId:x.id, serviceName:x.n, tierName:x.t[sel[x.id]][0], price:x.t[sel[x.id]][1], date:new Date().toLocaleDateString()}});
  
- // Serverga yuborish
- try {
-  var res = await fetch('/api/client/orders', {
-   method: 'POST',
-   headers: { 'Content-Type': 'application/json' },
-   body: JSON.stringify({ items: items, total: total() })
-  });
-  var result = await res.json();
-  if(result.success || true) {
-   items.forEach(it => {
-    myOrders.unshift({
-     serviceName: it.service,
-     packageName: it.tier,
-     date: new Date().toLocaleDateString('uz-UZ')
-    });
-   });
-   localStorage.setItem('cq_ultra_orders_v7', JSON.stringify(myOrders));
-   renderOrders();
-  }
- } catch(err) { console.log(err); }
+ // Buyurtmalarga qo'shish
+ items.forEach(function(it){ myOrders.unshift(it); });
+ localStorage.setItem('cq_studio_orders', JSON.stringify(myOrders));
+ renderOrders();
 
  if(tg&&tg.sendData){try{tg.sendData(JSON.stringify({items:items,total:total()}));return}catch(e){}}
  hap("heavy");toast("Buyurtma qabul qilindi: "+fmt(total())+". Menejer tez orada yozadi.");
