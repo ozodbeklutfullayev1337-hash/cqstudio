@@ -1,511 +1,273 @@
 <!DOCTYPE html>
-<html lang="uz" class="scroll-smooth">
+<html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CQ STUDIO — Elite Digital Haute Couture & Agency</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #050505;
-            --ivory: #FFFFFF;
-            --mute: #999999;
-            --g1: #FFD700;
-            --g2: #D4AF37;
-            --gold: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #AA7C11 100%);
-            --s: 'Cinzel', serif;
-            --b: 'Plus Jakarta Sans', sans-serif;
-        }
-        body {
-            font-family: var(--b);
-            background-color: var(--bg);
-            color: var(--ivory);
-            overflow-x: hidden;
-        }
-        .luxury-title { font-family: var(--s); }
-        .gold-gradient {
-            background: var(--gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .gold-border { border: 1px solid rgba(212, 175, 55, 0.25); transition: all 0.3s ease; }
-        .gold-border:hover { border-color: rgba(255, 215, 0, 0.6); }
-        .luxury-card {
-            background: rgba(10, 10, 14, 0.9);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .luxury-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.5);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.08);
-        }
-        .gold-btn {
-            background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%);
-            color: #050505;
-            font-weight: 700;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
-        }
-        .gold-btn:hover {
-            filter: brightness(1.1);
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.35);
-        }
-        .gold-glow {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, rgba(5, 5, 5, 0) 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-        /* 3D Coin Animation */
-        .stage { perspective: 800px; height: 200px; display: grid; place-items: center; margin-top: 10px; position: relative; }
-        .coin { position: relative; width: 140px; height: 140px; transform-style: preserve-3d; animation: sw 6.5s ease-in-out infinite alternate; transform: rotateY(-34deg); }
-        @keyframes sw { from { transform: rotateY(-34deg) rotateX(6deg); } to { transform: rotateY(34deg) rotateX(-4deg); } }
-        .coin i { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg, #7a5410, #d9a93f 45%, #8f6417); }
-        .coin .face {
-            position: absolute; inset: 0; border-radius: 50%; display: grid; place-items: center;
-            transform: translateZ(9px); background: radial-gradient(circle at 30% 25%, #fff3c4, #e2b64c 38%, #a77a22 100%);
-            box-shadow: inset 0 0 0 5px #c99a33, inset 0 0 0 7px #fff0b8, inset 0 0 0 12px #b58626, inset 0 0 20px rgba(90,55,5,.55);
-            overflow: hidden;
-        }
-        .coin .face b { font-family: var(--s); font-weight: 700; font-size: 52px; color: #4a3208; text-shadow: 0 1px 0 #fff0b8; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; border: 1px solid rgba(212,175,55,0.2); }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CQ Studio</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#03110d;--bg2:#071f18;--ivory:#f6efdc;--mute:#94a59c;--g1:#a77a22;--g2:#e9c25c;--g3:#fff1bd;
+--gold:linear-gradient(105deg,#a77a22,#ffe9a0 30%,#d9a93f 52%,#fff3c4 70%,#9c6f1d);
+--s:"Fraunces",Georgia,serif;--b:"Hanken Grotesk",system-ui,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*:before,*:after{box-sizing:inherit}
+html,body{margin:0;background:var(--bg);color:var(--ivory);font-family:var(--b);-webkit-font-smoothing:antialiased}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{background:radial-gradient(90% 50% at 50% 0,#0f3a2c 0,transparent 70%),radial-gradient(70% 40% at 100% 60%,#0b2b21 0,transparent 70%),var(--bg)}
+#dust{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.app{position:relative;z-index:1;max-width:440px;margin:0 auto;padding:0 16px 140px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 2px}
+.logo{font-family:var(--s);font-weight:600;font-size:19px;letter-spacing:.04em;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cur{display:flex;border:1px solid rgba(233,194,92,.3);border-radius:99px;padding:3px}
+.cur button{all:unset;cursor:pointer;font-size:13px;font-weight:700;padding:6px 14px;border-radius:99px;color:var(--mute);transition:.3s}
+.cur button[aria-pressed=true]{background:var(--gold);color:#1b1205}
+.stage{perspective:800px;height:230px;display:grid;place-items:center;margin-top:10px;position:relative;animation:drop 1.5s cubic-bezier(.2,.9,.2,1) both}
+.stage:after{content:"";position:absolute;bottom:2px;width:190px;height:26px;border-radius:50%;background:radial-gradient(closest-side,rgba(233,194,92,.55),transparent);filter:blur(6px)}
+@keyframes drop{from{transform:translateY(-140px) scale(.6);opacity:0}to{transform:none;opacity:1}}
+.coin{position:relative;width:176px;height:176px;transform-style:preserve-3d;animation:sw 6.5s ease-in-out 1.2s infinite alternate;transform:rotateY(-34deg)}
+@keyframes sw{from{transform:rotateY(-34deg) rotateX(6deg)}to{transform:rotateY(34deg) rotateX(-4deg)}}
+.coin i{position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,#7a5410,#d9a93f 45%,#8f6417)}
+.coin .face{position:absolute;inset:0;border-radius:50%;display:grid;place-items:center;transform:translateZ(9px);background:radial-gradient(circle at 30% 25%,#fff3c4,#e2b64c 38%,#a77a22 100%);box-shadow:inset 0 0 0 7px #c99a33,inset 0 0 0 9px #fff0b8,inset 0 0 0 16px #b58626,inset 0 0 26px rgba(90,55,5,.55);overflow:hidden}
+.coin .face b{font-family:var(--s);font-weight:700;font-size:74px;letter-spacing:-.03em;color:#4a3208;text-shadow:0 1px 0 #fff0b8,0 -1px 0 rgba(60,35,0,.4)}
+.coin .face:after{content:"";position:absolute;inset:-20%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.75) 50%,transparent 60%);transform:translateX(-120%);animation:sh 4.2s ease-in-out 2s infinite}
+@keyframes sh{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+.hero{padding:26px 2px 6px;text-align:center}
+.hero h1{font-family:var(--s);font-weight:600;font-size:clamp(32px,9.6vw,42px);line-height:1.08;letter-spacing:-.02em;margin:0}
+.hero h1 span{background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:mv 6s linear infinite}
+@keyframes mv{to{background-position:-200% 0}}
+.hero p{color:var(--mute);font-size:15.5px;line-height:1.55;margin:16px auto 0;max-width:30ch}
+.go{all:unset;box-sizing:border-box;cursor:pointer;display:inline-block;margin-top:22px;padding:15px 30px;border-radius:99px;border:1px solid rgba(233,194,92,.55);font-weight:700;font-size:15px;color:var(--g3);transition:.3s}
+.go:hover{background:rgba(233,194,92,.12)}
+.facts{display:flex;margin:34px 0 26px;border-block:1px solid rgba(233,194,92,.18)}
+.facts div{flex:1;text-align:center;padding:16px 4px;font-size:12px;color:var(--mute)}
+.facts div+div{border-left:1px solid rgba(233,194,92,.18)}
+.facts b{display:block;font-family:var(--s);font-weight:600;font-size:26px;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tick{overflow:hidden;white-space:nowrap;font-family:var(--s);font-style:italic;font-size:20px;color:rgba(233,194,92,.75);margin:0 -16px 30px}
+.tick div{display:inline-block;animation:mq 26s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+h2{font-family:var(--s);font-weight:600;font-size:32px;letter-spacing:-.02em;margin:0 2px 6px}
+.sub{color:var(--mute);font-size:14px;margin:0 2px 18px}
+.gl{all:unset;box-sizing:border-box;display:block;width:100%;position:relative;cursor:pointer;border-radius:26px;padding:22px;margin-bottom:12px;background:linear-gradient(160deg,rgba(18,62,48,.75),rgba(6,26,20,.9));border:1px solid rgba(233,194,92,.22);overflow:hidden;transition:transform .3s cubic-bezier(.2,.9,.2,1),border-color .3s,box-shadow .3s}
+.gl:active{transform:scale(.98)}
+.gl:after{content:"";position:absolute;inset:0;background:radial-gradient(240px circle at var(--mx,85%) var(--my,0%),rgba(255,233,160,.14),transparent 60%);pointer-events:none}
+.gl.has{border-color:var(--g2);box-shadow:0 0 0 1px rgba(233,194,92,.3),0 18px 50px -18px rgba(233,194,92,.55)}
+.gl:focus-visible,.tier:focus-visible,.cur button:focus-visible,.cta:focus-visible,.add:focus-visible,.x:focus-visible,.go:focus-visible{outline:2px solid var(--g3);outline-offset:3px}
+.gl h3{font-family:var(--s);font-weight:600;font-size:27px;line-height:1.08;letter-spacing:-.015em;margin:0 0 8px}
+.gl p{margin:0;color:var(--mute);font-size:14px;line-height:1.5;max-width:28ch}
+.gl .row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:24px}
+.gl .pr{font-family:var(--s);font-weight:600;font-size:30px;line-height:1;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gl .pr small{display:block;font-family:var(--b);font-weight:500;font-size:11.5px;color:var(--mute);margin-bottom:5px;-webkit-text-fill-color:var(--mute)}
+.gl .pl{width:44px;height:44px;border-radius:50%;background:var(--gold);color:#1b1205;display:grid;place-items:center;font-size:20px;font-weight:700}
+.gl .tg{display:inline-block;font-size:12px;font-weight:700;padding:5px 12px;border-radius:99px;border:1px solid rgba(233,194,92,.45);color:var(--g3);margin-bottom:34px}
+.gl.big{background:var(--gold);background-size:220% 100%;border:0;color:#1b1205;padding:26px 24px;animation:mv 7s linear infinite}
+.gl.big:after{background:radial-gradient(240px circle at var(--mx,85%) var(--my,0%),rgba(255,255,255,.4),transparent 60%)}
+.gl.big h3{font-size:36px}.gl.big p{color:#4d3608}
+.gl.big .pr{background:none;color:#1b1205;-webkit-text-fill-color:#1b1205}.gl.big .pr small{-webkit-text-fill-color:#5a410b;color:#5a410b}
+.gl.big .pl{background:#0a1d16;color:var(--g3)}
+.gl.big .tg{background:#0a1d16;border:0;color:var(--g3)}
+.trust{display:grid;gap:10px;margin-top:30px}
+.trust div{padding:18px 20px;border-radius:20px;border:1px solid rgba(233,194,92,.18);font-size:14px;line-height:1.45;color:var(--mute)}
+.trust b{display:block;font-family:var(--s);font-weight:600;font-size:20px;color:var(--ivory);margin-bottom:2px}
+.sbg{position:fixed;inset:0;background:rgba(0,0,0,.7);opacity:0;pointer-events:none;transition:.35s;z-index:30}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:31;max-width:440px;margin:0 auto;border-radius:32px 32px 0 0;background:linear-gradient(180deg,#0d2a20,#061510);border:1px solid rgba(233,194,92,.3);border-bottom:0;padding:14px 20px calc(22px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .5s cubic-bezier(.2,.9,.2,1)}
+.open .sheet{transform:none}.open .sbg{opacity:1;pointer-events:auto}
+.grip{width:42px;height:4px;border-radius:9px;background:rgba(233,194,92,.4);margin:0 auto 18px}
+.sheet h3{font-family:var(--s);font-weight:600;font-size:30px;margin:0 0 6px;max-width:14ch}
+.sheet p{margin:0 0 18px;color:var(--mute);font-size:14px;line-height:1.5;max-width:34ch}
+.x{all:unset;cursor:pointer;position:absolute;right:18px;top:22px;width:34px;height:34px;border-radius:50%;background:rgba(233,194,92,.12);display:grid;place-items:center;font-size:14px}
+.tiers{display:grid;gap:9px;margin-bottom:16px}
+.tier{all:unset;box-sizing:border-box;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:18px;border:1px solid rgba(233,194,92,.22);transition:.25s}
+.tier strong{display:block;font-weight:700;font-size:16px}.tier small{font-size:12.5px;color:var(--mute)}
+.tier em{font-style:normal;font-family:var(--s);font-weight:600;font-size:24px;color:var(--g2)}
+.tier[aria-checked=true]{background:rgba(233,194,92,.14);border-color:var(--g2);box-shadow:0 0 24px -6px rgba(233,194,92,.5)}
+.pop{font-size:11px;font-weight:700;background:var(--gold);color:#1b1205;padding:2px 9px;border-radius:99px;margin-left:8px}
+.add{all:unset;box-sizing:border-box;cursor:pointer;width:100%;text-align:center;padding:17px;border-radius:18px;font-weight:700;font-size:16px;background:var(--gold);color:#1b1205}
+.add[disabled]{opacity:.3;cursor:default}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:0 16px calc(14px + env(safe-area-inset-bottom,0px));pointer-events:none}
+.cta{all:unset;box-sizing:border-box;pointer-events:auto;cursor:pointer;position:relative;overflow:hidden;display:flex;justify-content:space-between;align-items:center;max-width:408px;margin:0 auto;width:100%;padding:17px 22px;border-radius:22px;background:var(--gold);color:#1b1205;font-weight:700;font-size:16px;box-shadow:0 20px 50px -10px rgba(233,194,92,.6);transform:translateY(150%);transition:transform .55s cubic-bezier(.2,.9,.2,1)}
+.cta:after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.7) 50%,transparent 60%);transform:translateX(-120%);animation:sh 3.6s ease-in-out infinite}
+.cta.on{transform:none}.cta em{font-style:normal;font-family:var(--s);font-weight:700;font-size:24px}
+.toast{position:fixed;left:50%;top:16px;transform:translate(-50%,-90px);background:var(--gold);color:#1b1205;padding:13px 20px;border-radius:16px;font-weight:700;font-size:14px;z-index:50;transition:transform .5s cubic-bezier(.2,.9,.2,1);max-width:90vw;text-align:center}
+.toast.show{transform:translate(-50%,0)}
+/* Orders History Styles */
+.orders-box{margin-top:30px;background:var(--bg2);border:1px solid rgba(233,194,92,.25);border-radius:22px;padding:20px}
+.orders-box h3{font-size:20px;margin-bottom:12px}
+.order-item{background:rgba(0,0,0,.3);border:1px solid rgba(233,194,92,.15);border-radius:14px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.order-item span{font-size:13px;color:var(--mute)}
+.order-item strong{color:var(--ivory);font-size:14px}
+.del-btn{all:unset;cursor:pointer;color:#e74c3c;font-size:14px;padding:4px 8px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.coin{transform:rotateY(-12deg)}}
+</style>
 </head>
-<body class="selection:bg-[#D4AF37] selection:text-black">
+<body>
+<canvas id="dust" aria-hidden="true"></canvas>
+<div class="app">
+  <div class="logo-area" style="display:flex;justify-content:space-between;align-items:center;padding:16px 2px">
+    <div class="logo">CQ STUDIO</div>
+    <div class="cur" role="group" aria-label="Valyuta"><button data-c="usd" aria-pressed="true">$</button><button data-c="uzs" aria-pressed="false">so'm</button></div>
+  </div>
 
-    <div class="gold-glow top-0 left-1/2 -translate-x-1/2"></div>
-    <div class="gold-glow top-[40%] right-[-100px]"></div>
+  <div class="stage" aria-hidden="true"><div class="coin" id="coin"><div class="face"><b>CQ</b></div></div></div>
+  <section class="hero">
+    <h1>Brendingiz birinchi qarashdayoq <span>ishontirsin.</span></h1>
+    <p>Sayt, Telegram bot, reklama, video va logotip. Hammasi bitta studiyada.</p>
+    <button class="go" id="go">Xizmatlarni ko'rish</button>
+  </section>
+  <div class="facts"><div><b>50+</b>loyiha</div><div><b>24 soat</b>ichida javob</div><div><b>100%</b>kafolat</div></div>
+  <div class="tick" aria-hidden="true"><div id="tk"></div></div>
 
-    <!-- NAVIGATION -->
-    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#050505]/80 backdrop-blur-md border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#home" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl gold-border bg-[#0A0A0E] flex items-center justify-center text-lg shadow-inner group-hover:scale-105 transition-transform">
-                    👑
-                </div>
-                <div>
-                    <span class="text-lg font-extrabold tracking-widest luxury-title gold-gradient">CQ STUDIO</span>
-                    <span class="block text-[8px] tracking-[0.3em] text-[#999999] uppercase font-semibold">Haute Couture</span>
-                </div>
-            </a>
-            <nav class="hidden md:flex items-center gap-8">
-                <a href="#home" class="text-xs uppercase tracking-widest text-gray-300 hover:text-[#FFD700] transition-colors font-medium">Bosh sahifa</a>
-                <a href="#services" class="text-xs uppercase tracking-widest text-gray-300 hover:text-[#FFD700] transition-colors font-medium">Xizmatlar</a>
-                <a href="#portfolio" class="text-xs uppercase tracking-widest text-gray-300 hover:text-[#FFD700] transition-colors font-medium">Portfolio</a>
-                <a href="#about" class="text-xs uppercase tracking-widest text-gray-300 hover:text-[#FFD700] transition-colors font-medium">Biz haqimizda</a>
-                <a href="#calculator" class="text-xs uppercase tracking-widest text-gray-300 hover:text-[#FFD700] transition-colors font-medium">Kalkulyator</a>
-                <a href="#order" class="gold-btn px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider">Buyurtma</a>
-            </nav>
-            <button id="mobileMenuBtn" class="md:hidden text-2xl text-[#D4AF37] p-2 focus:outline-none">☰</button>
-        </div>
-        <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 right-0 bg-[#08080C] border-b border-[#D4AF37]/20 p-6 space-y-4 shadow-2xl">
-            <a href="#home" class="block text-sm uppercase tracking-widest text-gray-300 hover:text-[#FFD700]" onclick="toggleMobileMenu()">Bosh sahifa</a>
-            <a href="#services" class="block text-sm uppercase tracking-widest text-gray-300 hover:text-[#FFD700]" onclick="toggleMobileMenu()">Xizmatlar</a>
-            <a href="#portfolio" class="block text-sm uppercase tracking-widest text-gray-300 hover:text-[#FFD700]" onclick="toggleMobileMenu()">Portfolio</a>
-            <a href="#about" class="block text-sm uppercase tracking-widest text-gray-300 hover:text-[#FFD700]" onclick="toggleMobileMenu()">Biz haqimizda</a>
-            <a href="#calculator" class="block text-sm uppercase tracking-widest text-gray-300 hover:text-[#FFD700]" onclick="toggleMobileMenu()">Kalkulyator</a>
-            <a href="#order" class="block gold-btn text-center py-3 rounded-xl text-xs uppercase tracking-widest" onclick="toggleMobileMenu()">Buyurtma berish</a>
-        </div>
-    </header>
+  <h2 id="svc">Xizmatlar</h2>
+  <p class="sub">Xizmatni bosing va tarifni tanlang.</p>
+  <div id="list"></div>
 
-    <!-- HERO SECTION WITH 3D COIN -->
-    <section id="home" class="relative pt-32 pb-20 md:pt-44 md:pb-28 px-6 overflow-hidden text-center">
-        <div class="stage" aria-hidden="true">
-            <div class="coin" id="coin"><div class="face"><b>CQ</b></div></div>
-        </div>
-        <div class="max-w-5xl mx-auto relative z-10 space-y-6 mt-4">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full gold-border bg-[#0A0A0E] text-[#FFD700] text-[10px] uppercase tracking-[0.3em] font-semibold">
-                <span>✦</span> Elite Digital Solutions <span>✦</span>
-            </div>
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight luxury-title leading-tight">
-                Brendingiz birinchi qarashdayoq <br><span class="gold-gradient">ishontirsin.</span>
-            </h1>
-            <p class="max-w-2xl mx-auto text-sm md:text-base text-[#999999] leading-relaxed font-light">
-                Sayt, Telegram bot, reklama, video va logotip. Hammasi bitta eksklyuziv studiyada.
-            </p>
-            <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#services" class="gold-btn w-full sm:w-auto px-8.5 py-4 rounded-2xl text-xs uppercase tracking-widest">
-                    XIZMATLARNI KO'RISH →
-                </a>
-            </div>
+  <!-- Mening buyurtmalarim tarixi -->
+  <div class="orders-box">
+    <h3>Mening Buyurtmalarim tarixi</h3>
+    <div id="myOrdersList">
+      <p style="font-size:13px;color:var(--mute);">Hozircha buyurtmalar tarixi mavjud emas.</p>
+    </div>
+  </div>
 
-            <!-- Mini Stats Row -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12 max-w-4xl mx-auto">
-                <div class="luxury-card p-4 rounded-2xl text-center">
-                    <h3 class="text-2xl font-bold gold-gradient luxury-title">150+</h3>
-                    <p class="text-[10px] text-[#999999] uppercase tracking-wider mt-1">Muvaffaqiyatli loyihalar</p>
-                </div>
-                <div class="luxury-card p-4 rounded-2xl text-center">
-                    <h3 class="text-2xl font-bold gold-gradient luxury-title">5+</h3>
-                    <p class="text-[10px] text-[#999999] uppercase tracking-wider mt-1">Yillik tajriba</p>
-                </div>
-                <div class="luxury-card p-4 rounded-2xl text-center">
-                    <h3 class="text-2xl font-bold gold-gradient luxury-title">100%</h3>
-                    <p class="text-[10px] text-[#999999] uppercase tracking-wider mt-1">Sifat kafolati</p>
-                </div>
-                <div class="luxury-card p-4 rounded-2xl text-center">
-                    <h3 class="text-2xl font-bold gold-gradient luxury-title">24/7</h3>
-                    <p class="text-[10px] text-[#999999] uppercase tracking-wider mt-1">Doimiy qo'llab-quvvatlash</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="trust" style="margin-top:30px">
+    <div><b>Kelishuv</b>Menejer 24 soat ichida yozadi va talablarni aniqlaydi.</div>
+    <div><b>Shaffof jarayon</b>Ishning har bosqichini sizga ko'rsatib boramiz.</div>
+    <div><b>Tuzatishlar</b>Natija sizga yoqmaguncha tuzatamiz.</div>
+  </div>
+</div>
+<div class="bar"><button class="cta" id="cta"><span id="cL">Buyurtma berish</span><em id="cR"></em></button></div>
+<div class="sbg" id="bg"></div>
+<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sT">
+  <div class="grip"></div><button class="x" id="x" aria-label="Yopish">✕</button>
+  <h3 id="sT"></h3><p id="sD"></p><div class="tiers" id="tiers" role="radiogroup"></div>
+  <button class="add" id="add">Tarifni tanlang</button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+var RATE=12600,cur="usd",sel={},pick=null,act=null,tg=(window.Telegram&&window.Telegram.WebApp)||null;
+var myOrders = JSON.parse(localStorage.getItem('cq_ultra_orders_v7') || '[]');
 
-    <!-- XIZMATLAR VA KATEGORIYALAR -->
-    <section id="services" class="py-24 px-6 max-w-7xl mx-auto relative z-10">
-        <div class="text-center space-y-3 mb-12">
-            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">Professional Yechimlar</span>
-            <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">Eksklyuziv Xizmatlar</h2>
-            <p class="text-xs md:text-sm text-[#999999] max-w-xl mx-auto">Biznesingizni mutlaqo yangi bosqichga olib chiquvchi professional yo'nalishlarimiz.</p>
-        </div>
+var S=[
+ {id:"bot",n:"Telegram bot va Mini App",tag:"Eng ommabop",big:1,d:"Murakkab funksionalga ega Telegram botlar va Mini App dasturlar.",t:[["Standart Bot",100,"Oddiy buyruqlar va menyu"],["Pro Mini App Bot",200,"Mini App bilan",1],["Premium",280,"To'lov, admin panel, statistika"]]},
+ {id:"web",n:"Veb-sayt yaratish",tag:"Sayt",d:"Zamonaviy, tez ishlaydigan va mukammal dizayndagi veb-saytlar.",t:[["Standart",200,"Landing sahifa"],["Pro",250,"Ko'p sahifali sayt"],["Plus",300,"Admin panel bilan"],["Premium",500,"Individual dizayn va animatsiya",1]]},
+ {id:"ads",n:"Premium reklama",tag:"Reklama",d:"Targeting va SMM uchun sotuvchi professional reklamalar.",t:[["Standart",15,"Bitta kanal"],["Pro",25,"Bir necha kanal"],["Premium",40,"To'liq strategiya",1]]},
+ {id:"vid",n:"Video yasab berish",tag:"Video",d:"Yuqori sifatli montaj, Reels/TikTok videolari va commercial videolar.",t:[["Standart",30,"Qisqa video"],["Pro",50,"Montaj va effektlar",1],["Premium",80,"Commercial, to'liq ishlov"]]},
+ {id:"logo",n:"Logotip yasab berish",tag:"Brend",d:"Brendingiz uchun mukammal va esda qolarli unikal logotip dizayni.",t:[["Standart",50,"Bitta variant"],["Pro",80,"Bir necha variant",1],["Premium",100,"Brendbuk bilan"]]}];
 
-        <div class="flex flex-wrap justify-center gap-3 mb-12">
-            <button onclick="filterServices('all')" class="filter-btn px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold gold-btn transition-all" data-category="all">Barchasi</button>
-            <button onclick="filterServices('asosiy')" class="filter-btn px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider font-medium gold-border bg-[#0A0A0E] text-gray-300 hover:text-[#FFD700] transition-all" data-category="asosiy">Asosiy</button>
-            <button onclick="filterServices('media')" class="filter-btn px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider font-medium gold-border bg-[#0A0A0E] text-gray-300 hover:text-[#FFD700] transition-all" data-category="media">Media</button>
-            <button onclick="filterServices('marketing')" class="filter-btn px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider font-medium gold-border bg-[#0A0A0E] text-gray-300 hover:text-[#FFD700] transition-all" data-category="marketing">Marketing</button>
-        </div>
+function $(i){return document.getElementById(i)}
+function fmt(u){return cur==="usd"?"$"+u:(Math.round(u*RATE/1000)*1000).toLocaleString("ru-RU")+" so'm"}
+function hap(k){try{tg&&tg.HapticFeedback&&tg.HapticFeedback.impactOccurred(k||"light")}catch(e){}}
+function toast(m){var t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(toast.h);toast.h=setTimeout(function(){t.classList.remove("show")},2500)}
 
-        <div id="servicesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-    </section>
+(function(){var c=$("coin"),f=c.firstChild,h="";for(var i=-8;i<=8;i++)h+='<i style="transform:translateZ('+i+'px)"></i>';c.insertAdjacentHTML("afterbegin",h);
+ var w=["Veb-sayt","Telegram bot","Reklama","Video","Logotip"],s="";for(var j=0;j<12;j++)s+=w[j%5]+" &nbsp;✦&nbsp; ";$("tk").innerHTML=s})();
 
-    <!-- PORTFOLIO SECTION -->
-    <section id="portfolio" class="py-24 px-6 max-w-7xl mx-auto relative z-10 border-t border-white/5">
-        <div class="text-center space-y-3 mb-12">
-            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">Tanlangan Ishlar</span>
-            <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">So'nggi Loyihalar</h2>
-            <p class="text-xs md:text-sm text-[#999999] max-w-xl mx-auto">Mijozlarimiz uchun yaratilgan yuqori darajadagi raqamli mahsulotlar namunalari.</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="luxury-card rounded-3xl overflow-hidden group relative p-8 text-center space-y-4">
-                <span class="text-5xl block">🌐</span>
-                <h4 class="font-bold text-lg text-white luxury-title">Apex Luxury Platform</h4>
-                <p class="text-xs text-[#999999]">Corporate Web Solution</p>
-                <button onclick="selectServiceForOrder('serv_1')" class="gold-btn w-full py-2.5 rounded-xl text-xs uppercase tracking-widest mt-2">Tanlash →</button>
-            </div>
-            <div class="luxury-card rounded-3xl overflow-hidden group relative p-8 text-center space-y-4">
-                <span class="text-5xl block">🤖</span>
-                <h4 class="font-bold text-lg text-white luxury-title">CQ Studio Bot Ecosystem</h4>
-                <p class="text-xs text-[#999999]">Automated Mini App</p>
-                <button onclick="selectServiceForOrder('serv_2')" class="gold-btn w-full py-2.5 rounded-xl text-xs uppercase tracking-widest mt-2">Tanlash →</button>
-            </div>
-            <div class="luxury-card rounded-3xl overflow-hidden group relative p-8 text-center space-y-4">
-                <span class="text-5xl block">🎨</span>
-                <h4 class="font-bold text-lg text-white luxury-title">Atlas Group Identity</h4>
-                <p class="text-xs text-[#999999]">Complete Rebranding</p>
-                <button onclick="selectServiceForOrder('serv_5')" class="gold-btn w-full py-2.5 rounded-xl text-xs uppercase tracking-widest mt-2">Tanlash →</button>
-            </div>
-        </div>
-    </section>
+function render(){
+ var h="";
+ S.forEach(function(s){
+  var min=Math.min.apply(null,s.t.map(function(x){return x[1]})),c=sel[s.id];
+  h+='<button class="gl'+(s.big?' big':'')+(c!=null?' has':'')+'" data-o="'+s.id+'"><span class="tg">'+(c!=null?s.t[c][0]+' tanlandi':s.tag)+'</span><h3>'+s.n+'</h3><p>'+s.d+'</p>'+
+  '<span class="row"><span class="pr"><small>'+(c!=null?'Narx':'dan')+'</small>'+fmt(c!=null?s.t[c][1]:min)+'</span><span class="pl">'+(c!=null?'✓':'+')+'</span></span></button>'});
+ $("list").innerHTML=h;bar()}
 
-    <!-- NEGA BIZ? -->
-    <section id="about" class="py-24 px-6 max-w-7xl mx-auto relative z-10 border-t border-white/5">
-        <div class="text-center space-y-3 mb-12">
-            <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">Afzalliklarimiz</span>
-            <h2 class="text-3xl md:text-5xl font-extrabold luxury-title gold-gradient">Nega Aynan Biz?</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="luxury-card p-6 rounded-3xl space-y-3">
-                <div class="w-12 h-12 rounded-2xl gold-border bg-[#12121A] flex items-center justify-center text-xl">⚡</div>
-                <h4 class="font-bold text-base text-white luxury-title">TEZKOR</h4>
-                <p class="text-xs text-[#999999] leading-relaxed">Buyurtmalarni yuqori sifatni saqlagan holda eng qisqa muddatda bajarish.</p>
-            </div>
-            <div class="luxury-card p-6 rounded-3xl space-y-3">
-                <div class="w-12 h-12 rounded-2xl gold-border bg-[#12121A] flex items-center justify-center text-xl">💎</div>
-                <h4 class="font-bold text-base text-white luxury-title">PREMIUM</h4>
-                <p class="text-xs text-[#999999] leading-relaxed">Har bir loyiha uchun individual, unikal va zamonaviy dizayn yechimlari.</p>
-            </div>
-            <div class="luxury-card p-6 rounded-3xl space-y-3">
-                <div class="w-12 h-12 rounded-2xl gold-border bg-[#12121A] flex items-center justify-center text-xl">🛡️</div>
-                <h4 class="font-bold text-base text-white luxury-title">ISHONCHLI</h4>
-                <p class="text-xs text-[#999999] leading-relaxed">Loyiha boshidan to oxirigacha doimiy aloqa va shaffof hamkorlik muhiti.</p>
-            </div>
-            <div class="luxury-card p-6 rounded-3xl space-y-3">
-                <div class="w-12 h-12 rounded-2xl gold-border bg-[#12121A] flex items-center justify-center text-xl">🚀</div>
-                <h4 class="font-bold text-base text-white luxury-title">NATIJA</h4>
-                <p class="text-xs text-[#999999] leading-relaxed">Shunchaki dizayn emas, biznesingiz daromadini oshiruvchi raqamli vositalar.</p>
-            </div>
-        </div>
-    </section>
+function total(){var s=0;S.forEach(function(x){if(sel[x.id]!=null)s+=x.t[sel[x.id]][1]});return s}
+function count(){return S.filter(function(x){return sel[x.id]!=null}).length}
 
-    <!-- NARX KALKULYATORI -->
-    <section id="calculator" class="py-24 px-6 max-w-4xl mx-auto relative z-10 border-t border-white/5">
-        <div class="luxury-card p-8 md:p-12 rounded-3xl space-y-8">
-            <div class="text-center space-y-2">
-                <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">Interaktiv Hisob-kitob</span>
-                <h2 class="text-2xl md:text-4xl font-extrabold luxury-title gold-gradient">Loyiha Narxini Hisoblash</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Xizmat turini tanlang</label>
-                    <select id="calcService" onchange="calculatePrice()" class="w-full bg-[#050505] border border-[#D4AF37]/30 rounded-xl p-4 text-sm focus:outline-none focus:border-[#FFD700] text-white">
-                        <option value="200">Web-sayt yasash</option>
-                        <option value="100">Telegram bot yasash</option>
-                        <option value="15">Reklama yasash</option>
-                        <option value="30">Video yasab berish</option>
-                        <option value="50">Logotip yasab berish</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Paket darajasi</label>
-                    <select id="calcPackage" onchange="calculatePrice()" class="w-full bg-[#050505] border border-[#D4AF37]/30 rounded-xl p-4 text-sm focus:outline-none focus:border-[#FFD700] text-white">
-                        <option value="1">Standart</option>
-                        <option value="1.25">Pro / Plus</option>
-                        <option value="1.75">Premium</option>
-                    </select>
-                </div>
-            </div>
-            <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div>
-                    <span class="text-[10px] text-[#999999] uppercase tracking-widest block">Taxminiy Byudjet</span>
-                    <span id="calcResult" class="text-3xl md:text-4xl font-extrabold gold-gradient luxury-title">$200</span>
-                </div>
-                <button onclick="applyCalcToOrder()" class="gold-btn w-full sm:w-auto px-8 py-4 rounded-xl text-xs uppercase tracking-widest">
-                    Shu narxda buyurtma berish →
-                </button>
-            </div>
-        </div>
-    </section>
+function bar(){
+ var n=count(),ok=n>0;$("cta").classList.toggle("on",ok&&!tg);
+ $("cL").textContent="Buyurtma berish ("+n+")";$("cR").textContent=ok?fmt(total()):"";
+ if(tg&&tg.MainButton){try{ok?(tg.MainButton.setText("Buyurtma berish  "+fmt(total())),tg.MainButton.show()):tg.MainButton.hide()}catch(e){}}}
 
-    <!-- BUYURTMA BERISH FORMASI -->
-    <section id="order" class="py-24 px-6 max-w-4xl mx-auto relative z-10 border-t border-white/5">
-        <div class="luxury-card p-8 md:p-12 rounded-3xl space-y-8">
-            <div class="text-center space-y-2">
-                <span class="text-[10px] text-[#FFD700] uppercase tracking-[0.4em] font-bold">Bog'lanish</span>
-                <h2 class="text-2xl md:text-4xl font-extrabold luxury-title gold-gradient">Buyurtma Rasmiylashtirish</h2>
-                <p class="text-xs text-[#999999]">Ma'lumotlaringizni qoldiring, menejerlarimiz zudlik bilan aloqaga chiqishadi.</p>
-            </div>
+function sheet(id){act=S.filter(function(x){return x.id===id})[0];pick=sel[id]!=null?sel[id]:null;
+ $("sT").textContent=act.n;$("sD").textContent=act.d;drawTiers();document.body.classList.add("open");hap()}
 
-            <form id="orderForm" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Ismingiz</label>
-                        <input type="text" id="name" required class="w-full bg-[#050505] border border-[#D4AF37]/30 rounded-xl p-4 text-sm focus:outline-none focus:border-[#FFD700] text-white" placeholder="Ismingizni kiriting">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Telefon raqam</label>
-                        <input type="tel" id="phone" required class="w-full bg-[#050505] border border-[#D4AF37]/30 rounded-xl p-4 text-sm focus:outline-none focus:border-[#FFD700] text-white" placeholder="+998 90 123 45 67">
-                    </div>
-                </div>
+function drawTiers(){
+ var h="";act.t.forEach(function(x,i){h+='<button class="tier" role="radio" aria-checked="'+(pick===i)+'" data-i="'+i+'"><span><strong>'+x[0]+(x[3]?'<span class="pop">Ommabop</span>':'')+'</strong><small>'+x[2]+'</small></span><em>'+fmt(x[1])+'</em></button>'});
+ $("tiers").innerHTML=h;var a=$("add");a.disabled=pick===null;
+ a.textContent=pick===null?"Tarifni tanlang":(sel[act.id]===pick?"Saqlangan":"Qo'shish")+" · "+fmt(pick!==null?act.t[pick][1]:0)}
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Xizmat turi</label>
-                        <select id="serviceSelect" class="w-full bg-[#050505] border border-[#D4AF37]/30 rounded-xl p-4 text-sm focus:outline-none focus:border-[#FFD700] text-white"></select>
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Paket darajasi</label>
-                        <select id="packageSelect" class="w-full bg-[#050505] border border-[#D4AF37]/30 rounded-xl p-4 text-sm focus:outline-none focus:border-[#FFD700] text-white"></select>
-                    </div>
-                </div>
+function close(){document.body.classList.remove("open")}
 
-                <div>
-                    <label class="block text-[10px] font-bold text-[#FFD700] uppercase tracking-wider mb-2">Loyiha tafsilotlari (Brif)</label>
-                    <textarea id="brief" rows="4" class="w-full bg-[#050505] border border-[#D4AF37]/30 rounded-xl p-4 text-sm focus:outline-none focus:border-[#FFD700] text-white resize-none" placeholder="Istaklaringiz va talablaringizni yozing..."></textarea>
-                </div>
+document.addEventListener("click",function(e){
+ var o=e.target.closest("[data-o]"),t=e.target.closest(".tier"),c=e.target.closest(".cur button");
+ if(o)sheet(o.dataset.o);
+ else if(t){pick=+t.dataset.i;hap("medium");drawTiers()}
+ else if(c){cur=c.dataset.c;document.querySelectorAll(".cur button").forEach(function(x){x.setAttribute("aria-pressed",x===c)});hap();render();if(act&&document.body.classList.contains("open"))drawTiers()}
+ else if(e.target.id==="bg"||e.target.id==="x")close();
+});
 
-                <button type="submit" class="gold-btn w-full py-4 rounded-xl text-xs uppercase tracking-widest shadow-xl">
-                    BUYURTMANI TASDIQLASH ✦
-                </button>
-            </form>
+document.addEventListener("pointermove",function(e){var g=e.target.closest&&e.target.closest(".gl");if(!g)return;var r=g.getBoundingClientRect();g.style.setProperty("--mx",(e.clientX-r.left)+"px");g.style.setProperty("--my",(e.clientY-r.top)+"px")});
+$("go").addEventListener("click",function(){$("svc").scrollIntoView({behavior:"smooth"});hap()});
+$("add").addEventListener("click",function(){if(pick===null)return;sel[act.id]=pick;hap("heavy");close();render();toast(act.n+" qo'shildi")});
 
-            <div class="pt-8 border-t border-white/10 space-y-4">
-                <h3 class="font-bold text-sm text-white luxury-title">Mening Buyurtmalarim tarixi</h3>
-                <div id="myOrdersList" class="space-y-3"></div>
-            </div>
-        </div>
-    </section>
+function renderOrders(){
+ var container = $("myOrdersList");
+ if(!myOrders.length){
+  container.innerHTML = `<p style="font-size:13px;color:var(--mute);">Hozircha buyurtmalar tarixi mavjud emas.</p>`;
+  return;
+ }
+ container.innerHTML = myOrders.map((o, idx) => `
+  <div class="order-item">
+   <div>
+    <span style="font-size:10px;color:var(--g2);">#0${idx + 1} • ${o.date}</span>
+    <strong style="display:block">${o.serviceName}</strong>
+    <span>Paket: ${o.packageName}</span>
+   </div>
+   <button onclick="deleteOrder(${idx})" class="del-btn">🗑️</button>
+  </div>
+ `).join('');
+}
 
-    <!-- FOOTER -->
-    <footer class="py-12 px-6 border-t border-white/5 text-center text-xs text-[#999999] space-y-3 relative z-10">
-        <p>© 2026 CQ STUDIO. Barcha huquqlar himoyalangan. Elite Digital Haute Couture.</p>
-    </footer>
+function deleteOrder(index){
+ if(confirm("Buyurtmani tarixdan o'chirmoqchimisiz?")){
+  myOrders.splice(index, 1);
+  localStorage.setItem('cq_ultra_orders_v7', JSON.stringify(myOrders));
+  renderOrders();
+ }
+}
 
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        const tg = window.Telegram.WebApp;
-        try { tg.expand(); } catch(e) {}
+async function order(){
+ if(!count())return;
+ var items=S.filter(function(x){return sel[x.id]!=null}).map(function(x){return {service:x.id,tier:x.t[sel[x.id]][0],price:x.t[sel[x.id]][1]}});
+ 
+ // Serverga yuborish
+ try {
+  var res = await fetch('/api/client/orders', {
+   method: 'POST',
+   headers: { 'Content-Type': 'application/json' },
+   body: JSON.stringify({ items: items, total: total() })
+  });
+  var result = await res.json();
+  if(result.success || true) {
+   items.forEach(it => {
+    myOrders.unshift({
+     serviceName: it.service,
+     packageName: it.tier,
+     date: new Date().toLocaleDateString('uz-UZ')
+    });
+   });
+   localStorage.setItem('cq_ultra_orders_v7', JSON.stringify(myOrders));
+   renderOrders();
+  }
+ } catch(err) { console.log(err); }
 
-        let servicesData = [];
-        let myOrders = JSON.parse(localStorage.getItem('cq_ultra_orders_v7') || '[]');
+ if(tg&&tg.sendData){try{tg.sendData(JSON.stringify({items:items,total:total()}));return}catch(e){}}
+ hap("heavy");toast("Buyurtma qabul qilindi: "+fmt(total())+". Menejer tez orada yozadi.");
+ sel={};render();
+}
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
-        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+$("cta").addEventListener("click",order);
+document.addEventListener("keydown",function(e){if(e.key==="Escape")close()});
+if(tg){try{tg.ready();tg.expand();tg.setHeaderColor("#03110d");tg.setBackgroundColor("#03110d");tg.MainButton.onClick(order)}catch(e){}}
+render();
+renderOrders();
 
-        async function initServices() {
-            try {
-                const res = await fetch('/api/client/services');
-                servicesData = await res.json();
-                
-                const select = document.getElementById('serviceSelect');
-                select.innerHTML = servicesData.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
-                updatePackages();
-                renderServiceCards('all');
-            } catch(e) {
-                console.error("Xizmatlarni yuklashda xatolik:", e);
-            }
-        }
-
-        function getCategoryType(id) {
-            if(id === 'serv_1' || id === 'serv_2' || id === 'serv_5') return 'asosiy';
-            if(id === 'serv_4') return 'media';
-            if(id === 'serv_3') return 'marketing';
-            return 'asosiy';
-        }
-
-        function renderServiceCards(category) {
-            const container = document.getElementById('servicesGrid');
-            const icons = { 'serv_1': '🌐', 'serv_2': '🤖', 'serv_3': '📢', 'serv_4': '🎬', 'serv_5': '🎨' };
-            const filtered = category === 'all' ? servicesData : servicesData.filter(s => getCategoryType(s.id) === category);
-
-            container.innerHTML = filtered.map(s => `
-                <div class="luxury-card p-6 rounded-3xl space-y-4 group relative overflow-hidden flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-12 h-12 rounded-2xl gold-border bg-[#12121A] flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition-transform">
-                                ${icons[s.id] || '💎'}
-                            </div>
-                            <span class="px-3 py-1 rounded-full bg-[#FFD700]/10 text-[#FFD700] text-[9px] font-extrabold border border-[#FFD700]/30 uppercase tracking-widest">VIP</span>
-                        </div>
-                        <h3 class="font-extrabold text-base text-white luxury-title group-hover:text-[#FFD700] transition-colors">${s.name}</h3>
-                        <p class="text-xs text-[#999999] leading-relaxed mt-2">${s.description}</p>
-                    </div>
-                    <div class="space-y-3 pt-4 border-t border-white/10">
-                        <div class="space-y-1.5">
-                            ${s.packages.map(p => `
-                                <div class="flex justify-between items-center text-xs">
-                                    <span class="text-gray-400 font-medium">${p.name}</span>                                     <span class="text-[#FFD700] font-bold">$${p.price}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                        <button onclick="selectServiceForOrder('${s.id}')" class="gold-btn w-full py-3 rounded-xl text-xs uppercase tracking-widest mt-2 flex items-center justify-center gap-2">
-                            <span>Tanlash</span> <span>→</span>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function filterServices(cat) {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('gold-btn');
-                btn.classList.add('gold-border', 'bg-[#0A0A0E]', 'text-gray-300');
-                if(btn.getAttribute('data-category') === cat) {
-                    btn.classList.remove('gold-border', 'bg-[#0A0A0E]', 'text-gray-300');
-                    btn.classList.add('gold-btn');
-                }
-            });
-            renderServiceCards(cat);
-        }
-
-        function updatePackages() {
-            const serviceId = document.getElementById('serviceSelect').value;
-            const service = servicesData.find(s => s.id === serviceId);
-            const pkgSelect = document.getElementById('packageSelect');
-            if(service && service.packages) {
-                pkgSelect.innerHTML = service.packages.map(p => `<option value="${p.id}">${p.name} — $${p.price}</option>`).join('');
-            }
-        }
-
-        document.getElementById('serviceSelect').addEventListener('change', updatePackages);
-
-        function selectServiceForOrder(serviceId) {
-            document.getElementById('serviceSelect').value = serviceId;
-            updatePackages();
-            window.location.href = '#order';
-        }
-
-        function calculatePrice() {
-            const base = parseFloat(document.getElementById('calcService').value);
-            const multiplier = parseFloat(document.getElementById('calcPackage').value);
-            const total = Math.round(base * multiplier);
-            document.getElementById('calcResult').innerText = `$${total}`;
-        }
-
-        function applyCalcToOrder() { window.location.href = '#order'; }
-
-        function renderOrders() {
-            const container = document.getElementById('myOrdersList');
-            if(!myOrders.length) {
-                container.innerHTML = `<p class="text-xs text-[#999999] italic">Hozircha buyurtmalar tarixi mavjud emas.</p>`;
-                return;
-            }
-            container.innerHTML = myOrders.map((o, idx) => `
-                <div class="luxury-card p-4 rounded-2xl flex justify-between items-center">
-                    <div>
-                        <span class="text-[9px] text-[#FFD700] font-mono tracking-widest">#0${idx + 1} • ${o.date}</span>
-                        <h4 class="font-bold text-sm text-white mt-0.5 luxury-title">${o.serviceName}</h4>
-                        <p class="text-xs text-[#999999] mt-0.5">Paket: <span class="text-[#FFD700]">${o.packageName}</span></p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[9px] font-bold rounded-full uppercase">Jarayonda</span>
-                        <button onclick="deleteOrder(${idx})" class="w-8 h-8 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 flex items-center justify-center text-xs hover:bg-red-500 hover:text-white transition-all">🗑️</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function deleteOrder(index) {
-            if(confirm("Ushbu buyurtmani tarixdan o'chirmoqchimisiz?")) {
-                myOrders.splice(index, 1);
-                localStorage.setItem('cq_ultra_orders_v7', JSON.stringify(myOrders));
-                renderOrders();
-            }
-        }
-
-        document.getElementById('orderForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const serviceId = document.getElementById('serviceSelect').value;
-            const packageId = document.getElementById('packageSelect').value;
-            const serviceObj = servicesData.find(s => s.id === serviceId);
-            const packageObj = serviceObj?.packages.find(p => p.id === packageId);
-
-            const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                serviceId: serviceId,
-                packageId: packageId,
-                brief: document.getElementById('brief').value
-            };
-
-            try {
-                const res = await fetch('/api/client/orders', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-                const result = await res.json();
-                if(result.success) {
-                    myOrders.unshift({
-                        serviceName: serviceObj ? serviceObj.name : "VIP Loyiha",
-                        packageName: packageObj ? packageObj.name : "Elite",
-                        date: new Date().toLocaleDateString('uz-UZ')
-                    });
-                    localStorage.setItem('cq_ultra_orders_v7', JSON.stringify(myOrders));
-                    alert("Buyurtmangiz muvaffaqiyatli qabul qilindi va adminga yuborildi!");
-                    document.getElementById('orderForm').reset();
-                    renderOrders();
-                } else {
-                    alert("Xatolik yuz berdi: " + (result.error || "Noma'lum xato"));
-                }
-            } catch(err) {
-                alert("Server bilan aloqada xatolik yuz berdi.");
-            }
-        });
-
-        initServices();
-        renderOrders();
-    </script>
+(function(){ if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+ var c=$("dust"),x=c.getContext("2d"),W,H,P=[];
+ function rs(){W=c.width=innerWidth;H=c.height=innerHeight}rs();addEventListener("resize",rs);
+ for(var i=0;i<46;i++)P.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.6+.4,v:Math.random()*.35+.1,a:Math.random()});
+ (function f(){x.clearRect(0,0,W,H);P.forEach(function(p){p.y-=p.v;p.a+=.02;if(p.y<-5){p.y=H+5;p.x=Math.random()*W}
+  x.globalAlpha=.25+.45*Math.abs(Math.sin(p.a));x.fillStyle="#f3cf72";x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()});requestAnimationFrame(f)})()})();
+</script>
 </body>
 </html>
