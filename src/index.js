@@ -9,10 +9,10 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Frontend papkasini ulash
+// Frontend (public papkasi) uchun to'g'ri yo'lni ko'rsatish
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Asosiy sahifaga kirganda index.html ni aniq ko'rsatish
+// Asosiy sahifaga kirganda index.html ni aniq yuborish
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
 });
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 const clientRoutes = require('./routes/client.routes');
 app.use('/api/client', clientRoutes);
 
-// Telegram botni ishga tushirish (botController ni chaqiramiz)
+// Telegram botni ishga tushirish
 require('./controllers/botController');
 
 // Serverni yoqish
