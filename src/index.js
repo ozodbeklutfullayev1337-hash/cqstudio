@@ -12,6 +12,11 @@ app.use(express.json());
 // Frontend papkasini ulash
 app.use(express.static(path.join(__dirname, '../public')));
 
+// Asosiy sahifaga kirganda index.html ni aniq ko'rsatish
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+});
+
 // Routerlarni ulab chiqish
 const clientRoutes = require('./routes/client.routes');
 app.use('/api/client', clientRoutes);
