@@ -159,13 +159,22 @@ nav button.on{color:var(--tx)}nav button.on b{transform:translateY(-3px) scale(1
 </div>
 
 <script>
-var S=[["Logo dizayn","Noyob belgi va brend uslubi",500000,["3 ta konsept","Vektor formatlar","Qo'llanish namunalari"]],["Brending","To'liq identika va brend kitobi",1500000,["Ranglar va shriftlar","Brend kitobi","Vizitka va blanka"]],["Veb-sayt","Landing va korporativ sayt dizayni",2500000,["Mobil va desktop","Interaktiv prototip","Animatsiya yo'riqnomasi"]],["Telegram bot UI","Mini App va bot interfeysi",2000000,["To'liq ekranlar","3D effektlar","Ishga tayyor kod"]],["SMM dizayn","Post, story va banner to'plami",800000,["30 tagacha shablon","Yagona uslub","Tahrirlanadigan fayllar"]],["Video montaj","Reels va reklama roliklari",700000,["Rang berish","Sarlavha va effektlar","Musiqa tanlash"]]];
+// Xizmatlar va ularning boshlang'ich narxlari tiklandi
+var S=[
+  ["Logo dizayn","Noyob belgi va brend uslubi",500000,["3 ta konsept","Vektor formatlar","Qo'llanish namunalari"]],
+  ["Brending","To'liq identika va brend kitobi",1500000,["Ranglar va shriftlar","Brend kitobi","Vizitka va blanka"]],
+  ["Veb-sayt","Landing va korporativ sayt dizayni",2500000,["Mobil va desktop","Interaktiv prototip","Animatsiya yo'riqnomasi"]],
+  ["Telegram bot UI","Mini App va bot interfeysi",2000000,["To'liq ekranlar","3D effektlar","Ishga tayyor kod"]],
+  ["SMM dizayn","Post, story va banner to'plami",800000,["30 tagacha shablon","Yagona uslub","Tahrirlanadigan fayllar"]],
+  ["Video montaj","Reels va reklama roliklari",700000,["Rang berish","Sarlavha va effektlar","Musiqa tanlash"]]
+];
+
 var $=function(i){return document.getElementById(i)},fmt=function(n){return Math.round(n).toLocaleString('ru-RU').replace(/,/g,' ')+" so'm"};
 var P=["Start","Pro","Chrome"],orders=[],tabN=0,pend=0,cur=0,spinv=0,fx=0;
 try{orders=JSON.parse(localStorage.getItem('cq_orders')||'[]')}catch(e){}
 
 // --- MAXFIY PAROL BILAN ADMIN PANELNI OCHISH ---
-const ADMIN_SECRET_CODE = "7777"; // Istasangiz o'zgartirishingiz mumkin
+const ADMIN_SECRET_CODE = "7777"; 
 function promptAdminPassword(){
   var p = prompt("Admin panel parolini kiriting:");
   if(p === ADMIN_SECRET_CODE){
@@ -225,7 +234,6 @@ $('go').onclick=function(){
   orders.unshift({s:sName,d:new Date().toLocaleDateString('uz-UZ')});
   try{localStorage.setItem('cq_orders',JSON.stringify(orders))}catch(e){}
   
-  // Backend API ga yuborish
   try{
     fetch('/api/client/orders',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:$('nm').value,phone:$('ph').value,serviceName:sName,brief:$('br').value})});
   }catch(err){}
@@ -233,12 +241,10 @@ $('go').onclick=function(){
   hist();spinv=.6;fx=2;var b=$('bst');b.classList.remove('on');void b.offsetWidth;b.classList.add('on');toast('✦ Buyurtma qabul qilindi!');$('br').value='';
 };
 function counters(){document.querySelectorAll('[data-n]').forEach(function(e){var n=+e.dataset.n,s=performance.now();(function t(x){var p=Math.min(1,(x-s)/2000);e.textContent=Math.round(n*(1-Math.pow(1-p,4)))+(n>=100?'+':'');if(p<1)requestAnimationFrame(t)})(s)})}
-/* drag / swipe on spacers */
 var drag=0,lx=0,tdx=0,my=0;
 document.querySelectorAll('.sp').forEach(function(e){e.onpointerdown=function(ev){drag=1;lx=ev.clientX;tdx=0};});
 addEventListener('pointermove',function(e){my=(e.clientY/innerHeight-.5)*2;if(drag){var dx=e.clientX-lx;lx=e.clientX;tdx+=dx;spinv+=dx*.0022}});
 addEventListener('pointerup',function(){if(drag&&tabN==1&&Math.abs(tdx)>60)sel(pend+(tdx<0?1:-1));drag=0});
-/* chrome scene */
 function scene(){try{
 var cv=$('cv'),W=cv.clientWidth,H=cv.clientHeight,r=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio,2));r.setSize(W,H,false);r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.15;r.outputEncoding=THREE.sRGBEncoding;
 var sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(40,W/H,.1,100);cam.position.set(0,0,7.5);
