@@ -3,315 +3,427 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CQ Studio · Chrome</title>
+<title>Aura Gourmet · 1M$ Apple Style Fast Food</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=SF+Pro+Text:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
-:root{--bg:#06070a;--ln:rgba(255,255,255,.11);--tx:#f2f3f6;--mut:#8b909c;--cor:#ff6a4d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;background:var(--bg)}
-body{color:var(--tx);font-family:'Hanken Grotesk',system-ui,sans-serif;display:flex;justify-content:center;overflow:hidden}
-.app{position:relative;width:100%;max-width:480px;height:100%;display:flex;flex-direction:column;overflow:hidden;background:radial-gradient(70% 42% at 50% 20%,#1c2230,#06070a 75%)}
-#cv{position:absolute;inset:0;width:100%;height:100%}
-.ud{font-family:Unbounded,system-ui,sans-serif}
-.sv{background:linear-gradient(100deg,#fff,#8f99aa,#fff,#6f7a8d,#fff);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sv 7s linear infinite}
-@keyframes sv{to{background-position:-300% 0}}
-header{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:16px 22px 4px}
-.brand{font:700 15px Unbounded,sans-serif;letter-spacing:.3em}
-.brand i{font-style:normal;display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--cor);margin-left:6px;box-shadow:0 0 14px var(--cor);animation:bl 2s infinite}
-@keyframes bl{50%{opacity:.3}}
-.av{width:38px;height:38px;border-radius:50%;background:linear-gradient(145deg,#fff,#7d8696);color:#0a0c10;display:grid;place-items:center;font:700 13px Unbounded;box-shadow:0 0 0 3px rgba(255,255,255,.08);cursor:pointer}
-main{position:relative;z-index:2;flex:1;overflow-y:auto;padding:0 20px 120px;scrollbar-width:none}
-main::-webkit-scrollbar{display:none}
-.tab{display:none}.tab.on{display:block;animation:in .9s cubic-bezier(.16,1,.3,1)}
-@keyframes in{from{opacity:0;transform:translateY(40px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
-.sp{touch-action:pan-y;position:relative;user-select:none}
-.tag{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--mut);margin-bottom:12px}
-.tag b{color:var(--cor);font-weight:500}
-h1{font:500 29px/1.15 Unbounded,sans-serif;margin-bottom:14px}
-.lead{font-size:15px;line-height:1.6;color:#b7bcc8;margin-bottom:24px}
-.btn{position:relative;display:block;width:100%;border:0;border-radius:18px;padding:18px;color:#0a0c10;font:600 11px Unbounded,sans-serif;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;background:linear-gradient(180deg,#fbfdff,#b5bdca 55%,#e8ecf2);box-shadow:0 14px 40px rgba(180,200,255,.18),inset 0 1px 0 #fff,inset 0 -2px 0 rgba(0,0,0,.15);transition:transform .2s;overflow:hidden}
-.btn:after{content:"";position:absolute;top:0;left:-100%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.9),transparent);animation:bs 3.4s infinite}
-@keyframes bs{to{left:170%}}
-.btn:active{transform:scale(.96)}
-.btn.g{background:rgba(255,255,255,.04);color:var(--tx);border:1px solid var(--ln);box-shadow:none}.btn.g:after{display:none}
-.mq{overflow:hidden;white-space:nowrap;margin:26px -20px 0;padding:14px 0;border-block:1px solid var(--ln)}
-.mq div{display:inline-block;animation:mq 26s linear infinite;font:700 22px Unbounded;letter-spacing:.1em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.4)}
-@keyframes mq{to{transform:translateX(-50%)}}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
-.stat{padding:18px 6px;text-align:center;border-radius:20px;border:1px solid var(--ln);background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.01));backdrop-filter:blur(14px)}
-.stat b{display:block;font:700 24px Unbounded}
-.stat small{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
-.srch{display:flex;gap:10px;align-items:center;padding:13px 18px;border:1px solid var(--ln);border-radius:99px;background:rgba(6,7,10,.6);backdrop-filter:blur(18px)}
-.srch input{flex:1;background:none;border:0;outline:0;color:var(--tx);font:inherit;font-size:14px;min-width:0}
-.ar{position:absolute;top:50%;width:46px;height:46px;margin-top:-23px;border-radius:50%;border:1px solid var(--ln);background:rgba(255,255,255,.06);backdrop-filter:blur(12px);color:var(--tx);font-size:22px;cursor:pointer;z-index:2}
-.ar.l{left:0}.ar.r{right:0}
-.inf{padding:24px 22px;border-radius:32px;border:1px solid var(--ln);background:linear-gradient(170deg,rgba(255,255,255,.09),rgba(255,255,255,.015));backdrop-filter:blur(26px);box-shadow:0 40px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.15)}
-.dots{display:flex;gap:6px;justify-content:center;margin-bottom:16px}
-.dots i{width:6px;height:6px;border-radius:99px;background:rgba(255,255,255,.2);transition:.5s cubic-bezier(.3,1.5,.4,1)}
-.dots i.on{width:26px;background:var(--cor);box-shadow:0 0 12px var(--cor)}
-.nm{font:700 24px Unbounded;margin-bottom:6px}
-.ds{font-size:13px;color:#b7bcc8;margin-bottom:14px}
-.fts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-.fts span{font-size:11px;padding:6px 11px;border-radius:99px;border:1px solid var(--ln);color:#d6dae3}
-.tiers-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:16px}
-.t-card{background:rgba(255,255,255,.03);border:1px solid var(--ln);border-radius:12px;padding:8px 4px;text-align:center}
-.t-card small{display:block;font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.1em}
-.t-card b{font:700 13px Unbounded;color:var(--tx)}
-.glass{padding:24px 20px;border-radius:32px;border:1px solid var(--ln);background:linear-gradient(170deg,rgba(255,255,255,.09),rgba(255,255,255,.015));backdrop-filter:blur(26px);box-shadow:0 40px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.15);margin-bottom:16px}
-h2.t{font:700 20px Unbounded;margin-bottom:4px}
-.sub{font-size:13px;color:var(--mut);margin-bottom:6px}
-label.l{display:block;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--mut);margin:20px 0 9px}
-.in{width:100%;padding:16px 18px;border-radius:16px;border:1px solid var(--ln);background:rgba(0,0,0,.45);color:var(--tx);font:inherit;font-weight:500;font-size:15px;outline:0;transition:.3s}
-.in:focus{border-color:#cfd6e4;box-shadow:0 0 0 4px rgba(207,214,228,.1),0 0 30px rgba(159,216,255,.12)}
-select.in option{background:#0c0e13}
-textarea.in{min-height:90px;resize:vertical}
-.ord{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-top:1px solid var(--ln);font-size:13px}
-.ord i{font-style:normal;font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:6px 12px;border-radius:99px;border:1px solid var(--cor);color:var(--cor)}
-.empty{color:var(--mut);font-size:13px;padding:8px 0}
-nav{position:absolute;z-index:5;left:14px;right:14px;bottom:calc(12px + env(safe-area-inset-bottom,0px));height:70px;display:flex;border-radius:26px;border:1px solid var(--ln);background:rgba(8,9,13,.65);backdrop-filter:blur(30px);box-shadow:0 30px 70px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.12)}
-nav .ln{position:absolute;top:0;left:0;width:33.33%;height:3px;display:flex;justify-content:center;transition:transform .7s cubic-bezier(.3,1.3,.4,1)}
-nav .ln:after{content:"";width:44px;height:3px;border-radius:0 0 9px 9px;background:var(--cor);box-shadow:0 6px 22px 2px var(--cor)}
-nav button{flex:1;background:none;border:0;color:var(--mut);font:500 9px Unbounded;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.4s}
-nav button b{display:block;font-size:21px;margin-bottom:4px;font-weight:400;transition:.5s cubic-bezier(.3,1.6,.4,1)}
-nav button.on{color:var(--tx)}nav button.on b{transform:translateY(-3px) scale(1.25)}
-.bst{position:fixed;left:50%;top:40%;width:20px;height:20px;margin:-10px;border-radius:50%;border:2px solid var(--cor);z-index:97;pointer-events:none;opacity:0}
-.bst.on{animation:bs2 1.4s ease-out}
-@keyframes bs2{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(30)}}
-.toast{position:fixed;top:20px;left:50%;transform:translate(-50%,-120px);padding:15px 26px;border-radius:99px;color:#0a0c10;font:600 12px Unbounded;background:linear-gradient(180deg,#fff,#aab3c2);transition:.7s cubic-bezier(.2,1.4,.3,1);z-index:99;box-shadow:0 0 60px rgba(255,106,77,.5)}
-.toast.on{transform:translate(-50%,0)}
-#ld{position:fixed;inset:0;z-index:100;background:#06070a;display:grid;place-items:center;text-align:center;transition:opacity 1s,visibility 1s}
-#ld.off{opacity:0;visibility:hidden}
-#ld b{display:block;font:700 62px Unbounded;animation:lz 1.9s cubic-bezier(.16,1,.3,1)}
-#ld small{letter-spacing:.7em;font-size:9px;color:var(--mut)}
-@keyframes lz{from{opacity:0;filter:blur(18px);transform:scale(1.4)}}
+:root {
+  --color-primary-ink: #1d1d1f;
+  --color-mid-gray: #707070;
+  --color-deep-gray: #474747;
+  --color-hairline: #d6d6d6;
+  --color-canvas: #f5f5f7;
+  --color-paper: #ffffff;
+  --color-cool-wash: #e8e8ed;
+  --color-electric-blue: #0071e3;
+  --color-link-blue: #0066cc;
+  --color-ember: #b64400;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; background: var(--color-canvas); }
+body { color: var(--color-primary-ink); font-family: 'SF Pro Text', ui-sans-serif, system-ui, sans-serif; display: flex; justify-content: center; overflow: hidden; }
 
-/* Admin Modal Styles */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:150;display:none;place-items:center;padding:20px;backdrop-filter:blur(12px)}
-.modal-content{background:#0c0e13;border:1px solid rgba(255,255,255,.2);border-radius:24px;width:100%;max-width:420px;padding:24px;position:relative;box-shadow:0 30px 60px rgba(0,0,0,.9)}
-.modal-close{position:absolute;top:16px;right:16px;background:none;border:0;color:var(--mut);font-size:18px;cursor:pointer}
+.app { position: relative; width: 100%; max-width: 480px; height: 100%; display: flex; flex-direction: column; overflow: hidden; background: var(--color-paper); box-shadow: 0 0 50px rgba(0,0,0,0.06); }
+
+#cv { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+
+header { position: absolute; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: rgba(255,255,255,0.75); backdrop-filter: blur(20px); border-bottom: 1px solid var(--color-hairline); }
+.brand { font-family: 'SF Pro Display', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.3px; }
+.brand i { font-style: normal; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--color-electric-blue); margin-left: 5px; vertical-align: middle; }
+
+.header-actions { display: flex; gap: 10px; align-items: center; }
+.icon-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--color-canvas); border: 1px solid var(--color-hairline); display: grid; place-items: center; font-size: 15px; cursor: pointer; transition: transform .2s, background .2s; }
+.icon-btn:active { transform: scale(0.92); background: var(--color-cool-wash); }
+
+main { position: relative; z-index: 3; flex: 1; overflow-y: auto; padding: 76px 24px 110px; scrollbar-width: none; }
+main::-webkit-scrollbar { display: none; }
+
+.tab { display: none; }
+.tab.on { display: block; animation: fadeIn .7s cubic-bezier(.16, 1, .3, 1); }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
+
+.sp { touch-action: pan-y; position: relative; user-select: none; }
+.tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-mid-gray); margin-bottom: 10px; font-weight: 600; }
+.tag b { color: var(--color-ember); font-weight: 600; }
+
+h1 { font-family: 'SF Pro Display', sans-serif; font-weight: 700; font-size: 48px; line-height: 1.06; letter-spacing: -1.2px; margin-bottom: 12px; }
+.lead { font-size: 17px; line-height: 1.45; color: var(--color-mid-gray); margin-bottom: 24px; letter-spacing: -0.2px; }
+
+.btn { position: relative; display: block; width: 100%; border: 0; border-radius: 980px; padding: 15px 24px; color: #fff; font-family: 'SF Pro Text', sans-serif; font-weight: 400; font-size: 17px; cursor: pointer; background: var(--color-electric-blue); box-shadow: 0 6px 20px rgba(0,113,227,0.25); transition: transform .2s, opacity .2s; text-align: center; overflow: hidden; }
+.btn:after { content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: shimmer 3s infinite; }
+@keyframes shimmer { to { left: 180%; } }
+.btn:active { transform: scale(0.97); opacity: 0.9; }
+
+.btn.ghost { background: transparent; color: var(--color-primary-ink); border: 1px solid var(--color-primary-ink); box-shadow: none; }
+.btn.ghost:after { display: none; }
+
+.card { background: var(--color-canvas); border-radius: 28px; padding: 28px; margin-bottom: 20px; position: relative; overflow: hidden; border: 1px solid transparent; }
+.card h2 { font-family: 'SF Pro Display', sans-serif; font-weight: 600; font-size: 26px; letter-spacing: -0.2px; margin-bottom: 6px; }
+.card p { font-size: 15px; color: var(--color-mid-gray); line-height: 1.4; }
+
+.chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 20px; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { padding: 10px 18px; border-radius: 999px; background: var(--color-canvas); border: 1px solid var(--color-hairline); font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: .2s; }
+.chip.on { background: var(--color-primary-ink); color: #fff; border-color: var(--color-primary-ink); }
+
+.menu-grid { display: grid; gap: 16px; margin-bottom: 24px; }
+.menu-card { background: var(--color-canvas); border-radius: 28px; padding: 24px; cursor: pointer; border: 1px solid transparent; transition: border-color .2s; }
+.menu-card:hover { border-color: var(--color-hairline); }
+.menu-card h3 { font-family: 'SF Pro Display'; font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+.menu-card .price { font-size: 15px; font-weight: 600; color: var(--color-electric-blue); margin-top: 10px; display: inline-block; }
+
+.input-group { margin-bottom: 16px; }
+label.l { display: block; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-mid-gray); margin-bottom: 8px; font-weight: 600; }
+.in { width: 100%; padding: 15px 18px; border-radius: 16px; border: 1px solid var(--color-hairline); background: var(--color-canvas); color: var(--color-primary-ink); font: inherit; font-size: 15px; outline: none; transition: border-color .2s; }
+.in:focus { border-color: var(--color-primary-ink); }
+
+nav { position: absolute; z-index: 10; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); height: 64px; display: flex; border-radius: 32px; background: rgba(255,255,255,0.85); backdrop-filter: blur(30px); border: 1px solid var(--color-hairline); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+nav button { flex: 1; background: none; border: 0; color: var(--color-mid-gray); font-family: 'SF Pro Text', sans-serif; font-size: 11px; font-weight: 500; cursor: pointer; transition: color .3s; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
+nav button b { font-size: 18px; font-weight: 400; transition: transform .3s; }
+nav button.on { color: var(--color-primary-ink); }
+nav button.on b { transform: scale(1.15); }
+
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; display: none; place-items: center; padding: 20px; backdrop-filter: blur(10px); }
+.modal-content { background: var(--color-paper); border-radius: 32px; width: 100%; max-width: 400px; padding: 32px; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.15); border: 1px solid var(--color-hairline); }
+.modal-close { position: absolute; top: 20px; right: 20px; background: var(--color-canvas); border: 1px solid var(--color-hairline); width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; font-size: 14px; }
+
+.toast { position: fixed; top: 24px; left: 50%; transform: translate(-50%, -120px); padding: 12px 24px; border-radius: 99px; color: #fff; font-size: 14px; font-weight: 500; background: var(--color-primary-ink); transition: transform .5s cubic-bezier(.2, 1.4, .3, 1); z-index: 150; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+.toast.on { transform: translate(-50%, 0); }
 </style>
 </head>
 <body>
-<div id="ld"><div><b class="sv">CQ</b><small>CHROME EDITION</small></div></div>
+
 <div class="app">
-<canvas id="cv"></canvas>
-<header><div class="brand sv">CQ STUDIO<i></i></div><div class="av" onclick="promptAdminPassword()" title="Admin Panel">O</div></header>
-<main id="mn">
-<section class="tab on" id="t0">
- <div class="sp" style="height:350px"></div>
- <div class="tag">Premium dizayn <b>●</b> Studiya</div>
- <h1>Brendingiz <span class="sv">xromdek</span> yaltirasin</h1>
- <p class="lead">Professional vebsaytlar, botlar, logotiplar va reklama yechimlari.</p>
- <button class="btn" onclick="go(1)">Kolleksiyani ochish</button>
- <div class="mq"><div>VEBSAYT — TELEGRAM BOT — REKLAMA — LOGOTIP — VIDEO — VEBSAYT — TELEGRAM BOT — REKLAMA — LOGOTIP — VIDEO — </div></div>
- <div class="stats"><div class="stat"><b class="sv" data-n="250">0</b><small>Loyiha</small></div><div class="stat"><b class="sv" data-n="98">0</b><small>% Mamnun</small></div><div class="stat"><b class="sv" data-n="5">0</b><small>Yil</small></div></div>
-</section>
-<section class="tab" id="t1">
- <div class="srch">◌<input id="q" placeholder="Xizmatlarni qidiring..."></div>
- <div class="sp" id="sp1" style="height:250px"><button class="ar l" id="pv">‹</button><button class="ar r" id="nx">›</button></div>
- <div class="inf">
-   <div class="dots" id="dots"></div>
-   <div class="nm sv" id="n1"></div>
-   <p class="ds" id="d1"></p>
-   <div class="fts" id="f1"></div>
-   <div class="tiers-mini" id="tiers1"></div>
-   <button class="btn" id="bOrder" onclick="go(2)">Buyurtma berish ✦</button>
- </div>
-</section>
-<section class="tab" id="t2"><div class="sp" style="height:120px"></div>
- <div class="glass"><h2 class="t sv">Buyurtma</h2><p class="sub">Loyihangizni biz bilan yarating</p>
- <label class="l">Ismingiz</label><input class="in" id="nm" value="Ozodbek">
- <label class="l">Telefon raqam</label><input class="in" id="ph" inputmode="tel" placeholder="+998 90 123 45 67">
- <label class="l">Xizmat va paket</label><select class="in" id="os"></select>
- <label class="l">Loyiha tafsilotlari (brif)</label><textarea class="in" id="br" placeholder="Talablaringiz..."></textarea>
- <div style="height:22px"></div><button class="btn" id="go">Buyurtmani tasdiqlash ✦</button></div>
- <div class="glass"><h2 class="t">Mening buyurtmalarim</h2><div id="hist"></div></div>
-</section>
-</main>
-<nav id="nav"><div class="ln" id="ln"></div><button class="on"><b>◈</b>Asosiy</button><button><b>◐</b>Xizmat</button><button><b>❖</b>Buyurtma</button></nav>
+  <canvas id="cv"></canvas>
+  
+  <header>
+    <div class="brand">AURA GOURMET<i></i></div>
+    <div class="header-actions">
+      <div class="icon-btn" onclick="openAdmin()" title="Admin Paneli">👑</div>
+      <div class="icon-btn" onclick="go(2)" title="Savat">🛒</div>
+    </div>
+  </header>
+
+  <main id="mn">
+    <!-- 0: Asosiy Sahifa -->
+    <section class="tab on" id="t0">
+      <div class="sp" style="height: 300px"></div>
+      <div class="tag">Yangi Flagman <b>●</b> Titan Series</div>
+      <h1>Mukammal <br>ta'm arxitekturasi.</h1>
+      <p class="lead">Tabiiy Angus go‘shti, maxsus trufel sousi va qarsildoq briosh noni uyg‘unligi.</p>
+      <button class="btn" onclick="go(1)">Katalogni ochish</button>
+      
+      <div style="height: 40px"></div>
+      
+      <div class="card">
+        <span class="tag">Maxsus taklif</span>
+        <h2>Double Truffle Burger</h2>
+        <p style="margin-bottom: 20px;">Ikki karra pishloq va unikal shef-pazandachilik retsepti.</p>
+        <button class="btn ghost" style="width: auto; padding: 10px 20px; font-size: 15px;" onclick="quickOrder('Double Truffle Burger', '95 000 so‘m')">Tezkor buyurtma</button>
+      </div>
+    </section>
+
+    <!-- 1: Menyu va 3D Showcase -->
+    <section class="tab" id="t1">
+      <div class="sp" id="sp1" style="height: 220px"></div>
+      
+      <div class="chips">
+        <div class="chip on" onclick="filterCategory(0)">Burgers</div>
+        <div class="chip" onclick="filterCategory(1)">Pizzas</div>
+        <div class="chip" onclick="filterCategory(2)">Drinks</div>
+      </div>
+
+      <div class="tag" id="prodTag">Flagman Mahsulot</div>
+      <h1 id="prodTitle" style="font-size: 34px;">Truffle Burger</h1>
+      <p id="prodDesc" class="lead" style="font-size: 15px; margin-bottom: 16px;">Eng sara masalliqlardan tayyorlangan flagman burger.</p>
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <span id="prodPrice" style="font-family: 'SF Pro Display'; font-size: 26px; font-weight: 700;">89 000 so‘m</span>
+        <button class="btn" style="width: auto; padding: 12px 24px;" onclick="addToCurrentProduct()">Savatga qo‘shish</button>
+      </div>
+
+      <div class="menu-grid" id="menuGrid"></div>
+    </section>
+
+    <!-- 2: Savat va Buyurtma -->
+    <section class="tab" id="t2">
+      <div class="sp" style="height: 20px"></div>
+      <h1>Sizning <br>savatingiz.</h1>
+      <p class="lead">Tanlangan taomlar va yetkazib berish tafsilotlari.</p>
+      
+      <div class="card" id="cartList">
+        <p style="color: var(--color-mid-gray)">Savatchangiz hozircha bo'sh.</p>
+      </div>
+
+      <div class="card" style="background: var(--color-paper); border: 1px solid var(--color-hairline);">
+        <div class="input-group">
+          <label class="l">Ismingiz</label>
+          <input class="in" id="clientName" value="Ozodbek">
+        </div>
+        <div class="input-group">
+          <label class="l">Telefon raqam</label>
+          <input class="in" id="clientPhone" inputmode="tel" placeholder="+998 90 123 45 67">
+        </div>
+        <div class="input-group">
+          <label class="l">Yetkazib berish manzili</label>
+          <input class="in" id="clientAddress" placeholder="Toshkent shahri...">
+        </div>
+        <button class="btn" onclick="checkout()">Buyurtmani tasdiqlash ✦</button>
+      </div>
+    </section>
+  </main>
+
+  <nav id="nav">
+    <button class="on" onclick="go(0)"><b>◇</b>Asosiy</button>
+    <button onclick="go(1)"><b>❖</b>Menyu</button>
+    <button onclick="go(2)"><b>◫</b>Savat</button>
+  </nav>
 </div>
-<div class="bst" id="bst"></div><div class="toast" id="toast"></div>
 
 <!-- ADMIN MODAL -->
 <div class="modal-overlay" id="adminModal">
   <div class="modal-content">
-    <button class="modal-close" onclick="closeAdminModal()">✕</button>
-    <h2 style="font-family:Unbounded;color:var(--cor);margin-bottom:12px;font-size:20px">👑 Admin Paneli</h2>
-    <p style="font-size:12px;color:var(--mut);margin-bottom:15px">Mijozlar buyurtmalari ro'yxati:</p>
-    <div id="adminOrdersList" style="max-height:50vh;overflow-y:auto">
-      <p style="font-size:12px;color:var(--mut);text-align:center;padding:20px">Yuklanmoqda...</p>
+    <div class="modal-close" onclick="closeAdmin()">✕</div>
+    <h2 style="font-family: 'SF Pro Display'; font-size: 22px; margin-bottom: 8px;">👑 Admin Paneli</h2>
+    <p style="font-size: 13px; color: var(--color-mid-gray); margin-bottom: 20px;">Mijozlar tomonidan qilingan buyurtmalar ro'yxati:</p>
+    <div id="adminOrdersList" style="max-height: 40vh; overflow-y: auto;">
+      <p style="font-size: 13px; color: var(--color-mid-gray); text-align: center; padding: 20px;">Buyurtmalar topilmadi</p>
     </div>
   </div>
 </div>
 
+<div class="toast" id="toast">Muvaffaqiyatli bajarildi</div>
+
 <script>
-// Yangi xizmatlar va paketli narxlar ($ da)
-var S=[
-  ["Vebsayt yasash", "Professional va zamonaviy veb-saytlar dizayni", ["Mobil moslashuv", "Interaktiv prototip", "SEO tayyor"], {Standart: "300 $", Pro: "380 $", Premium: "430 $"}],
-  ["Telegram bot yasash", "Tezkor va mukammal Telegram bot va Mini App", ["3D interfeys", "Admin panel", "To'liq kod"], {Standart: "100 $", Pro: "220 $", Premium: "270 $"}],
-  ["Reklama yasash", "Brendingiz uchun professional reklama roliklari", ["Ssenariy", "Professional montaj", "Ovoz berish"], {Standart: "20 $", Pro: "30 $", Premium: "45 $"}],
-  ["Logotip yasash", "Noyob va esda qolarli logotip dizayni", ["3 ta konsept", "Vektor formatlar", "Brendbuk elementlari"], {Standart: "40 $", Pro: "65 $", Premium: "80 $"}],
-  ["Video yasash", "Reels, Shorts va tijoriy videolar montaji", ["Rang berish", "Dinamik subtitr", "Maxsus effektlar"], {Standart: "20 $", Pro: "30 $", Premium: "45 $"}]
+// Ma'lumotlar bazasi va mahsulotlar
+const products = [
+  { id: 0, cat: 0, name: "Truffle Burger", desc: "Angus go‘shti, trufel sousi va briosh non.", price: "89 000 so‘m", rawPrice: 89000, tag: "Flagman" },
+  { id: 1, cat: 0, name: "Double Cheeseburger", desc: "Ikki karra pishloq va maxsus firmenniy sous.", price: "75 000 so‘m", rawPrice: 75000, tag: "Xit" },
+  { id: 2, cat: 1, name: "Pepperoni Gourmet", desc: "Yupqa xamir, pishloq va saralangan qalampir.", price: "115 000 so‘m", rawPrice: 115000, tag: "Italyancha" },
+  { id: 3, cat: 2, name: "Ice Cola Zero", desc: "Muzdek tetiklashtiruvchi klassik ichimlik.", price: "15 000 so‘m", rawPrice: 15000, tag: "Sovuq" }
 ];
 
-var $=function(i){return document.getElementById(i)}, orders=[], tabN=0, pend=0, spinv=0, fx=0;
-try{orders=JSON.parse(localStorage.getItem('cq_orders')||'[]')}catch(e){}
+let currentTab = 0, cart = [], orders = [];
+try { orders = JSON.parse(localStorage.getItem('aura_orders') || '[]'); } catch(e) {}
 
-const ADMIN_SECRET_CODE = "7777"; 
-function promptAdminPassword(){
-  var p = prompt("Admin panel parolini kiriting:");
-  if(p === ADMIN_SECRET_CODE){ openAdminModal(); } else if(p !== null){ alert("Noto'g'ri parol!"); }
+function go(n) {
+  currentTab = n;
+  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('on', i === n));
+  document.querySelectorAll('nav button').forEach((b, i) => b.classList.toggle('on', i === n));
+  document.getElementById('mn').scrollTop = 0;
 }
-function openAdminModal(){ $('adminModal').style.display='grid'; fetchAdminOrders(); }
-function closeAdminModal(){ $('adminModal').style.display='none'; }
-async function fetchAdminOrders(){
-  const container = $('adminOrdersList');
+
+function toast(msg) {
+  let t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('on');
+  setTimeout(() => t.classList.remove('on'), 2500);
+}
+
+function quickOrder(name, price) {
+  cart.push({ name, price });
+  updateCartUI();
+  toast('✦ Savatga qo‘shildi: ' + name);
+}
+
+function addToCurrentProduct() {
+  let p = products[selectedProductIdx];
+  cart.push({ name: p.name, price: p.price });
+  updateCartUI();
+  toast('✦ Savatga qo‘shildi: ' + p.name);
+}
+
+function updateCartUI() {
+  let list = document.getElementById('cartList');
+  if(!cart.length) {
+    list.innerHTML = `<p style="color: var(--color-mid-gray)">Savatchangiz hozircha bo'sh.</p>`;
+    return;
+  }
+  list.innerHTML = cart.map((item, idx) => `
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--color-hairline);">
+      <div>
+        <span style="font-weight: 600; display: block;">${item.name}</span>
+        <span style="font-size: 13px; color: var(--color-mid-gray);">${item.price}</span>
+      </div>
+      <span onclick="removeFromCart(${idx})" style="cursor: pointer; color: var(--color-ember); font-size: 13px;">O'chirish</span>
+    </div>
+  `).join('');
+}
+
+function removeFromCart(idx) {
+  cart.splice(idx, 1);
+  updateCartUI();
+}
+
+function checkout() {
+  if(!cart.length) { toast('Savat bo‘sh!'); return; }
+  let name = document.getElementById('clientName').value;
+  let phone = document.getElementById('clientPhone').value;
+  if(!phone || phone.length < 9) { toast('Telefon raqamni kiriting!'); document.getElementById('clientPhone').focus(); return; }
+
+  let orderData = { name, phone, items: [...cart], date: new Date().toLocaleDateString('uz-UZ') };
+  orders.unshift(orderData);
+  try { localStorage.setItem('aura_orders', JSON.stringify(orders)); } catch(e) {}
+
+  toast('✓ Buyurtmangiz muvaffaqiyatli qabul qilindi!');
+  cart = [];
+  updateCartUI();
+  go(0);
+}
+
+// Admin panel
+const ADMIN_CODE = "7777";
+function openAdmin() {
+  let p = prompt("Admin panel parolini kiriting:");
+  if(p === ADMIN_CODE) {
+    document.getElementById('adminModal').style.display = 'grid';
+    renderAdminOrders();
+  } else if(p !== null) {
+    alert("Parol noto'g'ri!");
+  }
+}
+function closeAdmin() { document.getElementById('adminModal').style.display = 'none'; }
+function renderAdminOrders() {
+  let list = document.getElementById('adminOrdersList');
+  if(!orders.length) {
+    list.innerHTML = `<p style="font-size: 13px; color: var(--color-mid-gray); text-align: center; padding: 20px;">Buyurtmalar mavjud emas</p>`;
+    return;
+  }
+  list.innerHTML = orders.map(o => `
+    <div style="padding: 12px 0; border-bottom: 1px solid var(--color-hairline);">
+      <b style="font-size: 14px; display: block;">${o.name} (${o.phone})</b>
+      <span style="font-size: 12px; color: var(--color-mid-gray);">${o.items.map(i => i.name).join(', ')}</span>
+      <div style="font-size: 11px; color: var(--color-ember); margin-top: 4px;">Sana: ${o.date}</div>
+    </div>
+  `).join('');
+}
+
+// Menyu filtrlash va render
+function filterCategory(catIdx) {
+  document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === catIdx));
+  let filtered = products.filter(p => p.cat === catIdx);
+  document.getElementById('menuGrid').innerHTML = filtered.map(p => `
+    <div class="menu-card" onclick="selectProductById(${p.id})">
+      <span class="tag">${p.tag}</span>
+      <h3>${p.name}</h3>
+      <p style="font-size: 14px; color: var(--color-mid-gray);">${p.desc}</p>
+      <span class="price">${p.price}</span>
+    </div>
+  `).join('');
+}
+
+let selectedProductIdx = 0;
+function selectProductById(id) {
+  let p = products.find(x => x.id === id);
+  if(!p) return;
+  selectedProductIdx = id;
+  document.getElementById('prodTag').innerHTML = `Tanlangan <b>●</b> ${p.tag}`;
+  document.getElementById('prodTitle').textContent = p.name;
+  document.getElementById('prodDesc').textContent = p.desc;
+  document.getElementById('prodPrice').textContent = p.price;
+  if(mesh && geometries[p.cat]) {
+    mesh.geometry = geometries[p.cat];
+  }
+}
+
+// Three.js 3D Interaktiv Sahnasi (Apple Style)
+let scene, renderer, mesh, geometries = [];
+function init3D() {
   try {
-    const res = await fetch('/api/admin/orders');
-    const data = await res.json();
-    if(!data || !data.length){ container.innerHTML = '<p style="font-size:12px;color:var(--mut);text-align:center;padding:20px">Hozircha bazada buyurtmalar yo\'q</p>'; return; }
-    container.innerHTML = data.map(function(o){ return '<div class="ord"><div><b style="font-weight:600">'+(o.name||'Mijoz')+' ('+(o.phone||'')+')</b><br><span style="color:var(--mut)">'+(o.serviceName||o.serviceId)+'</span></div><i>Faol</i></div>'; }).join('');
-  } catch(e) {
-    if(!orders.length){ container.innerHTML = '<p style="font-size:12px;color:var(--mut);text-align:center;padding:20px">Buyurtmalar topilmadi</p>'; return; }
-    container.innerHTML = orders.map(function(o){ return '<div class="ord"><div><b style="font-weight:600">'+o.s+'</b><br><span style="color:var(--mut)">'+o.d+'</span></div><i>Jarayonda</i></div>'; }).join('');
-  }
-}
-
-function opts(){
-  var h = "";
-  S.forEach(function(s, idx){
-    for(var pkg in s[3]){
-      h += '<option value="'+s[0]+' ('+pkg+' - '+s[3][pkg]+')">'+s[0]+' — '+pkg+' ('+s[3][pkg]+')</option>';
-    }
-  });
-  $('os').innerHTML = h;
-  $('dots').innerHTML = S.map(function(){ return '<i></i>'; }).join('');
-}
-
-function sel(i){
-  i = (i + S.length) % S.length;
-  pend = i;
-  var s = S[i];
-  $('n1').textContent = s[0];
-  $('d1').textContent = s[1];
-  $('f1').innerHTML = s[2].map(function(x){ return '<span>'+x+'</span>'; }).join('');
-  
-  var tHtml = "";
-  for(var p in s[3]){
-    tHtml += '<div class="t-card"><small>'+p+'</small><b>'+s[3][p]+'</b></div>';
-  }
-  $('tiers1').innerHTML = tHtml;
-  document.querySelectorAll('#dots i').forEach(function(d,k){ d.classList.toggle('on', k==i); });
-}
-
-function go(n){
-  tabN = n; fx = 1; spinv += .12;
-  document.querySelectorAll('.tab').forEach(function(t,i){ t.classList.toggle('on', i==n); });
-  document.querySelectorAll('#nav button').forEach(function(b,i){ b.classList.toggle('on', i==n); });
-  $('ln').style.transform = 'translateX('+(n*100)+'%)';
-  $('mn').scrollTop = 0;
-}
-
-function hist(){
-  $('hist').innerHTML = orders.length ? orders.map(function(o){ return '<div class="ord"><div><b style="font-weight:600">'+o.s+'</b><br><span style="color:var(--mut)">'+o.d+'</span></div><i>Qabul qilindi</i></div>'; }).join('') : '<p class="empty">Hozircha buyurtmalar tarixi mavjud emas.</p>';
-}
-
-function toast(m){ var t = $('toast'); t.textContent = m; t.classList.add('on'); setTimeout(function(){ t.classList.remove('on'); }, 2700); }
-
-document.querySelectorAll('#nav button').forEach(function(b,i){ b.onclick = function(){ go(i); }; });
-$('pv').onclick = function(){ sel(pend-1); };
-$('nx').onclick = function(){ sel(pend+1); };
-$('q').oninput = function(){
-  var v = this.value.toLowerCase();
-  for(var i=0; i<S.length; i++) {
-    if(v && S[i][0].toLowerCase().indexOf(v) > -1){ sel(i); break; }
-  }
-};
-
-$('go').onclick = function(){
-  if($('ph').value.trim().length < 9){ $('ph').focus(); $('ph').style.borderColor = '#ff8a8a'; return; }
-  $('ph').style.borderColor = '';
-  var sName = $('os').value;
-  orders.unshift({ s: sName, d: new Date().toLocaleDateString('uz-UZ') });
-  try{ localStorage.setItem('cq_orders', JSON.stringify(orders)); }catch(e){}
-  
-  try{
-    fetch('/api/client/orders',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:$('nm').value,phone:$('ph').value,serviceName:sName,brief:$('br').value})});
-  }catch(err){}
-
-  hist(); spinv = .6; fx = 2; var b = $('bst'); b.classList.remove('on'); void b.offsetWidth; b.classList.add('on'); toast('✦ Buyurtma qabul qilindi!'); $('br').value = '';
-};
-
-function counters(){
-  document.querySelectorAll('[data-n]').forEach(function(e){
-    var n = +e.dataset.n, s = performance.now();
-    (function t(x){
-      var p = Math.min(1, (x-s)/2000);
-      e.textContent = Math.round(n * (1 - Math.pow(1-p, 4))) + (n >= 100 ? '+' : '');
-      if(p < 1) requestAnimationFrame(t);
-    })(s);
-  });
-}
-
-var drag=0, lx=0, tdx=0, my=0;
-document.querySelectorAll('.sp').forEach(function(e){ e.onpointerdown = function(ev){ drag = 1; lx = ev.clientX; tdx = 0; }; });
-addEventListener('pointermove', function(e){ my = (e.clientY/innerHeight-.5)*2; if(drag){ var dx = e.clientX-lx; lx = e.clientX; tdx += dx; spinv += dx*.0022; } });
-addEventListener('pointerup', function(){ if(drag && tabN==1 && Math.abs(tdx)>60) sel(pend + (tdx<0?1:-1)); drag = 0; });
-
-function scene(){
-  try{
-    var cv=$('cv'), W=cv.clientWidth, H=cv.clientHeight, r=new THREE.WebGLRenderer({canvas:cv, antialias:true, alpha:true});
-    r.setPixelRatio(Math.min(devicePixelRatio,2)); r.setSize(W,H,false); r.toneMapping=THREE.ACESFilmicToneMapping; r.toneMappingExposure=1.15;
-    var sc=new THREE.Scene(), cam=new THREE.PerspectiveCamera(40,W/H,.1,100); cam.position.set(0,0,7.5);
-    var c=document.createElement('canvas'); c.width=1024; c.height=512; var x=c.getContext('2d'), g=x.createLinearGradient(0,0,0,512);
-    g.addColorStop(0,'#2a303d'); g.addColorStop(.5,'#07080b'); g.addColorStop(1,'#12141a'); x.fillStyle=g; x.fillRect(0,0,1024,512);
+    let cv = document.getElementById('cv'), W = cv.clientWidth, H = cv.clientHeight;
+    renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setSize(W, H, false);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
     
-    function bx(a,y,w,h,col){var l=x.createLinearGradient(a,0,a+w,0); l.addColorStop(0,'rgba(0,0,0,0)'); l.addColorStop(.3,col); l.addColorStop(.7,col); l.addColorStop(1,'rgba(0,0,0,0)'); x.fillStyle=l; x.fillRect(a,y,w,h)}
-    bx(90,110,110,280,'#fff'); bx(380,60,80,330,'#7fc8ff'); bx(640,130,130,250,'#ff8f60'); bx(860,50,80,150,'#fff');
+    scene = new THREE.Scene();
+    let cam = new THREE.PerspectiveCamera(40, W/H, 0.1, 100);
+    cam.position.set(0, 0, 6.5);
     
-    var tex=new THREE.CanvasTexture(c); tex.mapping=THREE.EquirectangularReflectionMapping; sc.environment=tex;
-    sc.add(new THREE.AmbientLight(0xffffff,.4)); var dl=new THREE.DirectionalLight(0xffffff,1.2); dl.position.set(3,5,6); sc.add(dl);
-    
-    // Geometriyalar (5 ta xizmat uchun)
-    var G=[
-      new THREE.BoxGeometry(1.7,1.7,1.7),              // Vebsayt
-      new THREE.IcosahedronGeometry(1.35,0),          // Telegram bot
-      new THREE.OctahedronGeometry(1.55,0),         // Reklama
-      new THREE.TorusKnotGeometry(.95,.3,220,36,2,3), // Logotip
-      new THREE.SphereGeometry(1.3,96,96)           // Video
+    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+    let dl = new THREE.DirectionalLight(0xffffff, 1.4);
+    dl.position.set(4, 6, 5);
+    scene.add(dl);
+
+    // Apple uslubidagi metallik va xrom material
+    let mat = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      metalness: 0.92,
+      roughness: 0.12,
+      envMapIntensity: 1.8
+    });
+
+    geometries = [
+      new THREE.CylinderGeometry(1.3, 1.3, 0.75, 32), // Burger
+      new THREE.ConeGeometry(1.4, 1.2, 5),          // Pitsa sektor
+      new THREE.CylinderGeometry(0.7, 0.55, 1.7, 32) // Stakan
     ];
-    var FL=[1,1,1,0,0];
-    function mk(f,m){return new THREE.MeshStandardMaterial({color:0xffffff,metalness:1,roughness:f?.14:.08,envMapIntensity:1.7,flatShading:!!f,transparent:m,opacity:m?.2:1})}
-    var M=[mk(0),mk(1)], MM=[mk(0,1),mk(1,1)];
-    var o=new THREE.Group(), ga=new THREE.Group(), gm=new THREE.Group(), a=new THREE.Mesh(G[0],M[0]), b=new THREE.Mesh(G[0],MM[0]);
-    ga.add(a); gm.add(b); gm.scale.y=-1; gm.position.y=-3.5; o.add(ga,gm); sc.add(o);
-    
-    var pc=document.createElement('canvas'); pc.width=pc.height=256; var px=pc.getContext('2d'), rg=px.createRadialGradient(128,128,0,128,128,128);
-    rg.addColorStop(0,'rgba(170,215,255,.5)'); rg.addColorStop(.5,'rgba(255,106,77,.12)'); rg.addColorStop(1,'rgba(0,0,0,0)'); px.fillStyle=rg; px.fillRect(0,0,256,256);
-    var pool=new THREE.Mesh(new THREE.PlaneGeometry(7,7),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(pc),transparent:true,blending:THREE.AdditiveBlending,depthWrite:false})); pool.rotation.x=-Math.PI/2; pool.position.y=-1.75; o.add(pool);
-    
-    var r1=new THREE.Mesh(new THREE.TorusGeometry(2.2,.012,12,160),new THREE.MeshBasicMaterial({color:0xff6a4d})), r2=new THREE.Mesh(new THREE.TorusGeometry(2.5,.008,12,160),new THREE.MeshBasicMaterial({color:0x9fd8ff})); o.add(r1,r2);
-    
-    var T=[[0,1.05,1],[0,1.15,1],[0,2.1,.46],[0,2.3,.4],[0,1.1,1]], sh=0, s=.001, v=0, t=0, yaw=0;
-    (function loop(){
-      requestAnimationFrame(loop); t+=.016; var k=T[tabN]||T[0];
-      o.position.y+=(k[1]-o.position.y)*.07;
-      var tg=pend!=sh?0:k[2]; v+=(tg-s)*.14; v*=.76; s+=v; if(s<0) s=0; o.scale.setScalar(Math.max(s,.001));
-      if(pend!=sh&&s<.07){ sh=pend; a.geometry=b.geometry=G[sh]; a.material=M[FL[sh]]; b.material=MM[FL[sh]]; spinv+=.15; }
-      spinv*=.94; yaw+=.007+spinv; a.rotation.set(Math.sin(t*.6)*.3+my*.15, yaw, Math.cos(t*.5)*.1); b.rotation.copy(a.rotation);
-      ga.position.y=Math.sin(t*1.4)*.09; gm.position.y=-3.5-ga.position.y;
-      r1.rotation.set(1.3+Math.sin(t*.4)*.2, 0, t*.6); r2.rotation.set(1.1, t*.3, -t*.5);
-      r.render(sc,cam);
-    })();
-  }catch(e){}
+
+    mesh = new THREE.Mesh(geometries[0], mat);
+    scene.add(mesh);
+
+    let t = 0;
+    (function loop() {
+      requestAnimationFrame(loop);
+      t += 0.016;
+      mesh.rotation.y += 0.007;
+      mesh.rotation.x = Math.sin(t * 0.7) * 0.2;
+      renderer.render(sc, cam); // Note: Fix variable scope if needed
+    });
+  } catch(e) {}
 }
 
-try{if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand();}}catch(e){}
-opts(); sel(0); hist();
-if(window.THREE) scene();
-setTimeout(function(){ $('ld').classList.add('off'); counters(); }, 1900);
+// Fix Three loop scope reference bug
+function init3DScene() {
+  try {
+    let cv = document.getElementById('cv'), W = cv.clientWidth, H = cv.clientHeight;
+    let r = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true });
+    r.setPixelRatio(Math.min(devicePixelRatio, 2));
+    r.setSize(W, H, false);
+    
+    let sc = new THREE.Scene(), cam = new THREE.PerspectiveCamera(40, W/H, 0.1, 100);
+    cam.position.set(0, 0, 6.5);
+    
+    sc.add(new THREE.AmbientLight(0xffffff, 0.6));
+    let dl = new THREE.DirectionalLight(0xffffff, 1.4);
+    dl.position.set(4, 6, 5);
+    sc.add(dl);
+
+    let mat = new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.9, roughness: 0.12 });
+    geometries = [
+      new THREE.CylinderGeometry(1.3, 1.3, 0.75, 32),
+      new THREE.ConeGeometry(1.4, 1.2, 5),
+      new THREE.CylinderGeometry(0.7, 0.55, 1.7, 32)
+    ];
+
+    mesh = new THREE.Mesh(geometries[0], mat);
+    sc.add(mesh);
+
+    let t = 0;
+    (function loop() {
+      requestAnimationFrame(loop);
+      t += 0.016;
+      mesh.rotation.y += 0.007;
+      mesh.rotation.x = Math.sin(t * 0.7) * 0.2;
+      r.render(sc, cam);
+    })();
+  } catch(e) {}
+}
+
+try {
+  if(window.Telegram && Telegram.WebApp) {
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand();
+  }
+} catch(e) {}
+
+filterCategory(0);
+init3DScene();
 </script>
 </body>
 </html>
